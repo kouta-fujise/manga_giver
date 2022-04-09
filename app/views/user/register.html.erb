@@ -1,0 +1,55 @@
+<!-- <div id="text_register"><strong>新規会員登録</strong></div>
+        <div id="info_register">
+            <div>
+                <label for="email_register">メールアドレス</label>
+                <input type="email" id="email_register" placeholder="メールアドレスを入力" required>
+            </div>
+            <div>
+                <label for="password1_register">新規パスワード</label>
+                <input type="password" id="password1_register" placeholder="パスワードを入力" required>
+            </div>
+            <div>
+                <label for="password2_register">パスワードをもう一度入力して下さい</label>
+                <input type="password" id="password2_register" placeholder="パスワードを入力" required>
+            </div>
+            <div>
+                <label for="address_register">住所</label>
+                <input type="text" id="address_register" placeholder="住所を入力">
+            </div>
+            <div>
+                <label for="bank_register">口座</label>
+                <input type="text" id="bank_register" placeholder="口座情報を入力">
+            </div>
+            <div>
+                <a href="tab_home.html">
+                    <input type="submit" id="button_register" value="登録">
+                </a>
+            </div>
+        </div> -->
+
+<div id="text_register"><strong>新規会員登録</strong></div>
+
+        <%= form_tag("/user/create") do %>
+          <div id="info_register">
+              <% @user.errors.full_messages.each do |message| %>
+                <div class="form-error">
+                  <%= message %>
+                </div>
+              <% end %>
+              <div>
+              <label for="email_register">メールアドレス</label>
+              <input name="email" type="email" id="email_register" placeholder="メールアドレスを入力">
+              </div>
+              <div>
+              <label for="email_register">パスワード</label>
+              <input name="password" type="password" id="password1_register" placeholder="パスワード">
+              </div>
+              <div>
+              <label for="email_register">パスワードをもう一度入力してください</label>
+              <input type="password" id="password2_register" placeholder="パスワードをもう一度入力してください">
+              </div>
+              <div>
+              <input type="submit" id="button_register" value="登録">
+              </div>
+          </div>
+        <% end %>

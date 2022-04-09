@@ -1,0 +1,57 @@
+version: '3.5'
+services:
+  db:
+    image: mariadb:10.3
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: docker_development
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    volumes: #dbコンテナの/var/lib/mysqlディレクトリをmysql-dataボリュームにマウント
+      - mysql-data:/var/lib/mysql
+
+  unicorn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bundle exec unicorn -c /myproject/config/unicorn.conf.rb
+    tty: true #pry-byebugを使えるようにする
+    stdin_open: true
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/myproject:cached
+      #unicornコンテナの/myproject/tmp/socketsディレクトリをtmp-dataボリュームにマウント
+      #ソケット通信用ファイルをnginxコンテナと共有するため
+      - tmp-data:/myproject/tmp/sockets
+      #unicornコンテナの/myproject/publicディレクトリをpublic-dataボリュームにマウント
+      #画像データなどをnginxと共有するため
+      - public-data:/myproject/public
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080 #8080に変更
+    restart: always #restartポリシーをalwaysにすると、ホストOSやDockerデーモン起動時にコンテナが自動的に起動する。
+    volumes:
+      #nginxコンテナの/myproject/tmp/socketsディレクトリをtmp-dataボリュームにマウント
+      #ソケット通信用ファイルをunicornコンテナと共有するため
+      - tmp-data:/myproject/tmp/sockets
+      #nginxコンテナの/myproject/publicディレクトリをpublic-dataボリュームにマウント
+      #画像データなどをunicornと共有するため
+      - public-data:/myproject/public
+    depends_on:
+      - unicorn
+
+# ホストOS上にpublic-data, tmp-data, mysql-dataという名前のデータ保存領域を作成
+volumes:
+  public-data:
+  tmp-data:
+  mysql-data:
+    driver: local

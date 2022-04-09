@@ -1,0 +1,13 @@
+<label>
+  <strong>登録カード情報</strong>
+  <%= "**** **** **** " + @default_card_information.last4 %>
+  <% exp_month = @default_card_information.exp_month.to_s %>
+  <% exp_year = @default_card_information.exp_year.to_s.slice(2,3) %>
+  <%= exp_month + " / " + exp_year%>
+
+  <%= form_tag(card_delete_path, method: :post, id: 'charge-form',  name: "inputForm") do %>
+  <input name= "cvc" type="text" id="card_security_num" size="1" placeholder="削除する">
+  <% end %>
+  <%= %>
+
+  </label>

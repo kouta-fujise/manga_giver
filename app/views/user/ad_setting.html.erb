@@ -1,0 +1,93 @@
+<p>ユーザー設定ページ</p>
+
+<div class = "id">
+<%= @current_user.id %>
+</div>
+
+<div class="topnav">
+  <%= link_to("戻る","/user/page")%>
+</div>
+
+<div class="current_address">
+  <strong>現在の住所</strong>
+  <%= @current_user.address %>
+</div>
+
+
+<%= form_tag("/user/address") do %>
+  <div id="address">
+    <strong>住所登録</strong>
+  </div>
+  <br>
+  <div>
+    <label>
+      <div class="address_list">
+        <strong>お届け先名義</strong>
+      </div>
+      <div class="address_list">
+        <input name = "address1" type="text" id="user_name" size="40">
+      </div>
+    </label>
+  </div>
+  <div>
+    <label>
+      <div class="address_list">
+        <strong>郵便番号</strong>
+      </div>
+      <div class="address_list">
+        <input name = "address2" type="text" id="postcode1" size="10">&nbsp;-&nbsp;<input type="text" id="postcode2" size="10">
+      </div>
+    </label>
+  </div>
+  <div>
+    <label>
+      <div class="address_list">
+        <strong>都道府県</strong>
+      </div>
+      <div class="address_list">
+      <select name = "address3" id="todofuken">
+        <option value="">都道府県を選択してください</option>
+        <option value="hokkaido">北海道</option>
+        <option value="miyagi">宮城県</option>
+        <option value="fukushima">福島県</option>
+      </select>
+      </div>
+    </label>
+  </div>
+  <div>
+    <label>
+      <div class="address_list">
+        <strong>住所1</strong>
+      </div>
+      <div class="address_list">
+        <input name = "address4" type="text" id="user_name" size="40" placeholder="市、区、町、丁目、番地、号">
+      </div>
+    </label>
+  </div>
+  <div>
+    <label>
+      <div class="address_list">
+        <strong>住所2</strong>
+      </div>
+      <div class="address_list">
+        <input name = "address5" type="text" id="user_name" size="40" placeholder="マンション、アパート名、部屋番号、等">
+      </div>
+    </label>
+  </div>
+  <div>
+    <label>
+      <div class="address_list">
+        <strong>会社名（オプション）</strong>
+      </div>
+      <div class="address_list">
+        <input name = "address6" type="text" id="user_name" size="40">
+      </div>
+    </label>
+  </div>
+  <div>
+    <div class="address_list">
+      <input type="submit" class="address_btn" value="住所を登録">
+    </div>
+  </div>
+<% end %>
+<div style = "height:200px;"></div>

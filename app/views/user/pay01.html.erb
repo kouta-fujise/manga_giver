@@ -1,0 +1,129 @@
+<p>ユーザー支払いページ</p>
+
+<div id="payment">
+  <strong>お支払い方法</strong>
+</div>
+<br>
+<div>
+  <label>
+      <div class="payment_list_1">
+        <strong>お支払い方法を選択してください</strong>
+      </div>
+      <div class="payment_list_1">
+        <select id="payment_how">
+          <option value="">--</option>
+          <option value="paypal">PayPal</option>
+          <option value="visa">VISA</option>
+          <option value="mastercard">MasterCard</option>
+          <option value="amex">American Express &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+          <option value="jcb">JCB</option>
+          <option value="bitcash">BitCash</option>
+          <option value="webmoney">WebMoney</option>
+        </select>
+      </div>
+</label>
+</div>
+<div>
+  <label>
+      <div class="payment_list">
+        <strong>カード番号</strong>
+      </div>
+      <div class="payment_list">
+        <input type="text" id="card_num" size="21">
+      </div>
+      <div class="payment_list">
+        <strong>有効期限</strong>
+      </div>
+      <div class="payment_list">
+        <select id="payment_month">
+          <option value="">--</option>
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <select id="payment_year">
+          <option value="">----</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+        </select>
+        <input type="text" id="card_security_num" size="1" placeholder="cvc">
+      </div>
+</label>
+</div>
+<div id="payment_1">
+  <strong>支払情報</strong>
+</div>
+<br>
+<div>
+  <label>
+      <div class="payment_list">
+        <strong>氏名</strong>
+      </div>
+      <div class="payment_list">
+        <input type="text" id="card_info" size="21">
+      </div>
+</label>
+</div>
+<div>
+  <label>
+      <div class="payment_list">
+        <strong>郵便番号</strong>
+      </div>
+      <div class="payment_list">
+        <input type="text" id="card_info" size="21">
+      </div>
+</label>
+</div>
+<div>
+  <label>
+      <div class="payment_list">
+        <strong>都道府県</strong>
+      </div>
+      <div class="payment_list">
+        <input type="text" id="card_info" size="21">
+      </div>
+</label>
+</div>
+<div>
+  <label>
+      <div class="payment_list">
+        <strong>市区町村</strong>
+      </div>
+      <div class="payment_list">
+        <input type="text" id="card_info" size="21">
+      </div>
+</label>
+</div>
+<div>
+  <label>
+      <div class="payment_list">
+        <strong>番地・建物名・部屋番号</strong>
+      </div>
+      <div class="payment_list">
+        <input type="text" id="card_info" size="21">
+      </div>
+</label>
+</div>
+<div>
+<div class="payment_again">
+  <label><input type="checkbox" class="keep_btn" value="keep">
+    &nbsp;支払情報を保存する（次回以降の購入手続きが簡単になります</label>
+</div>
+</div>
+<div>
+  <div class="address_list">
+    <input type="button" class="payment_btn" value="続ける">
+  </div>
+</div>

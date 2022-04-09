@@ -1,0 +1,35 @@
+<div class = "manga-page-item">
+  <div class = "image">
+  <% if @manga.image.present? %>
+  <%= image_tag(@manga.image)%>
+  <% end %>
+  </div>
+  <div class = "name">
+  <%= @manga.name %>
+  </div>
+  <div class = "author">
+  <%= @manga.author%>
+  </div>
+  <div class = "text">
+  <%= @manga.text%>
+  </div>
+  <div class = "price">
+  <p><%= @manga.price%>円</p>
+  </div>
+</div>
+
+<%= form_tag("/manga/pay") do %>
+<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key= 'pk_test_4d71821ad18b8f6f7a889601'  ></script>
+<% end%>
+
+<div style = "height:50px"></div>
+
+<%= form_tag("/manga/fakepay") do %>
+<input type="submit" value="fakepay">
+<% end%>
+
+<div style = "height:50px"></div>
+
+<%= form_tag("/manga/offer") do %>
+<input type="submit" value="offer">
+<% end%>

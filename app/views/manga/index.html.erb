@@ -1,0 +1,154 @@
+<!-- <p>漫画一覧</p> -->
+<%# @mangas.each do |manga|%>
+
+<!-- <div class="entryside"> -->
+<%#= link_to(image_tag("#{manga.image}"),"#{manga.id}")%>
+<%#= link_to(manga.name,"#{manga.id}")%>
+<!-- </div> -->
+
+<%# end %>
+
+
+
+
+<div id="favorites">
+  <div>
+    <strong>一覧</strong>
+    <span class="more">
+        <a href="#">もっと見る></a>
+    </span>
+  </div>
+
+  <% @mangas.each do |manga|%>
+
+  <div class="entryside">
+  <%= link_to(image_tag("#{manga.image}"),"#{manga.id}")%>
+  <%= link_to(manga.name,"#{manga.id}")%>
+  </div>
+
+  <% end %>
+
+</div>
+
+<!-- <div id="favorites">
+  <div>
+        <strong>お気に入り</strong>
+        <span class="more">
+            <a href="#">もっと見る></a>
+        </span>
+    </div>
+
+    <div class="entryside">
+        <a href="#">
+            <img src="/assets/comic1(1).jpg" class="side">
+            <span class="caption">ワンピース(98)</span>
+        </a>
+    </div>
+
+    <div class="entryside">
+        <a href="#">
+            <img src="/assets/comic2(1).jpg" class="side">
+            <span class="caption">呪術廻戦(15)</span>
+        </a>
+    </div>
+
+    <div class="entryside">
+        <a href="#">
+            <img src="/assets/comic3(1).jpg" class="side">
+            <span class="caption">東京リベンジャーズ(22)</span>
+        </a>
+    </div>
+
+</div> -->
+<!--
+<div id="ranking">
+    <div>
+        <strong>ランキング</strong>
+        <span class="more">
+            <a href="#">もっと見る></a>
+        </span>
+    </div>
+
+
+
+
+
+        <a href="#">
+            <img src="/assets/comic1(1).jpg" class="side">
+        </a>
+
+        <a href="#">
+            <img src="/assets/comic2(1).jpg" class="side">
+        </a>
+
+
+
+        <a href="#">
+            <img src="/assets/comic3(1).jpg" class="side">
+        </a>
+
+
+
+</div> -->
+
+<!-- <div id="newwork">
+    <div>
+        <strong>新作</strong>
+        <span class="more">
+            <a href="#">もっと見る></a>
+        </span>
+    </div>
+
+    <div class="entryside">
+        <a href="#">
+            <img src="/assets/comic1(1).jpg" class="side">
+            <span class="caption">ワンピース(98)</span>
+        </a>
+    </div>
+
+    <div class="entryside">
+        <a href="#">
+            <img src="/assets/comic2(1).jpg" class="side">
+            <span class="caption">呪術廻戦(15)</span>
+        </a>
+    </div>
+
+    <div class="entryside">
+        <a href="#">
+            <img src="/assets/comic3(1).jpg" class="side">
+            <span class="caption">東京リベンジャーズ(22)</span>
+        </a>
+    </div>
+
+</div>
+
+<div id="recents">
+    <div>
+        <strong>最近見た作品</strong>
+        <span class="more">
+            <a href="#">もっと見る></a>
+        </span>
+    </div>
+
+    <div class="entryside">
+        <a href="#">
+            <img src="/assets/comic1(1).jpg" class="side">
+            <span class="caption">ワンピース(98)</span>
+        </a>
+    </div>
+
+    <div class="entryside">
+        <a href="#">
+            <img src="/assets/comic2(1).jpg" class="side">
+            <span class="caption">呪術廻戦(15)</span>
+        </a>
+    </div>
+
+    <div class="entryside">
+        <a href="#">
+            <img src="/assets/comic3(1).jpg" class="side">
+            <span class="caption">東京リベンジャーズ(22)</span>
+        </a>
+    </div>
+
+</div> -->

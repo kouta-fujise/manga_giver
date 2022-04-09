@@ -1,0 +1,10 @@
+<p>ユーザー情報ページ</p>
+
+<div class = "id">
+<%= @current_user.id %>
+</div>
+
+<%= link_to("ユーザー住所設定","/user/ad_setting")%>
+
+
+<%= link_to("ログアウト","/logout",{method: "post"})%>

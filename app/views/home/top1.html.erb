@@ -1,0 +1,201 @@
+<form class="searchbar" action="top.html.erb">
+            <input type="text" style="display:inline-block" id="search" placeholder="検索" name="Search">
+            <button type="submit" style="display:inline-block"><i class="fas fa-search"></i></button>
+        </form>
+
+
+        </div class="ad">
+          <%= image_tag("ad.jpg")%>
+        </div>
+
+        <div id="ranking">
+            <div>
+                <strong>ランキング</strong>
+                <span class="more">
+                  <a href="page_list.html">もっと見る></a>
+                </span>
+            </div>
+
+            <% @mangas.each do |manga|%>
+            <div class="entry_top">
+                <%= link_to "", "#{manga.id}" %>
+                    <div class="num_ranking">
+                      <strong>
+                    <%= manga.id %>
+                    </strong>
+                  </div>
+
+                    <div class="cover_ranking">
+<<<<<<< HEAD
+<% if manga.image.present?%>
+<%= image_tag(manga.image)%>
+<% end %>
+                    </div>
+
+                    <div class="title_author">
+                        <div class="title_ranking"><strong>
+                        <%= manga.name %>
+                        </strong></div>
+                        <div class="author_ranking">
+                        <%= manga.author%>
+                        </div>
+                    </div>
+                <%# <% end %> %>
+=======
+                        <% if manga.image.present?%>
+                        <%= image_tag(manga.image)%>
+                        <% end %>
+                    </div>
+
+                    <div class="title_author">
+                        <div class="title_ranking"><%= manga.name%></div>
+                        <div class="author_ranking"><%= manga.author%></div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="entry_top">
+                <a href="page_manga.html">
+                    <div class="num_ranking"><strong>2</strong></div>
+
+                    <div class="cover_ranking">
+                        <% if manga.image.present?%>
+                        <%= image_tag(manga.image)%>
+                        <% end %>
+                    </div>
+
+                    <div class="title_author">
+                        <div class="title_ranking"><%= manga.name%></div>
+                        <div class="author_ranking"><%= manga.author%></div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="entry_top">
+                <a href="page_manga.html">
+                    <div class="num_ranking"><strong>3</strong></div>
+
+                    <div class="cover_ranking">
+                        <% if manga.image.present?%>
+                        <%= image_tag(manga.image)%>
+                        <% end %>
+                    </div>
+
+                    <div class="title_author">
+                        <div class="title_ranking"><%= manga.name%></div>
+                        <div class="author_ranking"><%= manga.author%></div>
+                    </div>
+                </a>
+>>>>>>> 72c48be3251421c422cba821f5124239618ca053
+            </div>
+            <%end%>
+
+        </div>
+
+        <div id="newwork">
+            <div>
+                <strong>新作</strong>
+                <span class="more">
+                    <a href="page_list.html">もっと見る></a>
+                </span>
+            </div>
+
+            <% @mangas.each do |manga|%>
+            <div class="entry_side">
+<<<<<<< HEAD
+                <%= link_to "", "#{manga.id}"%>
+                    <%= image_tag(manga.image)%>
+                    <span class="caption">
+                    <%=manga.name%>
+                    </span>
+                <%# <%end%> %>
+=======
+                <a href="page_manga.html">
+                  <div class="side">
+                    <% if manga.image.present?%>
+                    <%= image_tag(manga.image)%>
+                    <% end %>
+                  </div>
+                    <span class="caption"><%= manga.name%></span>
+                </a>
+            </div>
+
+            <div class="entry_side">
+                <a href="page_manga.html">
+                  <div class="side">
+                    <% if manga.image.present?%>
+                    <%= image_tag(manga.image)%>
+                    <% end %>
+                  </div>
+                    <span class="caption"><%= manga.name%></span>
+                </a>
+            </div>
+
+            <div class="entry_side">
+                <a href="page_manga.html">
+                  <div class="side">
+                    <% if manga.image.present?%>
+                    <%= image_tag(manga.image)%>
+                    <% end %>
+                  </div>
+                    <span class="caption"><%= manga.name%></span>
+                </a>
+>>>>>>> 72c48be3251421c422cba821f5124239618ca053
+            </div>
+            <%end%>
+
+        </div>
+
+        <div id="favorites">
+            <div>
+                <strong>お気に入り</strong>
+                <span class="more">
+                    <a href="page_list.html">もっと見る></a>
+                </span>
+            </div>
+
+            <% @mangas.each do |manga|%>
+            <div class="entry_side">
+<<<<<<< HEAD
+                <%= link_to "", "#{manga.id}"%>
+                    <%= image_tag(manga.image)%>
+                    <span class="caption">
+                    <%=manga.name%>
+                    </span>
+                <%# <%end%> %>
+=======
+                <a href="page_manga.html">
+                  <div class="side">
+                    <% if manga.image.present?%>
+                    <%= image_tag(manga.image)%>
+                    <% end %>
+                  </div>
+                    <span class="caption"><%= manga.name%></span>
+                </a>
+            </div>
+
+            <div class="entry_side">
+                <a href="page_manga.html">
+                  <div class="side">
+                    <% if manga.image.present?%>
+                    <%= image_tag(manga.image)%>
+                    <% end %>
+                  </div>
+                    <span class="caption"><%= manga.name%></span>
+                </a>
+            </div>
+
+            <div class="entry_side">
+                <a href="page_manga.html">
+                  <div class="side">
+                    <% if manga.image.present?%>
+                    <%= image_tag(manga.image)%>
+                    <% end %>
+                  </div>
+                    <span class="caption"><%= manga.name%></span>
+                </a>
+>>>>>>> 72c48be3251421c422cba821f5124239618ca053
+            </div>
+            <%end%>
+
+        </div>
