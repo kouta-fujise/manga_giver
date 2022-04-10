@@ -1,0 +1,29 @@
+<p>未発送取引一覧</p>
+
+<% @gives.each do |give|%>
+  <div class="entryside">
+    <p>取引番号</p>
+    <%= give.id%>
+    <p>奢った人</p>
+    <%= give.user_id%>
+    <p>奢られた人</p>
+    <%= give.target_id%>
+    <p>奢った漫画</p>
+    <%= give.manga_id%>
+    <% manga = @mangas.find_by(id: give.manga_id)%>
+    <%= manga.name%>
+    <p>届ける住所</p>
+    <%= @users.find_by(id:give.target_id).address%>
+    <p>状態</p>
+    <% if give.complete==nil %>
+    <p>未発送</p>
+    <p>完了したら↓</p>
+    <%= link_to("コンプリート","/complete/#{give.id}",{method: "post"})%>
+    <%else%>
+    <p>発送完了</p>
+    <% end%>
+  </div>
+<% end %>
+
+
+<div style = "height:200px;"></div>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "manga/togive"
   get "manga/toget"
   get "manga/deal" => "manga#deal"
+  get "manga/notyet" => "manga#notyet"
   post "manga/pay" => "manga#pay"
   post "manga/fakepay" => "manga#fakepay"
   post "manga/offer" => "manga#offer"
