@@ -21,18 +21,18 @@
   </div>
 </div>
 
-<%= form_tag("/manga/pay") do %>
+<%#= form_tag("/manga/pay") do %>
 <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key= 'pk_test_4d71821ad18b8f6f7a889601'  ></script>
-<% end%>
+<%# end%>
 
 <div style = "height:50px"></div>
 
-<%= form_tag("/manga/fakepay") do %>
-<input type="submit" value="fakepay">
-<% end%>
+<%# <%= form_tag("/manga/fakepay") do %>
+<!-- <input type="submit" value="fakepay"> -->
+<%# end %>
+
+<%=link_to "奢る", "/manga/fakepay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
 
 <div style = "height:50px"></div>
 
-<%= form_tag("/manga/offer") do %>
-<input type="submit" value="offer">
-<% end%>
+<%=link_to "オファー", "/manga/offer",method: "post", data: { confirm: 'オファーしますか？'}, class: "btn btn-lg btn-primary"%>
