@@ -1,0 +1,34 @@
+<div id="text_register"><strong>新規漫画登録</strong></div>
+
+        <%= form_tag("/manga/insert") do %>
+          <div id="info_register">
+              <% @manga.errors.full_messages.each do |message| %>
+                <div class="form-error">
+                  <%= message %>
+                </div>
+              <% end %>
+              <div>
+              <label for="email_register">作品名</label>
+              <input name="name" placeholder="作品名">
+              </div>
+              <div>
+              <label for="email_register">作者</label>
+              <input name="author"  placeholder="作者">
+              </div>
+              <div>
+              <label for="email_register">画像ファイル名</label>
+              <input name="image" placeholder="画像ファイル名">
+              </div>
+              <div>
+              <label for="email_register">作品説明</label>
+              <input name="text" placeholder="作品説明">
+              </div>
+              <div>
+              <label for="email_register">値段</label>
+              <input name="price"  placeholder="値段">
+              </div>
+              <div>
+              <input type="submit" id="button_register" value="登録">
+              </div>
+          </div>
+        <% end %>

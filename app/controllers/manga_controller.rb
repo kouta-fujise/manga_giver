@@ -119,4 +119,25 @@ class MangaController < ApplicationController
     redirect_to("/manga/deal")
   end
 
+  def register
+    @manga = Manga.new
+  end
+
+
+  def insert
+    @manga = Manga.new(
+      name: params[:name],
+      author: params[:author],
+      image: params[:image],
+      text: params[:text],
+      price: params[:price],
+    )
+    if @manga.save
+      flash[:notice] = "漫画を新規登録しました"
+      redirect_to("/manga/register")
+    else
+      render("manga/register")
+    end
+  end
+
 end

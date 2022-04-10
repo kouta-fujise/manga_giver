@@ -3,14 +3,14 @@
   <button type="submit" style="display:inline-block"><i class="fas fa-search"></i></button>
 </form>
 
-
+<!--
 <div class="home_top">
   <img src="assets/ad.jpg" class="ad">
-</div>
+</div> -->
 
 <div id="ranking">
   <div>
-      <strong>ランキング</strong>
+      <strong>一覧</strong>
       <!-- <span class="more">
         <!-- <a href="page_list.html">もっと見る></a> -->
       <!-- </span> -->
@@ -18,11 +18,32 @@
   <% @mangas.each do |manga|%>
     <%= link_to "", "#{manga.id}" %>
       <strong>
-        <%= manga.id %>
+
       </strong>
       <%= manga.name %>
       <%= manga.author%>
+      <%= image_tag "comic1.jpg"%>
+      <% if manga.image.present?%>
+      <%= image_tag(manga.image)%>
+      <% end %>
   <% end %>
+</div>
+<!--
+<div id="ranking">
+  <div>
+      <strong>ランキング</strong>
+      <!-- <span class="more">
+        <!-- <a href="page_list.html">もっと見る></a> -->
+      <!-- </span> -->
+  <!-- </div>
+  <%# <% @mangas.each do |manga|%> %>
+    <%# <%= link_to "", "#{manga.id}" %> %>
+      <strong>
+
+      </strong>
+      <%# <%= manga.name %> %>
+      <%# <%= manga.author%> %>
+  <%# <% end %> %> -->
 <!--
   <div class="entry_top">
       <a href="page_manga.html">
@@ -39,8 +60,8 @@
       </a>
   </div> -->
 
-</div>
-
+<!-- </div> -->
+<!--
 <div id="newwork">
   <div>
       <strong>新作</strong>
@@ -101,4 +122,4 @@
       </a>
   </div>
 
-</div>
+</div> -->
