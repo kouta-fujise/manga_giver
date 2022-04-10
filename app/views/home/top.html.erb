@@ -3,26 +3,50 @@
   <button type="submit" style="display:inline-block"><i class="fas fa-search"></i></button>
 </form>
 
-
+<!--
 <div class="home_top">
   <img src="assets/ad.jpg" class="ad">
-</div>
+</div> -->
 
+<div id="ranking">
+  <div>
+      <strong>一覧</strong>
+      <!-- <span class="more">
+        <!-- <a href="page_list.html">もっと見る></a> -->
+      <!-- </span> -->
+  </div>
+  <% @mangas.each do |manga|%>
+    <%= link_to("/manga/#{manga.id}") do %>
+      <strong>
+        <%= manga.name %>
+      </strong>
+      <%= manga.author%>
+      <% if manga.image.present?  %>
+        <% if File.exist?("./app/assets/images/#{manga.image}")%>
+          <%= image_tag(manga.image)%>
+        <% else %>
+        <p>画像準備中</p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<!--
 <div id="ranking">
   <div>
       <strong>ランキング</strong>
       <!-- <span class="more">
         <!-- <a href="page_list.html">もっと見る></a> -->
       <!-- </span> -->
-  </div>
-  <% @mangas.each do |manga|%>
-    <%= link_to "", "#{manga.id}" %>
+  <!-- </div>
+  <%# <% @mangas.each do |manga|%> %>
+    <%# <%= link_to "", "#{manga.id}" %> %>
       <strong>
-        <%= manga.id %>
+
       </strong>
-      <%= manga.name %>
-      <%= manga.author%>
-  <% end %>
+      <%# <%= manga.name %> %>
+      <%# <%= manga.author%> %>
+  <%# <% end %> %> -->
 <!--
   <div class="entry_top">
       <a href="page_manga.html">
@@ -39,8 +63,8 @@
       </a>
   </div> -->
 
-</div>
-
+<!-- </div> -->
+<!--
 <div id="newwork">
   <div>
       <strong>新作</strong>
@@ -101,4 +125,4 @@
       </a>
   </div>
 
-</div>
+</div> -->

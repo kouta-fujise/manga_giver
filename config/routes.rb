@@ -11,10 +11,13 @@ Rails.application.routes.draw do
   get "manga/togive"
   get "manga/toget"
   get "manga/deal" => "manga#deal"
-  get "manga/:id" => "manga#page"
   post "manga/pay" => "manga#pay"
   post "manga/fakepay" => "manga#fakepay"
   post "manga/offer" => "manga#offer"
+  get "manga/register"
+  post "manga/insert" => "manga#insert"
+
+  get "manga/:id" => "manga#page"
 
   post "complete/:id" => "manga#complete"
 
