@@ -104,10 +104,15 @@ class MangaController < ApplicationController
   end
 
   def deal
+    @gives = Give.where(done:1)
+    @mangas = Manga.all
+    @users = User.all
+  end
+
+  def notyet
     @gives = Give.where(done:1).where(complete:nil)
     @mangas = Manga.all
     @users = User.all
-
   end
 
   def complete
