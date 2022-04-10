@@ -13,8 +13,11 @@
   <div class = "text">
   <%= @manga.text%>
   </div>
+  <div class = "volume">
+  <p>1巻〜<%= @manga.volume%>巻</p>
+  </div>
   <div class = "price">
-  <p><%= @manga.price%>円</p>
+  <p><%= @manga.price * @manga.volume%>円</p>
   </div>
 </div>
 

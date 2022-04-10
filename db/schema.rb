@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_11_063643) do
+ActiveRecord::Schema.define(version: 2022_04_10_065459) do
 
   create_table "browses", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
@@ -46,14 +46,15 @@ ActiveRecord::Schema.define(version: 2021_07_11_063643) do
     t.integer "complete"
   end
 
-  create_table "mangas", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.text "name"
+  create_table "mangas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "name", size: :medium
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "author"
-    t.text "text"
+    t.text "text", size: :medium
     t.string "image"
     t.integer "price"
+    t.integer "volume"
   end
 
   create_table "offers", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -67,7 +68,7 @@ ActiveRecord::Schema.define(version: 2021_07_11_063643) do
     t.string "given_by"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "address"
