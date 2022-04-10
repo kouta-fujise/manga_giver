@@ -16,20 +16,19 @@
       <!-- </span> -->
   </div>
   <% @mangas.each do |manga|%>
-    <%= link_to "", "#{manga.id}" %>
+    <%= link_to("/manga/#{manga.id}") do %>
       <strong>
-
+        <%= manga.name %>
       </strong>
-      <%= manga.name %>
       <%= manga.author%>
-      <%# image_tag "comic1.jpg"%>
       <% if manga.image.present?  %>
-        <% if File.exist?("./app/assets/images/#{manga.image}")  %>
+        <% if File.exist?("./app/assets/images/#{manga.image}")%>
           <%= image_tag(manga.image)%>
         <% else %>
         <p>画像準備中</p>
         <% end %>
       <% end %>
+    <% end %>
   <% end %>
 </div>
 <!--
