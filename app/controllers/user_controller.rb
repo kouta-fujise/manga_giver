@@ -68,11 +68,17 @@ class UserController < ApplicationController
 
   def page
     @user = @current_user
+
+    # 取引履歴表示
+    @gives = Give.where(user_id:@current_user)
+    @gets = Give.where(target_id:@current_user)
+
   end
 
   def pay
     @user = @current_user
 
   end
+
 
 end

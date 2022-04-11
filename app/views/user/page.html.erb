@@ -1,7 +1,36 @@
 <p>ユーザー情報ページ</p>
 
-<div class = "id">
-<%= @current_user.id %>
+<!--ユーザidの表示-->
+<!-- <div class = "id">
+<%#= @current_user.id %>
+</div> -->
+
+<div>
+<strong>奢り履歴</strong>
+<% @gives.each do |give|%>
+  <div class="entryside">
+    奢った本
+    <% @manga = Manga.find_by(id:give.manga_id)%>
+    <%= @manga.name %>
+    奢った相手
+    <% @t_user = User.find_by(id:give.target_id)%>
+    <%= @t_user.name %>さん
+  </div>
+<% end %>
+</div>
+
+<div>
+<strong>受け取り履歴</strong>
+<% @gets.each do |get|%>
+  <div class="entryside">
+    もらった本
+    <% @manga = Manga.find_by(id:get.manga_id)%>
+    <%= @manga.name %>
+    送り主
+    <% @t_user = User.find_by(id:get.user_id)%>
+    <%= @t_user.name %>さん
+  </div>
+<% end %>
 </div>
 
 <%= link_to("ユーザー住所設定","/user/ad_setting")%>

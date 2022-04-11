@@ -1,7 +1,11 @@
 <div class = "manga-page-item">
   <div class = "image">
-  <% if @manga.image.present? %>
-  <%= image_tag(@manga.image)%>
+  <% if @manga.image.present?  %>
+    <% if File.exist?("./app/assets/images/#{@manga.image}")%>
+      <%= image_tag(@manga.image)%>
+    <% else %>
+    <p>画像準備中</p>
+    <% end %>
   <% end %>
   </div>
   <div class = "name">
