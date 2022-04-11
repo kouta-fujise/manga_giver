@@ -4,6 +4,17 @@
 <%= @current_user.id %>
 </div>
 
+
+<% @gives.each do |give|%>
+
+<div class="entryside">
+<%= give.manga_id %>
+<%= give.target_id %>
+</div>
+
+<% end %>
+
+
 <%= link_to("ユーザー住所設定","/user/ad_setting")%>
 
 
