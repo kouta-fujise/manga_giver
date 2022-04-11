@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get "card/new" => "card#new"
   get "card/create" => "card#create"
   get "card/show" => "card#show"
+  get "card/pay" => "card#pay"
   post "card/delete" =>"card#delete"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
