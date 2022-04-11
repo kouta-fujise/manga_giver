@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_11_061815) do
+ActiveRecord::Schema.define(version: 2022_04_11_062408) do
 
   create_table "browses", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 2022_04_11_061815) do
   create_table "cards", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "customer_id"
+    t.string "token_id"
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
