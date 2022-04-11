@@ -10,9 +10,10 @@ class MangaController < ApplicationController
   end
 
   def page
-    @manga = Manga.find_by(id:params[:id])
-    $current_manga = @manga
-
+    if params[:id].present?
+      @manga = Manga.find_by(id:params[:id])
+      $current_manga = @manga
+    end
   end
 
   def give
@@ -75,31 +76,37 @@ class MangaController < ApplicationController
 
   def offer
     @manga = $current_manga
+    # オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか
+    if Offer.find_by(user_id:@current_user.id,done:0).nil?
+      # ないならオファーできる
+      @offer = Offer.new(
+        user_id: @current_user.id,
+        manga_id: @manga.id,
+        done: 0,
+      )
+      if @offer.save
+        @notyetgives = Give.where(manga_id: @manga.id).where(done: 0)
+        if @notyetgives == []
+          flash[:notice] = "オファー完了しました。"
+          redirect_to("/manga/#{@manga.id}")
+        else
+          @selectgive = @notyetgives.sample
+          @selectgive.target_id = @offer.user_id
+          @selectgive.done = 1
+          @selectgive.save
 
-    @offer = Offer.new(
-      user_id: @current_user.id,
-      manga_id: @manga.id,
-      done: 0,
-    )
-    if @offer.save
-      @notyetgives = Give.where(manga_id: @manga.id).where(done: 0)
-      if @notyetgives == []
-        flash[:notice] = "オファー完了しました。"
-        redirect_to("/manga/#{@manga.id}")
-      else
-        @selectgive = @notyetgives.sample
-        @selectgive.target_id = @offer.user_id
-        @selectgive.done = 1
-        @selectgive.save
+          @offer.done = 1
+          @offer.given_by = @selectgive.user_id
+          @offer.save
 
-        @offer.done = 1
-        @offer.given_by = @selectgive.user_id
-        @offer.save
-
-        flash[:notice] = "#{@selectgive.user_id}さんから頂きました"
-        redirect_to("/manga/#{@manga.id}")
+          flash[:notice] = "#{@selectgive.user_id}さんから頂きました"
+          redirect_to("/manga/#{@manga.id}")
+        end
       end
-
+    else
+      # あるならできない
+      flash[:notice] = "オファー枠がありません。既に他の漫画をオファーしています"
+      redirect_to "/manga/#{@manga.id}"
     end
   end
 
@@ -141,6 +148,7 @@ class MangaController < ApplicationController
       flash[:notice] = "漫画を新規登録しました"
       redirect_to("/manga/register")
     else
+      flash[:notice] = "登録できませんでした"
       render("manga/register")
     end
   end

@@ -6,15 +6,29 @@
 </div> -->
 
 <div>
+  <strong>残りオファー枠</strong>
+  <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
+  <% @offer = Offer.find_by(user_id:@current_user.id,done:0)%>
+  <!--ないなら1-->
+  <% if @offer.nil?%>
+  1 欲しい漫画を選ぼう！
+  <!--あるなら0-->
+  <% else %>
+  0
+  <%= Manga.find_by(id:@offer.manga_id).name %>をオファー中です。
+  <%end%>
+</div>
+
+<div>
 <strong>奢り履歴</strong>
 <% @gives.each do |give|%>
   <div class="entryside">
     奢った本
-    <% @manga = Manga.find_by(id:give.manga_id)%>
-    <%= @manga.name %>
+    <% @given_manga = Manga.find_by(id:give.manga_id)%>
+    <%= @given_manga.name %>
     奢った相手
-    <% @t_user = User.find_by(id:give.target_id)%>
-    <%= @t_user.name %>さん
+    <% @target_user = User.find_by(id:give.target_id)%>
+    <%= @target_user.name %>さん
   </div>
 <% end %>
 </div>

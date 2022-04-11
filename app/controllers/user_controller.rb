@@ -68,6 +68,7 @@ class UserController < ApplicationController
 
   def page
     @user = @current_user
+    # オファー枠表示
 
     # 取引履歴表示
     @gives = Give.where(user_id:@current_user)
