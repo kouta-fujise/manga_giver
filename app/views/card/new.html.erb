@@ -1,8 +1,17 @@
 
+<p id="number-form" class="payjs-outer"></p>
+<p id="expiry-form" class="payjs-outer"></p>
+<p id="cvc-form" class="payjs-outer"></p>
 
-<%= form_tag("/card/create", id: "card_form") do %>
-  <div>
-    <%= @error_message %>
+<%= form_with url: pay_card_index_path, method: :post, id: "card_form" do |f| %>
+  <div id="card_token"></div>
+  <%= f.submit "登録する", class:"btn", id: "info_submit" %>
+<% end %>
+
+
+<%# <%= form_tag("/card/create", id: "card_form") do %>
+  <!-- <div>
+    <%#= @error_message %>
     <label>
       <div class="payment_list">
         <strong>カード名義人</strong>
@@ -56,5 +65,5 @@
       </div>
       <input type="submit" id="token_submit" value="登録">
     </label>
-  </div>
-<% end %>
+  </div> -->
+<%# <% end %>

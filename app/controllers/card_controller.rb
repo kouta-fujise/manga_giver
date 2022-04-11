@@ -5,42 +5,26 @@ class CardController < ApplicationController
   require "payjp"
 
   def new
-    # card = Card.where(user_id: @current_user.id)
-    # redirect_to action: "show" if card.exists?
+    card = Card.where(user_id: @current_user.id)
+    redirect_to action: "show" if card.exists?
   end
 
-  def create
-    # pay.jpのjsから送られてきたparamsでcustomerオブジェクトを作る。
+  def pay
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    customer = Payjp::Customer.create(
-      description: 'test',
-      card: params[:token_id]
-    )
-    # customerオブジェクトとカードトークンをcardテーブルに保存する。
-    card = Card.new(
-      customer_id: customer.id,
-      token_id: params[:token_id],
-      user_id: current_user.id
-    )
-    if card.save
-      redirect_to "/user/page"
-    else
-      redirect_to "/card/new"
-    end
-  end
-
-  def pay #payjpとCardのデータベース作成を実施します。
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    if params['payjp-token'].blank?
+    if params['payjp_token'].blank?
       redirect_to action: "new"
     else
       customer = Payjp::Customer.create(
-      description: '登録テスト', #なくてもOK
-      email: @current_user.email, #なくてもOK
-      card: params['payjp-token'],
-      metadata: {user_id: @current_user.id}
-      ) #念の為metadataにuser_idを入れましたがなくてもOK
-      @card = Card.new(user_id: @current_user.id, customer_id: customer.id, card_id: customer.default_card)
+      description: '登録テスト',
+      email: current_user.email,
+      card: params['payjp_token'],
+      metadata: {user_id: current_user.id}
+      )
+      @card = Card.new(
+        user_id: current_user.id,
+        customer_id: customer.id,
+        card_id: customer.default_card
+      )
       if @card.save
         redirect_to action: "show"
       else
@@ -49,27 +33,90 @@ class CardController < ApplicationController
     end
   end
 
-  def delete #PayjpとCardデータベースを削除します
-    card = Card.where(user_id: @current_user.id).first
+  def show
+    card = Card.find_by(user_id: current_user.id)
     if card.blank?
-    else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      customer.delete
-      card.delete
-    end
       redirect_to action: "new"
-  end
-
-  def show #Cardのデータpayjpに送り情報を取り出します
-    card = Card.where(user_id: @current_user.id).first
-    if card.blank?
-      # flash[:notice] = "カードが登録されていません"
-      # redirect_to action: "new"
     else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
   end
+
+  def delete
+    card = Card.find_by(user_id: current_user.id)
+    if card.blank?
+    else
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      customer.delete
+      card.delete
+    end
+    redirect_to action: "new"
+  end
+
+  # def create
+  #   # pay.jpのjsから送られてきたparamsでcustomerオブジェクトを作る。
+  #   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+  #   customer = Payjp::Customer.create(
+  #     description: 'test',
+  #     card: params[:token_id]
+  #   )
+  #   # customerオブジェクトとカードトークンをcardテーブルに保存する。
+  #   card = Card.new(
+  #     customer_id: customer.id,
+  #     token_id: params[:token_id],
+  #     user_id: current_user.id
+  #   )
+  #   if card.save
+  #     redirect_to "/user/page"
+  #   else
+  #     redirect_to "/card/new"
+  #   end
+  # end
+
+  # def pay #payjpとCardのデータベース作成を実施します。
+  #   Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+  #   if params['payjp-token'].blank?
+  #     redirect_to action: "new"
+  #   else
+  #     customer = Payjp::Customer.create(
+  #     description: '登録テスト', #なくてもOK
+  #     email: @current_user.email, #なくてもOK
+  #     card: params['payjp-token'],
+  #     metadata: {user_id: @current_user.id}
+  #     ) #念の為metadataにuser_idを入れましたがなくてもOK
+  #     @card = Card.new(user_id: @current_user.id, customer_id: customer.id, card_id: customer.default_card)
+  #     if @card.save
+  #       redirect_to action: "show"
+  #     else
+  #       redirect_to action: "pay"
+  #     end
+  #   end
+  # end
+
+  # def delete #PayjpとCardデータベースを削除します
+  #   card = Card.where(user_id: @current_user.id).first
+  #   if card.blank?
+  #   else
+  #     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+  #     customer = Payjp::Customer.retrieve(card.customer_id)
+  #     customer.delete
+  #     card.delete
+  #   end
+  #     redirect_to action: "new"
+  # end
+  #
+  # def show #Cardのデータpayjpに送り情報を取り出します
+  #   card = Card.where(user_id: @current_user.id).first
+  #   if card.blank?
+  #     # flash[:notice] = "カードが登録されていません"
+  #     # redirect_to action: "new"
+  #   else
+  #     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+  #     customer = Payjp::Customer.retrieve(card.customer_id)
+  #     @default_card_information = customer.cards.retrieve(card.card_id)
+  #   end
+  # end
 end
