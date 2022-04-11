@@ -1,5 +1,7 @@
 class CardController < ApplicationController
 
+  before_action :authenticate_user, {only:[:new,:create]}
+
   require "payjp"
 
   def new

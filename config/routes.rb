@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   post "logout" => "user#logout"
 
   get "card/new" => "card#new"
+  get "card/create" => "card#create"
   get "card/show" => "card#show"
   post "card/delete" =>"card#delete"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
