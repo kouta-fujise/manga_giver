@@ -33,17 +33,20 @@ Rails.application.routes.draw do
   post "user/address" => "user#address"
   post "logout" => "user#logout"
 
-  resources :card do
+
+  resources :card
+  post "card/create" => "card#create"
+
+  #
   # resources :card, only: [:new, :show] do
-    collection do
-      post 'show', to: 'card#show'
-      post 'pay', to: 'card#pay'
-      post 'delete', to: 'card#delete'
-    end
-  end
+  #   collection do
+  #     post 'show', to: 'card#show'
+  #     post 'pay', to: 'card#pay'
+  #     post 'delete', to: 'card#delete'
+  #   end
+  # end
 
   # get "card/new" => "card#new"
-  # get "card/create" => "card#create"
   # get "card/show" => "card#show"
   # get "card/pay" => "card#pay"
   # post "card/delete" =>"card#delete"

@@ -1,15 +1,34 @@
 
-<p id="number-form" class="payjs-outer"></p>
-<p id="expiry-form" class="payjs-outer"></p>
-<p id="cvc-form" class="payjs-outer"></p>
+<h1>動いている<%=ENV['PAYJP_SECRET_KEY']%></h1>
 
-<%= form_with url: pay_card_index_path, method: :post, id: "card_form" do |f| %>
-  <div id="card_token"></div>
-  <%= f.submit "登録する", class:"btn", id: "info_submit" %>
+<h1>クレジットカード登録フォーム</h1>
+<%= form_with url: "/card/create", id: "card_form", local: true do |f| %>
+  <div>
+    <%= f.label :number, "カード番号" %>
+    <%= f.text_field :number %>
+  </div>
+  <div>
+    <%= f.label :name, "カード名義人" %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :cvc, "セキュリティコード" %>
+    <%= f.text_field :cvc %>
+  </div>
+  <div>
+    <%= f.label :exp_month, "有効期限（月）" %>
+    <%= f.text_field :exp_month %>
+  </div>
+  <div>
+    <%= f.label :exp_year, "有効期限（年）" %>
+    <%= f.text_field :exp_year %>
+  </div>
+  <div>
+    <%= f.submit "送信" %>
+  </div>
 <% end %>
 
-
-<%# <%= form_tag("/card/create", id: "card_form") do %>
+<%#= form_tag("/card/create", id: "card_form") do %>
   <!-- <div>
     <%#= @error_message %>
     <label>
@@ -66,4 +85,14 @@
       <input type="submit" id="token_submit" value="登録">
     </label>
   </div> -->
-<%# <% end %>
+<%# end %>
+
+
+<!-- <p id="number-form" class="payjs-outer"></p>
+<p id="expiry-form" class="payjs-outer"></p>
+<p id="cvc-form" class="payjs-outer"></p>
+
+<%#= form_with url: pay_card_index_path, method: :post, id: "card_form" do |f| %>
+  <div id="card_token"></div>
+  <%#= f.submit "登録する", class:"btn", id: "info_submit" %>
+<%# end %> -->
