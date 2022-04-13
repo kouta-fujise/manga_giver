@@ -1,15 +1,12 @@
-
-<h1>動いている<%=ENV['PAYJP_SECRET_KEY']%></h1>
-
 <h1>クレジットカード登録フォーム</h1>
 <%= form_with url: "/card/create", id: "card_form", local: true do |f| %>
   <div>
-    <%= f.label :number, "カード番号" %>
-    <%= f.text_field :number %>
-  </div>
-  <div>
     <%= f.label :name, "カード名義人" %>
     <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :number, "カード番号" %>
+    <%= f.text_field :number %>
   </div>
   <div>
     <%= f.label :cvc, "セキュリティコード" %>
