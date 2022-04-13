@@ -10,7 +10,6 @@ class CardController < ApplicationController
     logger.debug("ログは動いています")
     logger.debug(ENV['PAYJP_SECRET_KEY'])
     logger.debug("上にkeyが出ます")
-    byebug
   end
 
   def create
@@ -37,11 +36,36 @@ class CardController < ApplicationController
   end
 
   def show
-  Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # PAY.JPに秘密鍵を使ってアクセス
-  card = Card.find_by(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
 
-  customer = Payjp::Customer.retrieve(card.customer_id) # 顧客idを元に、顧客情報を取得
-  @card = customer.cards.first # cards.firstで登録した最初のカード情報を取得
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # PAY.JPに秘密鍵を使ってアクセス
+    # card = Card.find_by(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
+    # 今のユーザのカード情報を全て取得
+    card = Card.where(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
+    logger.debug("cardはこれ")
+    logger.debug card.inspect
+    # 取得したカード全ての顧客情報を取得
+    customer = []
+    card.each do |card_each|
+      customer.push(Payjp::Customer.retrieve(card_each.customer_id))# 顧客idを元に、顧客情報を取得
+      logger.debug("cunstomerはこれ")
+      logger.debug customer.inspect
+    end
+    # 取得した全ての顧客情報からカード情報を取得
+    @card = []
+    customer.each do |customer_each|
+    @card.push(customer_each.cards.first)# cards.firstで登録した最初のカード情報を取得
+    logger.debug("@cardはこれ")
+    logger.debug @card.inspect
+    end
+    # card.each do |card_each|
+    #   customer = Payjp::Customer.retrieve(card_each.customer_id) # 顧客idを元に、顧客情報を取得
+    #   logger.debug("cunstomerはこれ")
+    #   logger.debug customer.inspect
+    #   @card = customer.cards.first # cards.firstで登録した最初のカード情報を取得
+    #   logger.debug("@cardはこれ")
+    #   logger.debug @card.inspect
+    # end
+
   end
 
   #

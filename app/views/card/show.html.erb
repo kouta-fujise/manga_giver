@@ -1,12 +1,15 @@
 
 <!-- https://pikawaka.com/rails/payjpを参考にしたやつ -->
 <h1><%=@current_user.name %>さんのページ</h1>
-<h2>カード情報</h2>
-<p>カード番号：**** **** **** <%= @card.last4%></p>
-<p>カード名義人: <%= @card.name %></p>
-<p>有効期限：<%= @card.exp_month %> / <%= @card.exp_year %></p>
-<p>ブランド：<%= @card.brand %></p>
-
+<% @card.each do |card_each|%>
+  <%if card_each.present?%>
+  <h2>カード情報</h2>
+  <p>カード名義人: <%= card_each.name %></p>
+  <p>カード番号：**** **** **** <%= card_each.last4%></p>
+  <p>有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %></p>
+  <p>ブランド：<%= card_each.brand %></p>
+  <% end %>
+<% end %>
 
 <%# v2のサイト参考にしたやつ %>
 <%#= "**** **** **** " + @default_card_information.last4 %>
