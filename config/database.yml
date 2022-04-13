@@ -14,7 +14,7 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: admin
-  password: 98JVc4s2yoRPWxCkXqgu
+  password: <%= ENV["DATABASE_PASSWORD"]%>
   host: database-1.cmcuaekdnlot.ap-northeast-1.rds.amazonaws.com
   database: manga_giver
 
