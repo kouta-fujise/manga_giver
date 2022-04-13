@@ -1,13 +1,36 @@
-<label>
+
+<!-- https://pikawaka.com/rails/payjpを参考にしたやつ -->
+<h1><%=@current_user.name %>さんのページ</h1>
+<h2>カード情報</h2>
+<p>カード番号：**** **** **** <%= @card.last4%></p>
+<p>カード名義人: <%= @card.name %></p>
+<p>有効期限：<%= @card.exp_month %> / <%= @card.exp_year %></p>
+<p>ブランド：<%= @card.brand %></p>
+
+
+<%# v2のサイト参考にしたやつ %>
+<%#= "**** **** **** " + @default_card_information.last4 %>
+<!-- <br /> -->
+<%# exp_month = @default_card_information.exp_month.to_s %>
+<%# exp_year = @default_card_information.exp_year.to_s.slice(2,3) %>
+<%#= exp_month + " / " + exp_year %>
+
+<%#= form_with url:delete_cards_path, method: :post, id: 'charge-form', name: "inputForm", local: true do %>
+  <!-- <input type="hidden" name="card_id" value=""> -->
+  <!-- <button>削除する</button> -->
+<%# end %>
+
+<!-- 自分で描いたやつ -->
+<!-- <label>
   <strong>登録カード情報</strong>
-  <%= "**** **** **** " + @default_card_information.last4 %>
-  <% exp_month = @default_card_information.exp_month.to_s %>
-  <% exp_year = @default_card_information.exp_year.to_s.slice(2,3) %>
-  <%= exp_month + " / " + exp_year%>
+  <%#= "**** **** **** " + @default_card_information.last4 %>
+  <%# exp_month = @default_card_information.exp_month.to_s %>
+  <%# exp_year = @default_card_information.exp_year.to_s.slice(2,3) %>
+  <%#= exp_month + " / " + exp_year%>
 
-  <%= form_tag(card_delete_path, method: :post, id: 'charge-form',  name: "inputForm") do %>
+  <%#= form_tag(card_delete_path, method: :post, id: 'charge-form',  name: "inputForm") do %>
   <input name= "cvc" type="text" id="card_security_num" size="1" placeholder="削除する">
-  <% end %>
-  <%= %>
+  <%# end %>
+  <%#= %>
 
-  </label>
+  </label> -->

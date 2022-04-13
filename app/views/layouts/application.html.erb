@@ -8,7 +8,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/ec23ce1ea7.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
+    <!-- <script type="text/javascript" src="https://js.pay.jp/v1/"></script> -->
+    <script src="https://js.pay.jp/v2/pay.js"></script>
   </head>
 
   <body id='<%= controller.controller_name %>'>
@@ -27,7 +28,7 @@
     <%= link_to("漫画奢ってオファー後","/manga/toget")%>
     <%= link_to("ユーザー奢りステータス","/user/give")%>
     <%= link_to("ユーザー情報","/user/page")%>
-    <%= link_to("ユーザー支払い","/user/pay")%>
+    <%= link_to("ユーザー支払い設定","/user/pay")%>
     <%= link_to("ユーザー住所設定","/user/ad_setting")%>
     <%= link_to("新規登録","/register")%>
     <%= link_to("ログイン","/login")%>
