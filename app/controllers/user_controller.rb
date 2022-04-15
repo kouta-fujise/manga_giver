@@ -11,22 +11,30 @@ class UserController < ApplicationController
   end
 
   def create
-
-    @user = User.new(
-      email: params[:email],
-      password: params[:password],
-    )
-
-    if @user.save
-      flash[:notice] = "アカウントを作成しました"
-      session[:user_id] = @user.id
-      redirect_to("/")
-    else
+    if params[:password1] != params[:password2]
+      flash[:notice] = "確認用パスワードが一致していません"
+      @user = User.new(
+        email: params[:email],
+        password: params[:password1]
+      )
       render("user/register")
+    else
+      @user = User.new(
+        email: params[:email],
+        password: params[:password1],
+      )
+      if @user.save
+        flash[:notice] = "アカウントを作成しました"
+        session[:user_id] = @user.id
+        redirect_to("/")
+      else
+        render("user/register")
+      end
     end
   end
 
   def login
+    @user  = User.new
   end
 
   def login_form
@@ -37,6 +45,10 @@ class UserController < ApplicationController
       redirect_to("/")
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
+      @user = User.new(
+        email: params[:email],
+        password: params[:password]
+      )
       render("user/login")
     end
   end
@@ -61,9 +73,14 @@ class UserController < ApplicationController
 
 
   def logout
-    flash[:notice] = "ログアウトしました"
-    session[:user_id] = nil
-    redirect_to("/")
+    if session[:user_id] == nil
+      flash[:notice] = "ログインしていません"
+      redirect_to("/")
+    else
+      flash[:notice] = "ログアウトしました"
+      session[:user_id] = nil
+      redirect_to("/")
+    end
   end
 
   def page
