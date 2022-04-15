@@ -11,18 +11,24 @@ class UserController < ApplicationController
   end
 
   def create
-
-    @user = User.new(
-      email: params[:email],
-      password: params[:password],
-    )
-
-    if @user.save
-      flash[:notice] = "アカウントを作成しました"
-      session[:user_id] = @user.id
-      redirect_to("/")
-    else
+    if params[:password1] != params[:password2]
+      flash[:notice] = "確認用パスワードが一致していません"
+      @user = User.new(email: params[:email],
+      password: params[:password1]
+      )
       render("user/register")
+    else
+      @user = User.new(
+        email: params[:email],
+        password: params[:password1],
+      )
+      if @user.save
+        flash[:notice] = "アカウントを作成しました"
+        session[:user_id] = @user.id
+        redirect_to("/")
+      else
+        render("user/register")
+      end
     end
   end
 

@@ -1,25 +1,25 @@
 <img src = "assets/profile.png" id = "logo_login" style="height:50px;">
 
-      <%= form_tag("/user/login_form") do %>
+<%= form_tag("/user/login_form") do %>
 
-        <div class="form-error">
-          <%= @error_message %>
-        </div>
+  <div class="form-error">
+    <%= @error_message %>
+  </div>
 
-        <div>
-            <input name="email" type="email" id="email_login" placeholder="メールアドレスを入力" required>
-        </div>
-        <div>
-            <input name="password" type="password" id="password_login" placeholder="パスワードを入力" required>
-        </div>
-        <!-- パスワード表示ボタン -->
-        <!-- <div id="checkbox_password">
-            <input type="checkbox" id="pass_show" onclick="showPassword()">
-            <label for="pass_show">パスワードを表示する</label>
-        </div> -->
-        <div>
-                <input type="submit" id="button_login" value="ログイン">
-        </div>
+  <div>
+    <input name="email" type="email" id="email_login" placeholder="メールアドレスを入力" required>
+  </div>
+  <div>
+    <input name="password" type="password" id="password_login" placeholder="パスワードを入力" required>
+  </div>
+  <!-- パスワード表示ボタン -->
+  <!-- <div id="checkbox_password">
+    <input type="checkbox" id="pass_show" onclick="showPassword()">
+    <label for="pass_show">パスワードを表示する</label>
+  </div> -->
+  <div>
+    <input type="submit" id="button_login" value="ログイン">
+  </div>
 
-        <%= link_to("新規登録はこちら","/register")%>
-      <% end %>
+  <%= link_to("新規登録はこちら","/register")%>
+<% end %>
