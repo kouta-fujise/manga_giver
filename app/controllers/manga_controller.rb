@@ -26,12 +26,19 @@ class MangaController < ApplicationController
   end
 
   def pay
-   @manga = @@current_manga
-   Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+   @manga = $current_manga
+   price = @manga.price*@manga.volume
+   Payjp.api_key = ENV['PAYJP_SECRET_KEY']
    charge = Payjp::Charge.create(
-   amount: @manga.price,
+   amount: price,
    card: params['payjp-token'],
    currency: 'jpy'
+   )
+   @give = Give.new(
+     user_id: @current_user.id,
+     manga_id: @manga.id,
+     price: @manga.price,
+     done: 0,
    )
    flash[:notice] = "支払い完了しました。"
 

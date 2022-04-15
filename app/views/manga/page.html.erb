@@ -20,16 +20,21 @@
   <%= @manga.text%>
   </div>
   <div class = "volume">
+  <% if @manga.volume == 1 %>
+  <p>1巻</p>
+  <%else%>
   <p>1巻〜<%= @manga.volume%>巻</p>
+  <% end %>
   </div>
   <div class = "price">
   <p><%= @manga.price * @manga.volume%>円</p>
   </div>
 </div>
 
-<%#= form_tag("/manga/pay") do %>
-<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key= 'pk_test_4d71821ad18b8f6f7a889601'  ></script>
-<%# end%>
+<%= form_tag("/manga/pay") do %>
+<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key= <%=ENV["PAYJP_PUBLIC_KEY"]%>>
+</script>
+<% end %>
 
 <div style = "height:50px"></div>
 

@@ -7,16 +7,16 @@ class CardController < ApplicationController
   def new
     card = Card.where(user_id: @current_user.id)
     # redirect_to "/card/show" if card.exists?
-    logger.debug("ログは動いています")
-    logger.debug(ENV['PAYJP_SECRET_KEY'])
-    logger.debug("上にkeyが出ます")
+    # logger.debug("ログは動いています")
+    # logger.debug(ENV['PAYJP_SECRET_KEY'])
+    # logger.debug("上にkeyが出ます")
   end
 
   def create
     # pay.jpのjsから送られてきたparamsでcustomerオブジェクトを作る。
-    logger.debug("ログは動いています")
-    logger.debug(ENV["PAYJP_SECRET_KEY"])
-    logger.debug("上にkeyが出ます")
+    # logger.debug("ログは動いています")
+    # logger.debug(ENV["PAYJP_SECRET_KEY"])
+    # logger.debug("上にkeyが出ます")
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     customer = Payjp::Customer.create(
       description: 'test',
