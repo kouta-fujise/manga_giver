@@ -142,6 +142,11 @@ class MangaController < ApplicationController
 
   def create_pay
     # create部分
+    existing_card = Card.where(user_id: @current_user.id).where.not(token_id: nil)
+    if existing_card.size > 2
+      flash[:notice] = "カードは3枚まで登録できます"
+      redirect_to "/user/page"
+    end
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     customer = Payjp::Customer.create(
       description: 'test',
