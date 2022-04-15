@@ -12,9 +12,13 @@ Rails.application.routes.draw do
   get "manga/toget"
   get "manga/deal" => "manga#deal"
   get "manga/notyet" => "manga#notyet"
+
   post "manga/pay" => "manga#pay"
+  post "manga/create_pay" => "manga#create_pay"
+  post "manga/card_pay/:customer_id" => "manga#card_pay"
   post "manga/fakepay" => "manga#fakepay"
   post "manga/offer" => "manga#offer"
+
   get "manga/register"
   post "manga/insert" => "manga#insert"
 

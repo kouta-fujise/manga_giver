@@ -5,18 +5,45 @@ class CardController < ApplicationController
   require "payjp"
 
   def new
-    card = Card.where(user_id: @current_user.id)
+    @user = @current_user
     # redirect_to "/card/show" if card.exists?
-    logger.debug("ログは動いています")
-    logger.debug(ENV['PAYJP_SECRET_KEY'])
-    logger.debug("上にkeyが出ます")
+    # logger.debug("ログは動いています")
+    # logger.debug(ENV['PAYJP_SECRET_KEY'])
+    # logger.debug("上にkeyが出ます")
+    # show部分
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # PAY.JPに秘密鍵を使ってアクセス
+    # card = Card.find_by(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
+    # 今のユーザのカード情報を全て取得
+    card = Card.where(user_id: @current_user.id).where.not(token_id: nil)
+    # card = Card.where(user_id: @current_user.id)# cardsテーブルからユーザーのカード情報を取得
+      # logger.debug("cardはこれ")
+      # logger.debug card.inspect
+    # 取得したカード全ての顧客情報を取得
+    customer = []
+    card.each do |card_each|
+      customer.push(Payjp::Customer.retrieve(card_each.customer_id))# 顧客idを元に、顧客情報を取得
+        # logger.debug("cunstomerはこれ")
+        # logger.debug customer.inspect
+    end
+    # 取得した全ての顧客情報からカード情報を取得
+    @card = []
+    customer.each do |customer_each|
+    @card.push(customer_each.cards.first)# cards.firstで登録した最初のカード情報を取得
+      # logger.debug("@cardはこれ")
+      # logger.debug @card.inspect
+    end
   end
 
   def create
+    existing_card = Card.where(user_id: @current_user.id).where.not(token_id: nil)
+    if existing_card.size > 2
+      flash[:notice] = "カードは3枚まで登録できます"
+      redirect_to "/user/page"
+    end
     # pay.jpのjsから送られてきたparamsでcustomerオブジェクトを作る。
-    logger.debug("ログは動いています")
-    logger.debug(ENV["PAYJP_SECRET_KEY"])
-    logger.debug("上にkeyが出ます")
+    # logger.debug("ログは動いています")
+    # logger.debug(ENV["PAYJP_SECRET_KEY"])
+    # logger.debug("上にkeyが出ます")
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     customer = Payjp::Customer.create(
       description: 'test',
@@ -40,22 +67,23 @@ class CardController < ApplicationController
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # PAY.JPに秘密鍵を使ってアクセス
     # card = Card.find_by(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
     # 今のユーザのカード情報を全て取得
-    card = Card.where(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
-    logger.debug("cardはこれ")
-    logger.debug card.inspect
+    card = Card.where(user_id: @current_user.id).where.not(token_id: nil)
+    # card = Card.where(user_id: @current_user.id)# cardsテーブルからユーザーのカード情報を取得
+      # logger.debug("cardはこれ")
+      # logger.debug card.inspect
     # 取得したカード全ての顧客情報を取得
     customer = []
     card.each do |card_each|
       customer.push(Payjp::Customer.retrieve(card_each.customer_id))# 顧客idを元に、顧客情報を取得
-      logger.debug("cunstomerはこれ")
-      logger.debug customer.inspect
+        # logger.debug("cunstomerはこれ")
+        # logger.debug customer.inspect
     end
     # 取得した全ての顧客情報からカード情報を取得
     @card = []
     customer.each do |customer_each|
     @card.push(customer_each.cards.first)# cards.firstで登録した最初のカード情報を取得
-    logger.debug("@cardはこれ")
-    logger.debug @card.inspect
+      # logger.debug("@cardはこれ")
+      # logger.debug @card.inspect
     end
     # card.each do |card_each|
     #   customer = Payjp::Customer.retrieve(card_each.customer_id) # 顧客idを元に、顧客情報を取得
