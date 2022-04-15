@@ -21,9 +21,9 @@
   </div>
   <div class = "volume">
   <% if @manga.volume == 1 %>
-  <p>1巻</p>
+    <p>1巻</p>
   <%else%>
-  <p>1巻〜<%= @manga.volume%>巻</p>
+    <p>1巻〜<%= @manga.volume%>巻</p>
   <% end %>
   </div>
   <div class = "price">
@@ -31,20 +31,39 @@
   </div>
 </div>
 
+<h2>奢る</h2>
+<%if @card.present?%>
+  <% @card.each do |card_each|%>
+    <%if card_each.present?%>
+      <%=link_to "/manga/card_pay/#{card_each.customer}",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary" do%>
+        <h2>このカードで奢る</h2>
+        <p>カード名義人: <%= card_each.name %></p>
+        <p>カード番号：**** **** **** <%= card_each.last4%></p>
+        <p>有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %></p>
+        <p>ブランド：<%= card_each.brand %></p>
+      <%end%>
+    <% end %>
+  <% end %>
+<%else%>
+  カードが登録されていません。
+<% end %>
+
+<div style = "height:50px"></div>
+
+<h2>カードを新規登録して奢る</h2>
 <%= form_tag("/manga/pay") do %>
 <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key= <%=ENV["PAYJP_PUBLIC_KEY"]%>>
 </script>
 <% end %>
 
-<div style = "height:50px"></div>
-
-<%# <%= form_tag("/manga/fakepay") do %>
-<!-- <input type="submit" value="fakepay"> -->
-<%# end %>
-<%=link_to "設定済みカードで奢る", "/manga/card_pay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
-
-<%=link_to "奢る", "/manga/fakepay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
+<%# <%=link_to "設定済みカードで奢る", "/manga/card_pay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
 
 <div style = "height:50px"></div>
+<%# <%=link_to "奢る", "/manga/fakepay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
+
+<div style = "height:50px"></div>
+<h2>オファーする</h2>
 
 <%=link_to "オファー", "/manga/offer",method: "post", data: { confirm: 'オファーしますか？'}, class: "btn btn-lg btn-primary"%>
+
+<div style = "height:200px"></div>

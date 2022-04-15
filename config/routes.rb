@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   get "manga/notyet" => "manga#notyet"
 
   post "manga/pay" => "manga#pay"
-  post "manga/card_pay" => "manga#card_pay"
+  # post "manga/card_pay" => "manga#card_pay"
+  post "manga/card_pay/:customer_id" => "manga#card_pay"
   post "manga/fakepay" => "manga#fakepay"
   post "manga/offer" => "manga#offer"
 
