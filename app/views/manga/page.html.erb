@@ -51,10 +51,36 @@
 <div style = "height:50px"></div>
 
 <h2>カードを新規登録して奢る</h2>
-<%= form_tag("/manga/pay") do %>
-<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key= <%=ENV["PAYJP_PUBLIC_KEY"]%>>
-</script>
+<%= form_with url: "/manga/create_pay", id: "card_form", local: true do |f| %>
+  <div>
+    <%= f.label :name, "カード名義人" %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :number, "カード番号" %>
+    <%= f.text_field :number %>
+  </div>
+  <div>
+    <%= f.label :cvc, "セキュリティコード" %>
+    <%= f.text_field :cvc %>
+  </div>
+  <div>
+    <%= f.label :exp_month, "有効期限（月）" %>
+    <%= f.text_field :exp_month %>
+  </div>
+  <div>
+    <%= f.label :exp_year, "有効期限（年）" %>
+    <%= f.text_field :exp_year %>
+  </div>
+  <div>
+    <%= f.submit "送信" ,data: { confirm: 'カードを登録して支払いますか？'}%>
+  </div>
 <% end %>
+
+<%# <%= form_tag("/manga/pay") do %>
+<!--<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key= <%#=ENV["PAYJP_PUBLIC_KEY"]%>>
+</script> -->
+<%# end %>
 
 <%# <%=link_to "設定済みカードで奢る", "/manga/card_pay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
 
