@@ -52,12 +52,21 @@ class MangaController < ApplicationController
 
     logger.debug("今のユーザ")
     logger.debug @current_user.inspect
-    logger.debug
 
-    customer_id = @current_user.card.customer_id
+    card = Card.where(user_id: @current_user.id).where.not(token_id: nil) # cardsテーブルからユーザーのカード情報を取得
+    logger.debug("カード")
+    logger.debug card.inspect
+    customer_id = []
+    card.each do |card_each|
+      customer_id.push(card_each.customer_id)
+    end
+    logger.debug("カスタマーid")
+    logger.debug customer_id.inspect
+    logger.debug("カスタマーidの先頭")
+    logger.debug customer_id.first
     charge = Payjp::Charge.create(
       amount: price,
-      customer: customer_id,
+      customer: customer_id.first,
       currency: 'jpy'
     )
     flash[:notice] = "支払い完了しました。"
