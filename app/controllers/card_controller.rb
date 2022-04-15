@@ -41,21 +41,21 @@ class CardController < ApplicationController
     # card = Card.find_by(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
     # 今のユーザのカード情報を全て取得
     card = Card.where(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
-    logger.debug("cardはこれ")
-    logger.debug card.inspect
+    # logger.debug("cardはこれ")
+    # logger.debug card.inspect
     # 取得したカード全ての顧客情報を取得
     customer = []
     card.each do |card_each|
       customer.push(Payjp::Customer.retrieve(card_each.customer_id))# 顧客idを元に、顧客情報を取得
-      logger.debug("cunstomerはこれ")
-      logger.debug customer.inspect
+      # logger.debug("cunstomerはこれ")
+      # logger.debug customer.inspect
     end
     # 取得した全ての顧客情報からカード情報を取得
     @card = []
     customer.each do |customer_each|
     @card.push(customer_each.cards.first)# cards.firstで登録した最初のカード情報を取得
-    logger.debug("@cardはこれ")
-    logger.debug @card.inspect
+    # logger.debug("@cardはこれ")
+    # logger.debug @card.inspect
     end
     # card.each do |card_each|
     #   customer = Payjp::Customer.retrieve(card_each.customer_id) # 顧客idを元に、顧客情報を取得

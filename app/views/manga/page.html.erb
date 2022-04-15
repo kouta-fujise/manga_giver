@@ -41,6 +41,7 @@
 <%# <%= form_tag("/manga/fakepay") do %>
 <!-- <input type="submit" value="fakepay"> -->
 <%# end %>
+<%=link_to "設定済みカードで奢る", "/manga/card_pay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
 
 <%=link_to "奢る", "/manga/fakepay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
 

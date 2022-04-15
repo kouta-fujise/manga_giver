@@ -26,59 +26,79 @@ class MangaController < ApplicationController
   end
 
   def pay
-   @manga = $current_manga
-   price = @manga.price*@manga.volume
-   Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-   charge = Payjp::Charge.create(
-   amount: price,
-   card: params['payjp-token'],
-   currency: 'jpy'
-   )
-   @give = Give.new(
-     user_id: @current_user.id,
-     manga_id: @manga.id,
-     price: @manga.price,
-     done: 0,
-   )
-   flash[:notice] = "支払い完了しました。"
+    @manga = $current_manga
+    price = @manga.price*@manga.volume
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    charge = Payjp::Charge.create(
+      amount: price,
+      card: params['payjp-token'],
+      currency: 'jpy'
+    )
+    # @give = Give.new(
+    #   user_id: @current_user.id,
+    #   manga_id: @manga.id,
+    #   price: @manga.price,
+    #   done: 0,
+    # )
+    flash[:notice] = "支払い完了しました。"
 
-   redirect_to("/manga/#{@manga.id}")
- end
+    redirect_to("/manga/#{@manga.id}")
+  end
 
- def fakepay
-   @manga = $current_manga
+  def card_pay
+    @manga = $current_manga
+    price = @manga.price*@manga.volume
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
 
-   @give = Give.new(
-     user_id: @current_user.id,
-     manga_id: @manga.id,
-     price: @manga.price,
-     done: 0,
-   )
-   if @give.save
-     @notyetoffers = Offer.where(manga_id: @manga.id).where(done: 0)
-     if @notyetoffers == []
-       flash[:notice] = "支払いが完了しました"
-       redirect_to("/manga/#{@manga.id}")
-     else
-     # @nyo_user_id =[]
-     # @notyetoffers.each do |offer|
-     #   @nyo_user_id.push(offer.user_id)
-     # end
-     # @nyo_user_id.sample
-    @selectoffer = @notyetoffers.sample
-    @selectoffer.given_by = @give.user_id
-    @selectoffer.done = 1
-    @selectoffer.save
+    logger.debug("今のユーザ")
+    logger.debug @current_user.inspect
+    logger.debug
 
-    @give.done = 1
-    @give.target_id = @selectoffer.user_id
-    @give.save
+    customer_id = @current_user.card.customer_id
+    charge = Payjp::Charge.create(
+      amount: price,
+      customer: customer_id,
+      currency: 'jpy'
+    )
+    flash[:notice] = "支払い完了しました。"
 
-   flash[:notice] = "#{@selectoffer.user_id}さんに奢りました"
-   redirect_to("/manga/#{@manga.id}")
-     end
-   end
- end
+    redirect_to("/manga/#{@manga.id}")
+  end
+
+  def fakepay
+    @manga = $current_manga
+
+    @give = Give.new(
+      user_id: @current_user.id,
+      manga_id: @manga.id,
+      price: @manga.price,
+      done: 0,
+    )
+    if @give.save
+      @notyetoffers = Offer.where(manga_id: @manga.id).where(done: 0)
+      if @notyetoffers == []
+        flash[:notice] = "支払いが完了しました"
+        redirect_to("/manga/#{@manga.id}")
+      else
+        # @nyo_user_id =[]
+        # @notyetoffers.each do |offer|
+        #   @nyo_user_id.push(offer.user_id)
+        # end
+        # @nyo_user_id.sample
+        @selectoffer = @notyetoffers.sample
+        @selectoffer.given_by = @give.user_id
+        @selectoffer.done = 1
+        @selectoffer.save
+
+        @give.done = 1
+        @give.target_id = @selectoffer.user_id
+        @give.save
+
+        flash[:notice] = "#{@selectoffer.user_id}さんに奢りました"
+        redirect_to("/manga/#{@manga.id}")
+      end
+    end
+  end
 
 
   def offer
