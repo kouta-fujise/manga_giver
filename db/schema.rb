@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_17_044315) do
+ActiveRecord::Schema.define(version: 2022_04_17_052538) do
 
   create_table "browses", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 2022_04_17_044315) do
     t.string "name", default: "名無しの漫画ファン"
     t.string "email"
     t.string "address"
-    t.integer "total_amount_paid"
-    t.float "total_books_given"
+    t.integer "total_amount_paid", default: 0
+    t.integer "total_books_given", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

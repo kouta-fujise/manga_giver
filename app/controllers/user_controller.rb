@@ -108,8 +108,8 @@ class UserController < ApplicationController
     # オファー枠表示
 
     # 取引履歴表示
-    @gives = Give.where(user_id:@current_user)
-    @gets = Give.where(target_id:@current_user)
+    @gives = Give.where(user_id:@current_user).where(done:1)
+    @gets = Give.where(target_id:@current_user).where(done:1)
 
   end
 
