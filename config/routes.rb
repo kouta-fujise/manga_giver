@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   get "user/give"
   get "user/pay"
-  get "user/set" =>"user#set"
+  get "user/name_set" =>"user#name_set"
   get "user/ad_setting"
   get "register" => "user#register"
   post "user/create" => "user#create"

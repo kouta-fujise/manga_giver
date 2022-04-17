@@ -53,7 +53,7 @@ class UserController < ApplicationController
     end
   end
 
-  def set
+  def name_set
     @user = @current_user
   end
 
