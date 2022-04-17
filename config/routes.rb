@@ -28,9 +28,11 @@ Rails.application.routes.draw do
 
   get "user/give"
   get "user/pay"
+  get "user/set" =>"user#set"
   get "user/ad_setting"
   get "register" => "user#register"
   post "user/create" => "user#create"
+  post "user/name" => "user#name"
   get "login" => "user#login"
   post "user/login_form" =>"user#login_form"
   get "user/:id" => "user#page"
