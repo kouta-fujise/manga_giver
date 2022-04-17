@@ -58,13 +58,18 @@ class UserController < ApplicationController
   end
 
   def name
-    @user =  @current_user
-    @user.name = params[:name]
-    if @user.save
-      flash[:notice] = "ユーザ名を登録しました"
-      redirect_to("/")
+    if params[:name]==""
+      flash[:notice] = "ユーザ名が入力されていません"
+      render("user/name_set")
     else
-      render("user/set")
+      @user =  @current_user
+      @user.name = params[:name]
+      if @user.save
+        flash[:notice] = "ユーザ名を登録しました"
+        redirect_to("/user/name_set")
+      else
+        render("user/name_set")
+      end
     end
   end
 
@@ -103,8 +108,8 @@ class UserController < ApplicationController
     # オファー枠表示
 
     # 取引履歴表示
-    @gives = Give.where(user_id:@current_user)
-    @gets = Give.where(target_id:@current_user)
+    @gives = Give.where(user_id:@current_user).where(done:1)
+    @gets = Give.where(target_id:@current_user).where(done:1)
 
   end
 

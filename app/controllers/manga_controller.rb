@@ -1,5 +1,6 @@
 class MangaController < ApplicationController
 
+  before_action :authenticate_user, {only:[:car_pay,:create_pay,:offer]}
 
   def top
   end
@@ -16,29 +17,30 @@ class MangaController < ApplicationController
     else
       redirect_to("/")
     end
-    # 登録済みカードの取得
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # PAY.JPに秘密鍵を使ってアクセス
-    # card = Card.find_by(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
-    # 今のユーザのカード情報からtokenが入っているものを全て取得
-    card = Card.where(user_id: @current_user.id).where.not(token_id: nil)
-    # card = Card.where(user_id: @current_user.id)# cardsテーブルからユーザーのカード情報を取得
-    # logger.debug("cardはこれ")
-    # logger.debug card.inspect
-    # 取得したカード全ての顧客情報を取得
-    customer = []
-    card.each do |card_each|
-      customer.push(Payjp::Customer.retrieve(card_each.customer_id))# 顧客idを元に、顧客情報を取得
-      # logger.debug("cunstomerはこれ")
-      # logger.debug customer.inspect
+    if @current_user != nil
+      # 登録済みカードの取得
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # PAY.JPに秘密鍵を使ってアクセス
+      # card = Card.find_by(user_id: @current_user.id) # cardsテーブルからユーザーのカード情報を取得
+      # 今のユーザのカード情報からtokenが入っているものを全て取得
+      card = Card.where(user_id: @current_user.id).where.not(token_id: nil)
+      # card = Card.where(user_id: @current_user.id)# cardsテーブルからユーザーのカード情報を取得
+      # logger.debug("cardはこれ")
+      # logger.debug card.inspect
+      # 取得したカード全ての顧客情報を取得
+      customer = []
+      card.each do |card_each|
+        customer.push(Payjp::Customer.retrieve(card_each.customer_id))# 顧客idを元に、顧客情報を取得
+        # logger.debug("cunstomerはこれ")
+        # logger.debug customer.inspect
+      end
+      # 取得した全ての顧客情報からカード情報を取得
+      @card = []
+      customer.each do |customer_each|
+      @card.push(customer_each.cards.first)
+      # logger.debug("@cardはこれ")
+      # logger.debug @card.inspect
+      end
     end
-    # 取得した全ての顧客情報からカード情報を取得
-    @card = []
-    customer.each do |customer_each|
-    @card.push(customer_each.cards.first)
-    # logger.debug("@cardはこれ")
-    # logger.debug @card.inspect
-    end
-
   end
 
   def give
@@ -75,8 +77,8 @@ class MangaController < ApplicationController
     price = @manga.price*@manga.volume
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     # カードを選ぶバージョン paramsで持ってくる
-    logger.debug("カスタマーid")
-    logger.debug params[:customer_id]
+    # logger.debug("カスタマーid")
+    # logger.debug params[:customer_id]
     if params[:customer_id].present?
       charge = Payjp::Charge.create(
         amount: price,
@@ -112,6 +114,8 @@ class MangaController < ApplicationController
       user_id: @current_user.id,
       manga_id: @manga.id,
       price: @manga.price,
+      volume:@manga.volume,
+      amount:@manga.price*@manga.volume,
       done: 0,
     )
     if @give.save
@@ -126,13 +130,26 @@ class MangaController < ApplicationController
         # end
         # @nyo_user_id.sample
         @selectoffer = @notyetoffers.sample #sampleでランダムに選んでいる
+        @user = @current_user
+
         @selectoffer.given_by = @give.user_id
         @selectoffer.done = 1
         @selectoffer.save
 
         @give.done = 1
         @give.target_id = @selectoffer.user_id
-        @give.save
+          logger.debug("give.amount")
+          logger.debug @give.amount
+          logger.debug("give.volume")
+          logger.debug @give.volume
+        @user.total_amount_paid += @give.amount
+        @user.total_books_given += @give.volume
+          logger.debug("ユーザのトータル支払い")
+          logger.debug @user.total_amount_paid
+          logger.debug("ユーザのトータル奢り数")
+          logger.debug @user.total_books_given
+          @give.save
+        @user.save
 
         flash[:notice] = "#{@selectoffer.user_id}さんに奢りました"
         redirect_to("/manga/#{@manga.id}")
@@ -186,6 +203,8 @@ class MangaController < ApplicationController
       user_id: @current_user.id,
       manga_id: @manga.id,
       price: @manga.price,
+      volume:@manga.volume,
+      amount:@manga.price*@manga.volume,
       done: 0,
     )
     # pay書き込み部分
@@ -201,13 +220,18 @@ class MangaController < ApplicationController
         # end
         # @nyo_user_id.sample
         @selectoffer = @notyetoffers.sample #sampleでランダムに選んでいる
+        @user = @current_user
+
         @selectoffer.given_by = @give.user_id
         @selectoffer.done = 1
         @selectoffer.save
 
         @give.done = 1
         @give.target_id = @selectoffer.user_id
+        @user.total_amount_paid = @give.amount
+        @user.total_books_given = @give.volume
         @give.save
+        @user.save
 
         flash[:notice] = "#{@selectoffer.user_id}さんに奢りました"
         redirect_to("/manga/#{@manga.id}")
@@ -268,9 +292,22 @@ class MangaController < ApplicationController
           redirect_to("/manga/#{@manga.id}")
         else
           @selectgive = @notyetgives.sample
+          @user = User.find_by(id:@selectgive.user_id)
+
           @selectgive.target_id = @offer.user_id
           @selectgive.done = 1
+            logger.debug("give.amount")
+            logger.debug @selectgive.amount
+            logger.debug("give.volume")
+            logger.debug @selectgive.volume
+          @user.total_amount_paid += @selectgive.amount
+          @user.total_books_given += @selectgive.volume
+            logger.debug("ユーザのトータル支払い")
+            logger.debug @user.total_amount_paid
+            logger.debug("ユーザのトータル奢り数")
+            logger.debug @user.total_books_given
           @selectgive.save
+          @user.save
 
           @offer.done = 1
           @offer.given_by = @selectgive.user_id
