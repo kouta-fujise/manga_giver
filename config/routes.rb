@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'manga/top'
   get 'manga/index'
+  post "manga/result" => "manga#result"
   get "manga/give"
   get "manga/togive"
   get "manga/toget"

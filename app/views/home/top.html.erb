@@ -1,7 +1,7 @@
-<form class="searchbar" action="top.html.erb">
-  <input type="text" style="display:inline-block" id="search" placeholder="検索" name="Search">
+<%= form_tag("/manga/result") do %>
+  <input name="keyword" style="display:inline-block" id="search" placeholder="検索">
   <button type="submit" style="display:inline-block"><i class="fas fa-search"></i></button>
-</form>
+<%end%>
 
 <!--
 <div class="home_top">
