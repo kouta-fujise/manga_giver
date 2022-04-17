@@ -1,0 +1,18 @@
+<div id="favorites">
+  <div>
+    <strong>一覧</strong>
+    <!-- <span class="more">
+        <a href="#">もっと見る></a>
+    </span> -->
+  </div>
+
+  <% @mangas.each do |manga|%>
+
+  <div class="entryside">
+  <%= link_to(image_tag("#{manga.image}"),"#{manga.id}")%>
+  <%= link_to(manga.name,"#{manga.id}")%>
+  </div>
+
+  <% end %>
+
+</div>

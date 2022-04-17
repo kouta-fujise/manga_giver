@@ -10,6 +10,18 @@ class MangaController < ApplicationController
     @mangas = Manga.all
   end
 
+  def result
+    redirect_to "/" if params[:keyword] == ""
+
+    @mangas = []
+    split_keyword = params[:keyword].split(/[[:blank:]]+/)
+
+    split_keyword.each do |keyword|  # 分割したキーワードごとに検索
+      next if keyword == ""
+      @mangas += Manga.where('name LIKE(?)', "%#{keyword}%") # 部分一致で検索
+    end
+  end
+
   def page
     if Manga.find_by(id:params[:id])
       @manga = Manga.find_by(id:params[:id])
