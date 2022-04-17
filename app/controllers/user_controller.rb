@@ -53,6 +53,21 @@ class UserController < ApplicationController
     end
   end
 
+  def name_set
+    @user = @current_user
+  end
+
+  def name
+    @user =  @current_user
+    @user.name = params[:name]
+    if @user.save
+      flash[:notice] = "ユーザ名を登録しました"
+      redirect_to("/")
+    else
+      render("user/set")
+    end
+  end
+
   def address
     # 住所が入力されてない時も通ってしまう
     @user =  @current_user
@@ -67,7 +82,7 @@ class UserController < ApplicationController
       flash[:notice] = "住所を登録しました"
       redirect_to("/")
     else
-      render("user/setting")
+      render("user/set")
     end
   end
 

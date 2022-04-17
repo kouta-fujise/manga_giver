@@ -1,0 +1,29 @@
+<div class="topnav">
+  <%= link_to("戻る","/user/page")%>
+</div>
+
+<p>ユーザー設定ページ</p>
+
+<div class = "id">
+<%= @current_user.id %>
+<%= @current_user.name %>
+</div>
+
+<p>名前設定</p>
+
+<%= form_tag("/user/name") do %>
+  <div id="info_register">
+    <%if @user.present?%>
+      <% @user.errors.full_messages.each do |message| %>
+      <div class="form-error">
+        <%= message %>
+      </div>
+    <% end %>
+  <%end%>
+  <label for="name_register">ユーザ名</label>
+  <input name="name" placeholder="ユーザ名">
+    <div>
+    <input type="submit" id="button_register" value="登録">
+    </div>
+  </div>
+<% end %>
