@@ -1,7 +1,6 @@
 class MangaController < ApplicationController
 
-  before_action :authenticate_user, {only:[:car_pay,:create_pay]}
-  before_action :forbid_login_user, {only:[:register,:login,:create,:logion_form]}
+  before_action :authenticate_user, {only:[:car_pay,:create_pay,:offer]}
 
   def top
   end
