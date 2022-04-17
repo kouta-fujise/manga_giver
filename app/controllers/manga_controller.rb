@@ -1,5 +1,7 @@
 class MangaController < ApplicationController
 
+  before_action :authenticate_user, {only:[:car_pay,:create_pay]}
+  before_action :forbid_login_user, {only:[:register,:login,:create,:logion_form]}
 
   def top
   end
@@ -71,6 +73,7 @@ class MangaController < ApplicationController
   # end
 
   def card_pay
+    @user = @current_user
     @manga = $current_manga
     price = @manga.price*@manga.volume
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
@@ -112,6 +115,8 @@ class MangaController < ApplicationController
       user_id: @current_user.id,
       manga_id: @manga.id,
       price: @manga.price,
+      volume:@manga.volume,
+      amount:@manga.price*@manga.volume,
       done: 0,
     )
     if @give.save
@@ -132,7 +137,10 @@ class MangaController < ApplicationController
 
         @give.done = 1
         @give.target_id = @selectoffer.user_id
+        @user.total_amount_paid += @give.amount
+        @user.total_books_given += @give.volume
         @give.save
+        @user.save
 
         flash[:notice] = "#{@selectoffer.user_id}さんに奢りました"
         redirect_to("/manga/#{@manga.id}")
@@ -186,6 +194,8 @@ class MangaController < ApplicationController
       user_id: @current_user.id,
       manga_id: @manga.id,
       price: @manga.price,
+      volume:@manga.volume,
+      amount:@manga.price*@manga.volume,
       done: 0,
     )
     # pay書き込み部分
@@ -207,7 +217,10 @@ class MangaController < ApplicationController
 
         @give.done = 1
         @give.target_id = @selectoffer.user_id
+        @user.total_amount_paid = @give.amount
+        @user.total_books_given = @give.volume
         @give.save
+        @user.save
 
         flash[:notice] = "#{@selectoffer.user_id}さんに奢りました"
         redirect_to("/manga/#{@manga.id}")
