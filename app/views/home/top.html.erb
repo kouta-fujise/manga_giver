@@ -23,7 +23,7 @@
       <%= manga.author%>
       <% if manga.image.present?  %>
         <% if File.exist?("./app/assets/images/#{manga.image}")%>
-          <%= image_tag(manga.image)%>
+          <%= image_tag manga.image,class:"manga_image"%>
         <% else %>
         <p>画像準備中</p>
         <% end %>
