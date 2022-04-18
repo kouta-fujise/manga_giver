@@ -37,6 +37,36 @@
     <%#= link_to("未発送取引一覧","/manga/notyet")%>
     <%#= link_to("漫画登録","/manga/register")%>
     </link> -->
+
+    <header>
+      <div class="header container">
+        <div class="row header_row">
+          <div class="col-2">manga-giver</div>
+          <div class="col-7"></div>
+          <div class="col-3">
+            <%if @current_user == nil%>
+              未ログイン
+            <%else%>
+              <%=
+              total = @current_user.total_amount_paid
+              if total>100000
+                "プラチナランク"
+              elsif total > 10000
+                "ゴールドランク"
+              elsif total > 5000
+                "シルバーランク"
+              elsif total > 0
+                "ブロンズランク"
+              else
+                "ビギナーランク"
+              end
+              %>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <main>
     <%= yield %>
     </main>

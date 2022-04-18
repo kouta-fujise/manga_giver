@@ -11,4 +11,5 @@ class User < ApplicationRecord
   # validates :address4, {presence:true}
   # validates :address5, {presence:true}
 
+
 end

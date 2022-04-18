@@ -21,83 +21,10 @@
 body {
     background-color: rgb(241, 235, 235);
 }
-/**.sidemenu {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(173, 36, 36);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-.sidemenu a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #e4d1d1;
-    display: block;
-    transition: 0.3s;
+.header_row{
+  margin-top:10px;
 }
 
-.sidemenu .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}**/
-
-/**.container {
-    position: fixed;
-    top: 0;
-    width:90%;
-    transition: margin-left .3s;
-    padding: 16px;
-    white-space: nowrap;
-    overflow-x: auto;
-}**/
-
-/**@media screen and (max-height: 450px) {
-    .sidemenu {padding-top: 15px;}
-    .sidemenu a {font-size: 18px;}
-}**/
-
-/**#search {
-    width: 90%;
-    font-size: 18px;
-    padding: 11px;
-    border: 1px solid rgb(226, 218, 218);
-    border-radius: 5px;
-}**/
-
-/* .searchbar input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border:1px solid grey;
-    float: left;
-    width: 75%;
-    background: #f1f1f1;
-} */
-
-/* .searchbar button {
-    float: left;
-    width: 15%;
-    padding: 10px;
-    background: #f32121;
-    color: white;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-left: none;
-} */
-
-/* .searchbar::after {
-    content: "";
-    clear: both;
-    display: table;
-} */
 
 .ad {
     width:330px;
