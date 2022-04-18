@@ -20,32 +20,33 @@
     </div>
     <% end %>
 
-    <link>
-    <%= link_to("ホーム","/")%>
-    <%= link_to("漫画一覧","/manga/index")%>
-    <%= link_to("漫画奢り専用ページ","/manga/give")%>
-    <%= link_to("漫画奢った後","/manga/togive")%>
-    <%= link_to("漫画奢ってオファー後","/manga/toget")%>
-    <%= link_to("ユーザー奢りステータス","/user/give")%>
-    <%= link_to("ユーザー情報","/user/page")%>
-    <%= link_to("ユーザー支払い設定","/user/pay")%>
-    <%= link_to("ユーザー住所設定","/user/ad_set")%>
-    <%= link_to("新規登録","/register")%>
-    <%= link_to("ログイン","/login")%>
-    <%= link_to("ログアウト","/logout",{method: "post"})%>
-    <%= link_to("取引一覧","/manga/deal")%>
-    <%= link_to("未発送取引一覧","/manga/notyet")%>
-    <%= link_to("漫画登録","/manga/register")%>
-    </link>
+    <!-- <link>
+    <%#= link_to("ホーム","/")%>
+    <%#= link_to("漫画一覧","/manga/index")%>
+    <%#= link_to("漫画奢り専用ページ","/manga/give")%>
+    <%#= link_to("漫画奢った後","/manga/togive")%>
+    <%#= link_to("漫画奢ってオファー後","/manga/toget")%>
+    <%#= link_to("ユーザー奢りステータス","/user/give")%>
+    <%#= link_to("ユーザー情報","/user/page")%>
+    <%#= link_to("ユーザー支払い設定","/user/pay")%>
+    <%#= link_to("ユーザー住所設定","/user/ad_set")%>
+    <%#= link_to("新規登録","/register")%>
+    <%#= link_to("ログイン","/login")%>
+    <%#= link_to("ログアウト","/logout",{method: "post"})%>
+    <%#= link_to("取引一覧","/manga/deal")%>
+    <%#= link_to("未発送取引一覧","/manga/notyet")%>
+    <%#= link_to("漫画登録","/manga/register")%>
+    </link> -->
     <main>
     <%= yield %>
     </main>
-    <div class="navbar">
+    <div class="nav_bar">
       <ul>
         <a href="/" id="home_nav">ホーム</a>
         <a href="/manga/index" id="manga_nav">漫画</a>
         <a href="/user/page" id="user_nav">マイページ</a>
       </ul>
+    </div>
 
   </body>
 </html>
