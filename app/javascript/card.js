@@ -4,7 +4,7 @@ const payjp = () => {
     // デバッグ用
     console.log("js動いている");
     // console.log(process.env.PAYJP_PUBLIC_KEY);
-    console.log(document.getElementById("number").value);
+    // console.log(document.getElementById("number").value);
     Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
     const form = document.getElementById("card_form");
     form.addEventListener("submit", function(e) {
