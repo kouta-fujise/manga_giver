@@ -85,9 +85,9 @@ class UserController < ApplicationController
     @user.address6 = params[:address6]
     if @user.save
       flash[:notice] = "住所を登録しました"
-      redirect_to("/")
+      redirect_to("/user/ad_set")
     else
-      render("user/set")
+      render("user/ad_set")
     end
   end
 
