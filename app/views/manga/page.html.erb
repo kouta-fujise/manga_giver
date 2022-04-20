@@ -1,103 +1,117 @@
-<div class = "manga-page-item">
-  <div class = "image">
-  <% if @manga.image.present?  %>
-    <% if File.exist?("./app/assets/images/#{@manga.image}")%>
-      <%= image_tag(@manga.image)%>
-    <% else %>
-    <p>画像準備中</p>
-    <% end %>
-  <% else %>
-  <p>画像準備中</p>
-  <% end %>
-  </div>
-  <div class = "name">
-  <%= @manga.name %>
-  </div>
-  <div class = "author">
-  <%= @manga.author%>
-  </div>
-  <div class = "text">
-  <%= @manga.text%>
-  </div>
-  <div class = "volume">
-  <% if @manga.volume == 1 %>
-    <p>1巻</p>
-  <%else%>
-    <p>1巻〜<%= @manga.volume%>巻</p>
-  <% end %>
-  </div>
-  <div class = "price">
-  <p><%= @manga.price * @manga.volume%>円</p>
-  </div>
-</div>
-
-<% if @current_user == nil %>
-  奢る、またはオファーにはアカウント登録とログインが必要です。
-  <%= link_to("新規登録","/register")%>
-  <%= link_to("ログイン","/login")%>
-<%else%>
-
-  <h2>奢る</h2>
-  <%if @card.present?%>
-    <% @card.each do |card_each|%>
-      <%if card_each.present?%>
-        <%=link_to "/manga/card_pay/#{card_each.customer}",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary" do%>
-          <h2>このカードで奢る</h2>
-          <p>カード名義人: <%= card_each.name %></p>
-          <p>カード番号：**** **** **** <%= card_each.last4%></p>
-          <p>有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %></p>
-          <p>ブランド：<%= card_each.brand %></p>
-        <%end%>
+<div class="container">
+  <div class="row manga_row manga_page_row">
+    <div class="col-6">
+      <!--漫画の画像表示-->
+      <% if @manga.image.present?  %>
+        <% if File.exist?("./app/assets/images/#{@manga.image}")%>
+          <%= image_tag @manga.image,class:"manga_image"%>
+        <% else %>
+          <p>画像準備中</p>
+        <% end %>
+      <% else %>
+        <p>画像準備中</p>
       <% end %>
-    <% end %>
+      <!--/漫画の画像表示-->
+    </div>
+
+    <div class="col-6">
+      <!--漫画情報表示-->
+
+      <p><%= @manga.name %></p>
+
+      <div class = "author">
+        <p><%= @manga.author%></p>
+      </div>
+      <div class = "volume">
+        <% if @manga.volume == 1 %>
+          <p>1巻</p>
+        <%else%>
+          <p>1巻〜<%= @manga.volume%>巻</p>
+        <% end %>
+      </div>
+      <div class = "price">
+        <p><%= @manga.price * @manga.volume%>円</p>
+      </div>
+      <!--漫画情報表示-->
+    </div>
+  </div>
+  <div class="row manga_row manga_page_row">
+    <div class="col-12">
+      <div class = "text">
+        <p><%= @manga.text%></p>
+      </div>
+    </div>
+  </div>
+
+  <% if @current_user == nil %>
+    <div class="row manga_row manga_page_row">
+      奢る、オファーにはアカウント登録とログインが必要です。
+      <%= link_to("新規登録","/register")%>
+      <%= link_to "ログイン","/login"%>
+    </div>
   <%else%>
-    カードが登録されていません。
+    <div class="row manga_row manga_page_row">
+      <!--奢る機能-->
+      <h2>奢る</h2>
+      <!--カードが登録されているか-->
+      <%if @card.present?%>
+        <% @card.each do |card_each|%>
+          <%if card_each.present?%>
+            <%=link_to "/manga/card_pay/#{card_each.customer}",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary" do%>
+              <h2>このカードで奢る</h2>
+              <p>カード名義人: <%= card_each.name %></p>
+              <p>カード番号：**** **** **** <%= card_each.last4%></p>
+              <p>有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %></p>
+              <p>ブランド：<%= card_each.brand %></p>
+            <%end%>
+          <% end %>
+        <% end %>
+      <%else%>
+        カードが登録されていません。
+      <% end %>
+      <!--カードが登録されているか-->
+    </div>
+    <div class="row manga_row manga_page_row">
+      <!--カード登録機能-->
+      <h2>カードを新規登録して奢る</h2>
+      <%= form_with url: "/manga/create_pay", id: "card_form", local: true do |f| %>
+        <div>
+          <%= f.label :name, "カード名義人" %>
+          <%= f.text_field :name %>
+        </div>
+        <div>
+          <%= f.label :number, "カード番号" %>
+          <%= f.text_field :number %>
+        </div>
+        <div>
+          <%= f.label :cvc, "セキュリティコード" %>
+          <%= f.text_field :cvc %>
+        </div>
+        <div>
+          <%= f.label :exp_month, "有効期限（月）" %>
+          <%= f.text_field :exp_month %>
+        </div>
+        <div>
+          <%= f.label :exp_year, "有効期限（年）" %>
+          <%= f.text_field :exp_year %>
+        </div>
+        <div>
+          <%= f.submit "送信" ,data: { confirm: 'カードを登録して支払いますか？'}%>
+        </div>
+      <% end %>
+      <!--カード登録機能-->
+    </div>
+
+    <div style = "height:50px"></div>
+    <!--奢る機能-->
+    <div class="row manga_row manga_page_row">
+      <!--オファー機能-->
+      <h2>オファーする</h2>
+      <%=link_to "オファー", "/manga/offer",method: "post", data: { confirm: 'オファーしますか？誰かに奢ってもらうまでオファー枠の変更はできません。'}, class: "btn btn-lg btn-primary"%>
+      <!--オファー機能-->
+    </div>
   <% end %>
-
-  <div style = "height:50px"></div>
-
-  <h2>カードを新規登録して奢る</h2>
-  <%= form_with url: "/manga/create_pay", id: "card_form", local: true do |f| %>
-    <div>
-      <%= f.label :name, "カード名義人" %>
-      <%= f.text_field :name %>
-    </div>
-    <div>
-      <%= f.label :number, "カード番号" %>
-      <%= f.text_field :number %>
-    </div>
-    <div>
-      <%= f.label :cvc, "セキュリティコード" %>
-      <%= f.text_field :cvc %>
-    </div>
-    <div>
-      <%= f.label :exp_month, "有効期限（月）" %>
-      <%= f.text_field :exp_month %>
-    </div>
-    <div>
-      <%= f.label :exp_year, "有効期限（年）" %>
-      <%= f.text_field :exp_year %>
-    </div>
-    <div>
-      <%= f.submit "送信" ,data: { confirm: 'カードを登録して支払いますか？'}%>
-    </div>
-  <% end %>
-
-  <%# <%= form_tag("/manga/pay") do %>
-  <!--<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key= <%#=ENV["PAYJP_PUBLIC_KEY"]%>>
-  </script> -->
-  <%# end %>
-
-  <%# <%=link_to "設定済みカードで奢る", "/manga/card_pay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
-
-  <div style = "height:50px"></div>
-  <%# <%=link_to "奢る", "/manga/fakepay",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary"%>
-
-  <div style = "height:50px"></div>
-  <h2>オファーする</h2>
-
-  <%=link_to "オファー", "/manga/offer",method: "post", data: { confirm: 'オファーしますか？'}, class: "btn btn-lg btn-primary"%>
-
-<% end %>
 
 <div style = "height:200px"></div>
+
+</div><!-- <コンテナエンド> -->

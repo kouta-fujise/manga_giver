@@ -1,82 +1,51 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+
+
+@import "bootstrap";
+@import "_variables";
+@import "card";
+@import "home";
+@import "manga";
+@import "user";
+
+
+
+//共通デザイン
 body {
-    background-color: rgb(241, 235, 235);
-}
-/**.sidemenu {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(173, 36, 36);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-.sidemenu a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #e4d1d1;
-    display: block;
-    transition: 0.3s;
+    background-color: rgb(255, 255, 255);
 }
 
-.sidemenu .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}**/
-
-/**.container {
-    position: fixed;
-    top: 0;
-    width:90%;
-    transition: margin-left .3s;
-    padding: 16px;
-    white-space: nowrap;
-    overflow-x: auto;
-}**/
-
-/**@media screen and (max-height: 450px) {
-    .sidemenu {padding-top: 15px;}
-    .sidemenu a {font-size: 18px;}
-}**/
-
-/**#search {
-    width: 90%;
-    font-size: 18px;
-    padding: 11px;
-    border: 1px solid rgb(226, 218, 218);
-    border-radius: 5px;
-}**/
-
-.searchbar input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border:1px solid grey;
-    float: left;
-    width: 75%;
-    background: #f1f1f1;
+.header_row{
+  padding-top:5px 0;
+  border: 1px solid;
+  border-color: transparent;
+  border-bottom-color: $border-color;
+  margin-bottom: 10px;
 }
 
-.searchbar button {
-    float: left;
-    width: 15%;
-    padding: 10px;
-    background: #f32121;
-    color: white;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-left: none;
+.rank{
+  text-align:right;
+  font-size:15px;
+}
+.rank span{
+  font-size:30px;
 }
 
-.searchbar::after {
-    content: "";
-    clear: both;
-    display: table;
+//見出し
+.top_text{
 }
 
 .ad {
@@ -89,26 +58,34 @@ body {
     margin-bottom: 20px;
 }
 
-.navbar {
+.nav_bar {
     background-color: rgb(173, 36, 36);
     overflow: hidden;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
-
-.navbar a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+.nav_bar .col-4{
+  text-align:center;
+}
+.nav_{
+  padding: 20px 0;
 }
 
+.nav_bar a {
+    color: #f2f2f2;
+    // padding: 10px 5px;
+    text-decoration: none;
+    font-size: 20px;
+}
+// .nav_bar ul{
+//   margin-block-start:0px;
+//   padding-inline-start: 40px;
+// }
+
 #home #home_nav{
-     background-color: #d13333;
-    color: white;
+  background-color: #d13333;
+  color: white;
 }
 
 #manga #manga_nav {
@@ -273,7 +250,6 @@ body {
     height: 350px;
 }
 /* <<<<<<< HEAD
-=======
 
 <<<<<<< HEAD */
 #logo_login {
@@ -369,8 +345,6 @@ body {
     background-color: #f32121;
 }
 
-=======
-
 /**address page**/
 
 #address {
@@ -414,5 +388,16 @@ body {
     font-size: 18px;
     padding: 5px;
 }
-/**address page end**/
-/* >>>>>>> eb809af66f21628c8b7b26f5a03c4a468895ae4b */
+
+@media screen and (min-width: 960px) {
+	/* 960px以上に適用されるCSS（PC用） */
+  .nav_bar a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      margin: 10px;
+  }
+}

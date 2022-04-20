@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def hello
+    return "hello"
+  end
+
 end

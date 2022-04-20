@@ -13,39 +13,86 @@
   </head>
 
   <body id='<%= controller.controller_name %>'>
+    <!-- <link>
+    <%#= link_to("ホーム","/")%>
+    <%#= link_to("漫画一覧","/manga/index")%>
+    <%#= link_to("漫画奢り専用ページ","/manga/give")%>
+    <%#= link_to("漫画奢った後","/manga/togive")%>
+    <%#= link_to("漫画奢ってオファー後","/manga/toget")%>
+    <%#= link_to("ユーザー奢りステータス","/user/give")%>
+    <%#= link_to("ユーザー情報","/user/page")%>
+    <%#= link_to("ユーザー支払い設定","/user/pay")%>
+    <%#= link_to("ユーザー住所設定","/user/ad_set")%>
+    <%#= link_to("新規登録","/register")%>
+    <%#= link_to("ログイン","/login")%>
+    <%#= link_to("ログアウト","/logout",{method: "post"})%>
+    <%#= link_to("取引一覧","/manga/deal")%>
+    <%#= link_to("未発送取引一覧","/manga/notyet")%>
+    <%#= link_to("漫画登録","/manga/register")%>
+    </link> -->
 
-    <% if flash[:notice] %>
-    <div class="flash">
-      <%= flash[:notice] %>
-    </div>
-    <% end %>
+    <header>
+      <div class="header container">
+        <div class="row header_row">
+          <div class="col-2">manga-giver</div>
+          <div class="col-10 rank">
+            <%if @current_user == nil%>
+              <a href="/login">
+                <div style="margin-top:15px;">
+                  未ログイン
+                </div>
+              </a>
+            <%else%>
+              <%total = @current_user.total_amount_paid%>
+              <%if total>100000%>
+                ランク:<span>プラチナ</span>
+              <%elsif total > 10000%>
+                ランク:<span>ゴールド</span>
+              <%elsif total > 5000%>
+                ランク:<span>シルバー</span>
+              <%elsif total > 0%>
+                ランク:<span>ブロンズ</span>
+              <%else%>
+                ランク:<span>ビギナー</span>
+              <%end%>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <link>
-    <%= link_to("ホーム","/")%>
-    <%= link_to("漫画一覧","/manga/index")%>
-    <%= link_to("漫画奢り専用ページ","/manga/give")%>
-    <%= link_to("漫画奢った後","/manga/togive")%>
-    <%= link_to("漫画奢ってオファー後","/manga/toget")%>
-    <%= link_to("ユーザー奢りステータス","/user/give")%>
-    <%= link_to("ユーザー情報","/user/page")%>
-    <%= link_to("ユーザー支払い設定","/user/pay")%>
-    <%= link_to("ユーザー住所設定","/user/ad_setting")%>
-    <%= link_to("新規登録","/register")%>
-    <%= link_to("ログイン","/login")%>
-    <%= link_to("ログアウト","/logout",{method: "post"})%>
-    <%= link_to("取引一覧","/manga/deal")%>
-    <%= link_to("未発送取引一覧","/manga/notyet")%>
-    <%= link_to("漫画登録","/manga/register")%>
-    </link>
     <main>
+      <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+      <% end %>
+
     <%= yield %>
+
     </main>
-    <div class="navbar">
-      <ul>
-        <a href="/" id="home_nav">ホーム</a>
-        <a href="/manga/index" id="manga_nav">漫画</a>
-        <a href="/user/page" id="user_nav">マイページ</a>
-      </ul>
+    <div class="container-fluid nav_bar">
+      <div class="row justify-content-evenly">
+        <div class="col-4">
+          <a href="/">
+            <div class="nav_" id="home_nav">
+              ホーム
+            </div>
+          </a>
+        </div>
+        <div class="col-4">
+          <a href="/user/page">
+            <div class="nav_" id="user_nav">
+              <% if @current_user == nil%>
+              ログイン
+              <%else%>
+              マイページ
+              <%end%>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>

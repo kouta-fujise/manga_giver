@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'manga/top'
   get 'manga/index'
-  post "manga/result" => "manga#result"
+  post "manga/search" => "manga#search"
   get "manga/give"
   get "manga/togive"
   get "manga/toget"
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get "user/give"
   get "user/pay"
   get "user/name_set" =>"user#name_set"
-  get "user/ad_setting"
+  get "user/ad_set"
   get "register" => "user#register"
   post "user/create" => "user#create"
   post "user/name" => "user#name"

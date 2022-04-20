@@ -10,7 +10,7 @@ class MangaController < ApplicationController
     @mangas = Manga.all
   end
 
-  def result
+  def search
     redirect_to "/" if params[:keyword] == ""
 
     @mangas = []
@@ -369,6 +369,7 @@ class MangaController < ApplicationController
       image: params[:image],
       text: params[:text],
       price: params[:price],
+      volume: params[:volume],
     )
     if @manga.save
       flash[:notice] = "漫画を新規登録しました"

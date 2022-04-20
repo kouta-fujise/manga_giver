@@ -9,26 +9,54 @@
 <%# end %>
 
 
-
-
-<div id="favorites">
-  <div>
-    <strong>一覧</strong>
-    <!-- <span class="more">
-        <a href="#">もっと見る></a>
-    </span> -->
+<div class="container">
+  <!-- <span class="more">
+    <!-- <a href="page_list.html">もっと見る></a> -->
+  <!-- </span> -->
+  <!--  未ログイン時にはこのサイトの使い方を表示する-->
+  <div class="top_text">
+    漫画一覧
   </div>
 
-  <% @mangas.each do |manga|%>
-
-  <div class="entryside">
-  <%= link_to(image_tag("#{manga.image}"),"#{manga.id}")%>
-  <%= link_to(manga.name,"#{manga.id}")%>
+  <div class="row row-cols-3 manga_row">
+    <% @mangas.each do |manga|%>
+      <%= link_to("/manga/#{manga.id}") do %>
+        <div class="col">
+          <div class="card manga_card">
+            <!--漫画の画像表示-->
+            <% if manga.image.present?  %>
+              <% if File.exist?("./app/assets/images/#{manga.image}")%>
+                <%= image_tag manga.image,class:"manga_image"%>
+              <% else %>
+                <p>画像準備中</p>
+              <% end %>
+            <% else %>
+              <p>画像準備中</p>
+            <% end %>
+            <!--/漫画の画像表示-->
+            <div class="card-body">
+              <h6 class="card-title">
+                <%= manga.name %>
+              </h6>
+              <!-- <div class="card-text">
+                <%#= manga.author%>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
-  <% end %>
+</div><!-- <コンテナエンド> -->
 
+<%= form_tag("/manga/search") do%>
+<div class="search_bar">
+  <input class="keyword "name="keyword" style="display:inline-block" id="search" placeholder="検索">
+  <button type="submit" style="display:inline-block"><i class="fas fa-search"></i></button>
 </div>
+<%end%>
+<div style = "height:200px;"></div>
 
 <!-- <div id="favorites">
   <div>

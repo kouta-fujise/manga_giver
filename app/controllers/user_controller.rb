@@ -35,6 +35,7 @@ class UserController < ApplicationController
 
   def login
     @user  = User.new
+    logger.debug params[:back_to]
   end
 
   def login_form
@@ -85,9 +86,9 @@ class UserController < ApplicationController
     @user.address6 = params[:address6]
     if @user.save
       flash[:notice] = "住所を登録しました"
-      redirect_to("/")
+      redirect_to("/user/ad_set")
     else
-      render("user/set")
+      render("user/ad_set")
     end
   end
 
@@ -117,6 +118,29 @@ class UserController < ApplicationController
     @user = @current_user
 
   end
+
+  # def rank
+  #   logger.debug("動いてる")
+  #   logger.debug @current_user
+  #   if @current_user
+  #     total = @current_user.total_amount_paid
+  #     logger.debug("total")
+  #     logger.debug total
+  #     return total
+  #     if total>100000
+  #       return "プラチナ"
+  #     elsif total > 10000
+  #       return "ゴールド"
+  #     elsif total > 5000
+  #       return "シルバー"
+  #     elsif total > 0
+  #       return "ブロンズ"
+  #     else
+  #       return "ビギナー"
+  #     end
+  #   end
+  # end
+
 
 
 end

@@ -32,6 +32,8 @@ gem 'payjp'
 
 gem 'dotenv-rails'
 
+gem 'bootstrap', '~> 5.0.2'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
