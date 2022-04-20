@@ -52,18 +52,27 @@
   <%else%>
     <div class="row manga_row manga_page_row">
       <!--奢る機能-->
-      <h2>奢る</h2>
+      <div class="col-12">
+        <h2>奢る</h2>
+      </div>
       <!--カードが登録されているか-->
       <%if @card.present?%>
         <% @card.each do |card_each|%>
           <%if card_each.present?%>
-            <%=link_to "/manga/card_pay/#{card_each.customer}",method: "post", data: { confirm: '奢りますか？'}, class: "btn btn-lg btn-primary" do%>
-              <h2>このカードで奢る</h2>
-              <p>カード名義人: <%= card_each.name %></p>
-              <p>カード番号：**** **** **** <%= card_each.last4%></p>
-              <p>有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %></p>
-              <p>ブランド：<%= card_each.brand %></p>
-            <%end%>
+            <div class="col-12 card-col">
+              <%=link_to "/manga/card_pay/#{card_each.customer}",method: "post", data: { confirm: 'このカードで奢りますか？'}, class: "btn btn-lg btn-primary card-btn" do%>
+                <h2>このカードで奢る</h2>
+                <p>
+                  カード名義人: <%= card_each.name %>
+                  <br>
+                  カード番号：**** **** **** <%= card_each.last4%>
+                  <br>
+                  有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %>
+                  <br>
+                  ブランド：<%= card_each.brand %>
+                </p>
+              <%end%>
+            </div>
           <% end %>
         <% end %>
       <%else%>
@@ -72,42 +81,43 @@
       <!--カードが登録されているか-->
     </div>
     <div class="row manga_row manga_page_row">
+      <div class="col-12">
+        <!--カード登録機能-->
+        <h2>カードを新規登録して奢る</h2>
+        <%= form_with url: "/manga/create_pay", id: "card_form", local: true do |f| %>
+
+          <%#= f.label :name, "カード名義人" %>
+          <%= f.text_field :name, placeholder:"カード名義人"%>
+
+          <%#= f.label :number, "カード番号" %>
+          <%= f.text_field :number ,placeholder:"カード番号"%>
+
+          <%#= f.label :cvc, "セキュリティコード" %>
+          <%= f.text_field :cvc ,placeholder:"セキュリティコード"%>
+
+          <%#= f.label :exp_month, "有効期限（月）" %>
+          <%= f.text_field :exp_month ,placeholder:"有効期限（月）"%>
+
+          <%# <%= f.label :exp_year, "有効期限（年）" %>
+          <%= f.text_field :exp_year ,placeholder:"有効期限（年）"%>
+
+          <%= f.submit "カードを登録して奢る" ,class:"btn btn-lg btn-primary card-btn card-submit-btn", data: { confirm: 'カードを登録して支払いますか？'}%>
+        <% end %>
       <!--カード登録機能-->
-      <h2>カードを新規登録して奢る</h2>
-      <%= form_with url: "/manga/create_pay", id: "card_form", local: true do |f| %>
-        <div>
-          <%= f.label :name, "カード名義人" %>
-          <%= f.text_field :name %>
-        </div>
-        <div>
-          <%= f.label :number, "カード番号" %>
-          <%= f.text_field :number %>
-        </div>
-        <div>
-          <%= f.label :cvc, "セキュリティコード" %>
-          <%= f.text_field :cvc %>
-        </div>
-        <div>
-          <%= f.label :exp_month, "有効期限（月）" %>
-          <%= f.text_field :exp_month %>
-        </div>
-        <div>
-          <%= f.label :exp_year, "有効期限（年）" %>
-          <%= f.text_field :exp_year %>
-        </div>
-        <div>
-          <%= f.submit "送信" ,data: { confirm: 'カードを登録して支払いますか？'}%>
-        </div>
-      <% end %>
-      <!--カード登録機能-->
+      </div>
     </div>
 
     <div style = "height:50px"></div>
     <!--奢る機能-->
     <div class="row manga_row manga_page_row">
       <!--オファー機能-->
-      <h2>オファーする</h2>
-      <%=link_to "オファー", "/manga/offer",method: "post", data: { confirm: 'オファーしますか？誰かに奢ってもらうまでオファー枠の変更はできません。'}, class: "btn btn-lg btn-primary"%>
+      <div class="col-12">
+        <h2>オファーする</h2>
+      </div>
+      <div class="col-12">
+        <%=link_to "この漫画をオファー", "/manga/offer",method: "post", data: { confirm: 'この漫画をオファーしますか？受け取るまでオファー枠の変更はできません。'}, class: "btn btn-lg btn-primary offer-btn"%>
+
+      </div>
       <!--オファー機能-->
     </div>
   <% end %>

@@ -59,21 +59,24 @@ body {
 }
 
 .nav_bar {
-    background-color: rgb(173, 36, 36);
+    background-color: #fcfcfcfc;
     overflow: hidden;
     position: fixed;
     bottom: 0;
     width: 100%;
+    border:1px solid;
+    border-color:transparent;
+    border-top-color: $nav-color;
 }
-.nav_bar .col-4{
+.nav_bar .nav-col{
   text-align:center;
 }
 .nav_{
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
 .nav_bar a {
-    color: #f2f2f2;
+    color:#000000;
     // padding: 10px 5px;
     text-decoration: none;
     font-size: 20px;
@@ -84,17 +87,17 @@ body {
 // }
 
 #home #home_nav{
-  background-color: #d13333;
+  background-color: $nav-color;
   color: white;
 }
 
 #manga #manga_nav {
-      background-color: #d13333;
+      background-color: $nav-color;
      color: white;
  }
 
 #user #user_nav {
-      background-color: #d13333;
+      background-color: $nav-color;
      color: white;
  }
 #favorites {
