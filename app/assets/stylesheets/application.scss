@@ -27,6 +27,20 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
+.rank{
+  text-align:right;
+  font-size:15px;
+}
+.rank span{
+  font-size:30px;
+}
+
+//見出し
+.top_text{
+  margin-top:10px;
+}
+
+
 .ad {
     width:330px;
     object-fit: contain;
@@ -44,24 +58,27 @@ body {
     bottom: 0;
     width: 100%;
 }
+.nav_bar .col-4{
+  text-align:center;
+}
+.nav_{
+  padding: 20px 0;
+}
 
 .nav_bar a {
-    float: left;
     color: #f2f2f2;
-    text-align: center;
-    padding: 10px 5px;
+    // padding: 10px 5px;
     text-decoration: none;
     font-size: 20px;
-    margin: 10px;
 }
-.nav_bar ul{
-  margin-block-start:0px;
-  padding-inline-start: 40px;
-}
+// .nav_bar ul{
+//   margin-block-start:0px;
+//   padding-inline-start: 40px;
+// }
 
 #home #home_nav{
-     background-color: #d13333;
-    color: white;
+  background-color: #d13333;
+  color: white;
 }
 
 #manga #manga_nav {

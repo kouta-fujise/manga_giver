@@ -2,6 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//漫画カード
+.manga_row a{
+  padding-left:5px;
+  padding-right:5px;
+  text-decoration: none;
+}
+
+.manga_row a:hover h6{
+  color:$hover-color;
+}
+
+// 漫画カード
+.manga_card{
+  height: 100%;
+  margin: 10px auto;
+  background-color: $base-color !important;
+}
+
+.manga_image{
+  width:100%;
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}
+
+h6{
+  color :$text-color;
+  text-decoration: none;
+}
 
 // 検索バー
 // .searchbar input[type=text] {
@@ -38,33 +66,6 @@
     display: table;
 }
 
-.manga_row a{
-  padding-left:5px;
-  padding-right:5px;
-  text-decoration: none;
-}
-
-.manga_row a:hover h6{
-  color:$hover-color;
-}
-
-// 漫画カード
-.manga_card{
-  height: 100%;
-  margin: 10px auto;
-  background-color: $base-color !important;
-}
-
-.manga_image{
-  width:100%;
-  border-top-left-radius: calc(0.25rem - 1px);
-  border-top-right-radius: calc(0.25rem - 1px);
-}
-
-h6{
-  color :$text-color;
-  text-decoration: none;
-}
 
 @media screen and (min-width: 960px) {
   .manga_card{

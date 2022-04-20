@@ -10,7 +10,7 @@ class MangaController < ApplicationController
     @mangas = Manga.all
   end
 
-  def result
+  def search
     redirect_to "/" if params[:keyword] == ""
 
     @mangas = []

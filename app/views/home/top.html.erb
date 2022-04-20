@@ -7,6 +7,9 @@
     <!-- <a href="page_list.html">もっと見る></a> -->
   <!-- </span> -->
   <!--  未ログイン時にはこのサイトの使い方を表示する-->
+  <!-- <div class="index_text">
+    漫画一覧
+  </div> -->
 
   <div class="row row-cols-3 manga_row">
     <% @mangas.each do |manga|%>
@@ -40,7 +43,7 @@
 
 </div><!-- <コンテナエンド> -->
 
-<%= form_tag("/manga/result") do%>
+<%= form_tag("/manga/search") do%>
 <div class="search_bar">
   <input class="keyword "name="keyword" style="display:inline-block" id="search" placeholder="検索">
   <button type="submit" style="display:inline-block"><i class="fas fa-search"></i></button>
