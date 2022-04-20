@@ -37,7 +37,11 @@
           <div class="col-2">manga-giver</div>
           <div class="col-10 rank">
             <%if @current_user == nil%>
-              <div style="margin-top:15px;">未ログイン</div>
+              <a href="/login">
+                <div style="margin-top:15px;">
+                  未ログイン
+                </div>
+              </a>
             <%else%>
               <%total = @current_user.total_amount_paid%>
               <%if total>100000%>

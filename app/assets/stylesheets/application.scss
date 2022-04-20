@@ -21,10 +21,19 @@
 @import "manga";
 @import "user";
 
-// rgb(241, 235, 235)
 
+
+//共通デザイン
 body {
     background-color: rgb(255, 255, 255);
+}
+
+.header_row{
+  padding-top:5px 0;
+  border: 1px solid;
+  border-color: transparent;
+  border-bottom-color: $border-color;
+  margin-bottom: 10px;
 }
 
 .rank{
@@ -37,9 +46,7 @@ body {
 
 //見出し
 .top_text{
-  margin-top:10px;
 }
-
 
 .ad {
     width:330px;

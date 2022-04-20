@@ -7,6 +7,17 @@
     <!-- <a href="page_list.html">もっと見る></a> -->
   <!-- </span> -->
   <!--  未ログイン時にはこのサイトの使い方を表示する-->
+  <% if @current_user == nil%>
+    <div class="tutorial">
+      使い方
+      <br>
+      広めたい漫画を奢ろう！
+      <br>
+      読みたい漫画をオファーしよう！
+      <br>
+      まずは <a href="/register">新規登録から！</a>
+    </div>
+  <%end%>
   <!-- <div class="index_text">
     漫画一覧
   </div> -->
