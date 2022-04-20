@@ -10,21 +10,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 
 
 @import "bootstrap";
+@import "_variables";
+@import "card";
+@import "home";
+@import "manga";
+@import "user";
 
+// rgb(241, 235, 235)
 
 body {
-    background-color: rgb(241, 235, 235);
+    background-color: rgb(255, 255, 255);
 }
-.header_row{
-  margin-top:10px;
-}
-
 
 .ad {
     width:330px;
