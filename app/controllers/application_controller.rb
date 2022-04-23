@@ -9,14 +9,18 @@ class ApplicationController < ActionController::Base
     @ranks = ["ブロンズ","シルバー","ゴールド","プラチナ"]
 
     if @current_user
-      for n in 1..@ranks.size do
-        total = @current_user.total_amount_paid
-        if total > @rank_border[n-1]
-          @rank_num = n-1
-          @rank = @ranks[n-1]
+      total = @current_user.total_amount_paid
+      if total == 0
+        @rank_num = 0
+        @rank = @ranks[0]
+      else
+        for n in 1..@ranks.size do
+          if total > @rank_border[n-1]
+            @rank_num = n-1
+            @rank = @ranks[n-1]
+          end
         end
       end
-      logger.debug @rank
     end
   end
 
