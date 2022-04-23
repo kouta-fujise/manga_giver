@@ -36,11 +36,11 @@ body {
   margin-bottom: 10px;
 }
 
-.rank{
+.header_rank{
   text-align:right;
   font-size:15px;
 }
-.rank span{
+.header_rank span{
   font-size:30px;
 }
 
@@ -76,10 +76,10 @@ body {
 }
 
 .nav_bar a {
-    color:#000000;
-    // padding: 10px 5px;
-    text-decoration: none;
-    font-size: 20px;
+  color:#000000;
+  // padding: 10px 5px;
+  text-decoration: none;
+  font-size: 20px;
 }
 // .nav_bar ul{
 //   margin-block-start:0px;
@@ -92,20 +92,20 @@ body {
 }
 
 #manga #manga_nav {
-      background-color: $nav-color;
-     color: white;
+  background-color: $nav-color;
+   color: white;
  }
 
 #user #user_nav {
-      background-color: $nav-color;
-     color: white;
+  background-color: $nav-color;
+   color: white;
  }
 #favorites {
     color:#f32121;
     font-size: 25px;
     padding:5px;
 }
-#ranking {
+#searching {
     color:#f32121;
     font-size: 25px;
     padding:5px;

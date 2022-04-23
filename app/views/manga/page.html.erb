@@ -114,10 +114,26 @@
       <div class="col-12">
         <h2>オファーする</h2>
       </div>
-      <div class="col-12">
-        <%=link_to "この漫画をオファー", "/manga/offer",method: "post", data: { confirm: 'この漫画をオファーしますか？受け取るまでオファー枠の変更はできません。'}, class: "btn btn-lg btn-primary offer-btn"%>
-
-      </div>
+      <%if @current_user.address%>
+        <div class="col-12">
+          設定中の住所<%= link_to("住所を変更する","/user/ad_set")%>
+        </div>
+        <div class="col-12">
+          <%= @current_user.address %>
+          <br>
+        </div>
+        <div class="col-12">
+          <%=link_to "この漫画をオファー", "/manga/offer",method: "post",
+            data: { confirm: '現在の住所にこの漫画をオファーしますか？受け取るまでオファー枠の変更はできません。'},
+            class: "btn btn-lg btn-primary offer-btn"
+          %>
+        </div>
+      <% else %>
+        <div class="col-12">
+          住所が設定されていません。
+          <%= link_to("住所を設定","/user/ad_set")%>
+        </div>
+      <% end %>
       <!--オファー機能-->
     </div>
   <% end %>

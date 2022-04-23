@@ -1,59 +1,153 @@
-<p>ユーザー情報ページ</p>
-
-
-<%= @current_user.name %>さん
-
-<div class = "id">
-ユーザid<%= @current_user.id %>
-</div>
-
-<div>
-  <strong>残りオファー枠</strong>
-  <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
-  <% @offer = Offer.find_by(user_id:@current_user.id,done:0)%>
-  <!--ないなら1-->
-  <% if @offer.nil?%>
-  1 欲しい漫画を選ぼう！
-  <!--あるなら0-->
-  <% else %>
-  0
-  <%= Manga.find_by(id:@offer.manga_id).name %>をオファー中です。
-  <%end%>
-</div>
-
-<div>
-<strong>奢り履歴</strong>
-<% @gives.each do |give|%>
-  <div class="entryside">
-    奢った本
-    <% @given_manga = Manga.find_by(id:give.manga_id)%>
-    <%= @given_manga.name %>
-    奢った相手
-    <% @target_user = User.find_by(id:give.target_id)%>
-    <%= @target_user.name %>さん
+<!-- <p>ユーザー情報ページ</p> -->
+<div class="container">
+  <div class="top_text">
+    <%= @current_user.name %>さんのマイページ
   </div>
-<% end %>
-</div>
-
-<div>
-<strong>受け取り履歴</strong>
-<% @gets.each do |get|%>
-  <div class="entryside">
-    もらった本
-    <% @manga = Manga.find_by(id:get.manga_id)%>
-    <%= @manga.name %>
-    送り主
-    <% @t_user = User.find_by(id:get.user_id)%>
-    <%= @t_user.name %>さん
+  <!-- 奢り関係情報 -->
+  <div class="row give_row">
+    <!-- ランク -->
+    <div class="col-12 user_rank">
+      <%if @current_user == nil%>
+        <a href="/login">
+          <div style="margin-top:15px;">
+            未ログイン
+          </div>
+        </a>
+      <%else%>
+        <div class="row rank_row">
+          <span><%= @rank%></span>
+        </div>
+        <div class="row">
+          <div class="col-2 progress_label-l">
+            <%#= @rank_border[@rank_num]%>
+          </div>
+          <div class="col-8 progress_label-c">
+            残り<%= @rank_border[@rank_num+1] - @user.total_amount_paid%>円でランクアップ！
+          </div>
+          <div class="col-2 progress_label-r">
+            <%#= @rank_border[@rank_num+1]%>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width:<%= @progress %>%" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
+      <%end%>
+    </div>
+    <!-- 累計情報 -->
+    <div class="col-12 give_data">
+      <div class="col-12">
+        今まで奢った総額
+        <br>
+        <span><%= @current_user.total_amount_paid %><span>円
+      </div>
+      <div class="col-12">
+        今まで奢った冊数
+        <br>
+        <span><%= @current_user.total_books_given %><span>冊
+      </div>
+      <div class="col-12">
+        今まで奢った相手の人数
+        <br>
+        <span><%= @persons_given_num %><span>人
+      </div>
+    </div>
+    <div class="col-12">
+      <%= link_to "奢り履歴", "/user/give", class:"btn btn-lg btn-primary history_btn" %>
+    </div>
   </div>
-<% end %>
-</div>
-<%= link_to("名前設定","/user/name_set")%>
+  <!-- オファー関連情報 -->
+  <div class="row get_row">
+    <div class="col-12">
+      <strong>残りオファー枠</strong>
+      <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
+      <% @offer = Offer.find_by(user_id:@current_user.id,done:0)%>
+      <!--ないなら1-->
+      <% if @offer.nil?%>
+      1 欲しい漫画を選ぼう！
+      <!--あるなら0-->
+      <% else %>
+      0
+      <%= Manga.find_by(id:@offer.manga_id).name %>をオファー中です。
+      <%end%>
+    </div>
+    <div class="col-12">
+      <%= link_to "受け取り履歴","/user/give",class:"btn btn-lg btn-primary offer_history"%>
+    </div>
+  </div>
+  <!-- 設定関連 -->
+  <div class="row set_row">
+    <div class="col-12">
+      <%= @current_user.name %>
+      <br>
+      <%= @current_user.email %>
+      <br>
+      <% if @cards %>
+        クレジットカード登録済み
+      <% else %>
+        クレジットカード未登録<%= link_to("住所を設定する","/card/new")%>
+      <% end %>
+      <br>
+      <% if @current_user.address %>
+        住所登録済み
+      <% else %>
+        住所未登録<%= link_to("住所を設定する","/user/ad_set")%>
+      <% end %>
+    </div>
+    <div class="col-12 set_col">
+      <%= link_to "/user/name_set" do%>
+      <div class="row">
+        <div class="col-10">
+         ユーザー名設定
+        </div>
+        <div class="col-2">
+          ＞
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-12 set_col">
+      <%= link_to "/card/new" do%>
+      <div class="row">
+        <div class="col-10">
+         支払い方法設定
+        </div>
+        <div class="col-2">
+          ＞
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-12 set_col">
+      <%= link_to "/user/ad_set" do%>
+      <div class="row">
+        <div class="col-10">
+         住所設定
+        </div>
+        <div class="col-2">
+          ＞
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-12 set_col">
+      <%= link_to "/logout" ,{method: "post"} do%>
+      <div class="row">
+        <div class="col-10">
+         ログアウト
+        </div>
+        <div class="col-2">
+          ＞
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div><!-- コンテナ終了 -->
 
-<%= link_to("支払い設定","/card/new")%>
 
-<%= link_to("ユーザー住所設定","/user/ad_set")%>
 
-<%= link_to("ログアウト","/logout",{method: "post"})%>
+
+
 
 <div style = "height:200px;"></div>

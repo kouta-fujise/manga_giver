@@ -22,30 +22,30 @@
   <div>
     <label>
       <div class="address_list">
-        <strong>お届け先名義</strong>
+        <strong>お届け先名義（必須）</strong>
       </div>
       <div class="address_list">
-        <input name = "address1" type="text" id="user_name" size="40">
-      </div>
-    </label>
-  </div>
-  <div>
-    <label>
-      <div class="address_list">
-        <strong>郵便番号</strong>
-      </div>
-      <div class="address_list">
-        <input name = "address2" type="text" id="postcode1" size="10">&nbsp;-&nbsp;<input type="text" id="postcode2" size="10">
+        <input name = "address1" type="text" id="user_name" size="40" value="<%=@user.address1%>" required>
       </div>
     </label>
   </div>
   <div>
     <label>
       <div class="address_list">
-        <strong>都道府県</strong>
+        <strong>郵便番号（必須）</strong>
       </div>
       <div class="address_list">
-      <select name = "address3" id="todofuken">
+        <input name = "address2" type="text" id="postcode1" size="10" value="<%=@user.address2%>" required>
+      </div>
+    </label>
+  </div>
+  <div>
+    <label>
+      <div class="address_list">
+        <strong>都道府県（必須）</strong>
+      </div>
+      <div class="address_list">
+      <select name = "address3" id="todofuken" value="<%=@user.address3%>" required>
         <option value="">都道府県を選択してください</option>
         <option value="北海道">北海道</option>
         <option value="青森県">青森県</option>
@@ -101,20 +101,20 @@
   <div>
     <label>
       <div class="address_list">
-        <strong>住所1</strong>
+        <strong>住所1（必須）</strong>
       </div>
       <div class="address_list">
-        <input name = "address4" type="text" id="user_name" size="40" placeholder="市、区、町、丁目、番地、号">
+        <input name = "address4" type="text" id="user_name" size="40" placeholder="市、区、町、丁目、番地、号" value="<%=@user.address4%>" required>
       </div>
     </label>
   </div>
   <div>
     <label>
       <div class="address_list">
-        <strong>住所2</strong>
+        <strong>住所2（必須）</strong>
       </div>
       <div class="address_list">
-        <input name = "address5" type="text" id="user_name" size="40" placeholder="マンション、アパート名、部屋番号、等">
+        <input name = "address5" type="text" id="user_name" size="40" placeholder="マンション、アパート名、部屋番号、等" value="<%=@user.address5%>">
       </div>
     </label>
   </div>
@@ -124,7 +124,7 @@
         <strong>会社名（オプション）</strong>
       </div>
       <div class="address_list">
-        <input name = "address6" type="text" id="user_name" size="40">
+        <input name = "address6" type="text" id="user_name" size="40" value="<%=@user.address6%>">
       </div>
     </label>
   </div>

@@ -4,6 +4,11 @@ class UserController < ApplicationController
   before_action :forbid_login_user, {only:[:register,:login,:create,:logion_form]}
 
   def give
+    @gives = Give.where(user_id:@current_user).where(done:1)
+  end
+
+  def get
+    @gets = Give.where(target_id:@current_user).where(done:1)
   end
 
   def register
@@ -74,7 +79,11 @@ class UserController < ApplicationController
     end
   end
 
-  def address
+  def ad_set
+    @user =  @current_user
+  end
+
+  def address #住所変更関数
     # 住所が入力されてない時も通ってしまう
     @user =  @current_user
     @user.address = params[:address1]+" "+params[:address2]+" "+params[:address3]+" "+params[:address4]+" "+params[:address5]+" "+params[:address6]
@@ -110,7 +119,28 @@ class UserController < ApplicationController
 
     # 取引履歴表示
     @gives = Give.where(user_id:@current_user).where(done:1)
-    @gets = Give.where(target_id:@current_user).where(done:1)
+    # @gets = Give.where(target_id:@current_user).where(done:1)
+
+    # 送った相手の人数をpersons_given_numとして計算
+    @persons_given = []# persons_givenにtarget_idを保存していく
+    @persons_given_num = 0
+    @gives.each do |give|
+      # persons_givenに同じtarget_idがあればカウントしない
+      if @persons_given.find{ |n| n == give.target_id}
+
+      else #同じtarget_idがなければ、追加してnumを加算
+        @persons_given.push(give.target_id)
+        @persons_given_num += 1
+      end
+    end
+    # ランクのプログレスバーの表示
+    @progress = @user.total_amount_paid * 100 / @rank_border[@rank_num +1]
+
+    # カードの登録有無
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # PAY.JPに秘密鍵を使ってアクセス
+    # 今のユーザのカード情報からtokenが入っているものを全て取得
+    @cards = Card.where(user_id: @current_user.id).where.not(token_id: nil)
+
 
   end
 
