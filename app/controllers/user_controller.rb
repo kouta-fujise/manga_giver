@@ -133,6 +133,14 @@ class UserController < ApplicationController
         @persons_given_num += 1
       end
     end
+    # ランクのプログレスバーの表示
+    @progress = @user.total_amount_paid * 100 / @rank_border[@rank_num +1]
+
+    # カードの登録有無
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # PAY.JPに秘密鍵を使ってアクセス
+    # 今のユーザのカード情報からtokenが入っているものを全て取得
+    @cards = Card.where(user_id: @current_user.id).where.not(token_id: nil)
+
 
   end
 

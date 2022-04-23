@@ -4,6 +4,20 @@ class ApplicationController < ActionController::Base
 
   def set_current_user
     @current_user = User.find_by(id: session[:user_id])
+
+    @rank_border = [0,5000,10000,100000]
+    @ranks = ["ブロンズ","シルバー","ゴールド","プラチナ"]
+
+    if @current_user
+      for n in 1..@ranks.size do
+        total = @current_user.total_amount_paid
+        if total > @rank_border[n-1]
+          @rank_num = n-1
+          @rank = @ranks[n-1]
+        end
+      end
+      logger.debug @rank
+    end
   end
 
   def authenticate_user
@@ -18,10 +32,6 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "すでにログインしています"
       redirect_to("/")
     end
-  end
-
-  def hello
-    return "hello"
   end
 
 end

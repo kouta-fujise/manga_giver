@@ -6,16 +6,85 @@
   border: 1px solid;
   border-color: transparent;
   border-bottom-color: $border-color;
+  margin-bottom:$margin-l;
 }
+
+.user_rank{
+  text-align:center;
+  font-size: 16px;
+  margin-bottom:$margin;
+}
+.user_rank span{
+  font-size:60px;
+}
+.rank_row{
+  margin:30px 0;
+}
+
+.progress_label-l{
+  font-size:10px;
+  text-align:left;
+  vertical-align:bottom;
+}
+
+.progress_label-r{
+  font-size:10px;
+  text-align:right;
+}
+
+.progress-bar{
+  background-color:$base-color;
+}
+
+.give_data{
+  text-align:center;
+  margin-bottom:$margin;
+}
+
+.give_data span{
+  font-size:30px;
+}
+
+.history_btn{
+  background-color:$btn-color;
+  border-color:$border-color;
+  width:100%;
+  margin-bottom:$margin-s;
+  padding:0;
+}
+.history_btn:hover{
+  background-color:$btn-hover-color;
+  border-color:$border-color;
+}
+
 
 .get_row{
   border: 1px solid;
   border-color: transparent;
   border-bottom-color: $border-color;
+  margin-bottom:$margin-l;
+}
+
+.get_row .col-12{
+  margin-bottom:$margin-s;
+}
+
+.offer_history{
+  padding:0;
+  width:100%;
+  background-color:$offer-cl;
+}
+
+.set_row .col-12{
+  margin-bottom:$margin-s;
+  padding-bottom:10px;
 }
 
 .set_col{
   border: 1px solid;
   border-color: transparent;
   border-bottom-color: $border-color;
+}
+.set_col .col-2{
+  text-align:end;
 }
