@@ -74,7 +74,11 @@ class UserController < ApplicationController
     end
   end
 
-  def address
+  def ad_set
+    @user =  @current_user
+  end
+
+  def address #住所変更関数
     # 住所が入力されてない時も通ってしまう
     @user =  @current_user
     @user.address = params[:address1]+" "+params[:address2]+" "+params[:address3]+" "+params[:address4]+" "+params[:address5]+" "+params[:address6]
