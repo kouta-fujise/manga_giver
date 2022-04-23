@@ -1,3 +1,27 @@
 // Place all the styles related to the card controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card-col{
+  text-align:center;
+}
+
+.card-btn{
+  background-color:$btn-color;
+  border-color:$border-color;
+  width:100%;
+  margin-bottom:10px;
+}
+.card-btn:hover{
+  background-color:$btn-hover-color;
+  border-color:$border-color;
+}
+
+#card_form input {
+  display:block;
+  font-size: 20px;
+  // margin-left: 20px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width:100%;
+}
