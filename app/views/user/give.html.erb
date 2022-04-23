@@ -1,5 +1,17 @@
-<p>ユーザーの奢りステータスページ</p>
-
-<div class = "id">
-<%= @current_user.id %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <strong>奢り履歴</strong>
+      <% @gives.each do |give|%>
+        <div class="entryside">
+          奢った本
+          <% @given_manga = Manga.find_by(id:give.manga_id)%>
+          <%= @given_manga.name %>
+          奢った相手
+          <% @target_user = User.find_by(id:give.target_id)%>
+          <%= @target_user.name %>さん
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

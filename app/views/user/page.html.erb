@@ -41,17 +41,7 @@
       </div>
     </div>
     <div class="col-12">
-      <strong>奢り履歴</strong>
-      <% @gives.each do |give|%>
-        <div class="entryside">
-          奢った本
-          <% @given_manga = Manga.find_by(id:give.manga_id)%>
-          <%= @given_manga.name %>
-          奢った相手
-          <% @target_user = User.find_by(id:give.target_id)%>
-          <%= @target_user.name %>さん
-        </div>
-      <% end %>
+      <strong><%= link_to("奢り履歴","/user/give")%></strong>
     </div>
   </div>
   <!-- オファー関連情報 -->
@@ -70,37 +60,32 @@
       <%end%>
     </div>
     <div class="col-12">
-      <strong>受け取り履歴</strong>
-      <% @gets.each do |get|%>
-        <div class="entryside">
-          もらった本
-          <% @manga = Manga.find_by(id:get.manga_id)%>
-          <%= @manga.name %>
-          送り主
-          <% @t_user = User.find_by(id:get.user_id)%>
-          <%= @t_user.name %>さん
-        </div>
-      <% end %>
+      <strong><%= link_to("受け取り履歴","/user/give")%></strong>
     </div>
   </div>
   <!-- 設定関連 -->
   <div class="row set_row">
     <div class="col-12">
       <%= @current_user.name %>
+      <br>
       <%= @current_user.email %>
-      <%if @current_user.address == []%>
+      <br>
+      <%if @current_user.address %>
         住所登録済み
       <% else %>
-        住所未登録
+        住所未登録<%= link_to("住所を設定する","/user/ad_set")%>
       <%end%>
     </div>
-    <div class="col-12">
+    <div class="col-12 set_col">
       <%= link_to("名前設定","/user/name_set")%>
-
+    </div>
+    <div class="col-12 set_col">
       <%= link_to("支払い設定","/card/new")%>
-
+    </div>
+    <div class="col-12 set_col">
       <%= link_to("ユーザー住所設定","/user/ad_set")%>
-
+    </div>
+    <div class="col-12 set_col">
       <%= link_to("ログアウト","/logout",{method: "post"})%>
     </div>
   </div>

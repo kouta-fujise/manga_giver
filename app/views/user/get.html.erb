@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <strong>受け取り履歴</strong>
+      <% @gets.each do |get|%>
+        <div class="entryside">
+          もらった本
+          <% @manga = Manga.find_by(id:get.manga_id)%>
+          <%= @manga.name %>
+          送り主
+          <% @t_user = User.find_by(id:get.user_id)%>
+          <%= @t_user.name %>さん
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

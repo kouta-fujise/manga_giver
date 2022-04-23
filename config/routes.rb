@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   post "complete/:id" => "manga#complete"
 
   get "user/give"
+  get "user/get"
   get "user/pay"
   get "user/name_set" =>"user#name_set"
   get "user/ad_set"

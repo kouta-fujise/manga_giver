@@ -4,6 +4,11 @@ class UserController < ApplicationController
   before_action :forbid_login_user, {only:[:register,:login,:create,:logion_form]}
 
   def give
+    @gives = Give.where(user_id:@current_user).where(done:1)
+  end
+
+  def get
+    @gets = Give.where(target_id:@current_user).where(done:1)
   end
 
   def register
@@ -114,7 +119,7 @@ class UserController < ApplicationController
 
     # 取引履歴表示
     @gives = Give.where(user_id:@current_user).where(done:1)
-    @gets = Give.where(target_id:@current_user).where(done:1)
+    # @gets = Give.where(target_id:@current_user).where(done:1)
 
     # 送った相手の人数をpersons_given_numとして計算
     @persons_given = []# persons_givenにtarget_idを保存していく
