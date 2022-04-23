@@ -112,6 +112,19 @@ class UserController < ApplicationController
     @gives = Give.where(user_id:@current_user).where(done:1)
     @gets = Give.where(target_id:@current_user).where(done:1)
 
+    # 送った相手の人数をpersons_given_numとして計算
+    @persons_given = []# persons_givenにtarget_idを保存していく
+    @persons_given_num = 0
+    @gives.each do |give|
+      # persons_givenに同じtarget_idがあればカウントしない
+      if @persons_given.find{ |n| n == give.target_id}
+
+      else #同じtarget_idがなければ、追加してnumを加算
+        @persons_given.push(give.target_id)
+        @persons_given_num += 1
+      end
+    end
+
   end
 
   def pay

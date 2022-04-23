@@ -1,59 +1,114 @@
-<p>ユーザー情報ページ</p>
-
-
-<%= @current_user.name %>さん
-
-<div class = "id">
-ユーザid<%= @current_user.id %>
-</div>
-
-<div>
-  <strong>残りオファー枠</strong>
-  <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
-  <% @offer = Offer.find_by(user_id:@current_user.id,done:0)%>
-  <!--ないなら1-->
-  <% if @offer.nil?%>
-  1 欲しい漫画を選ぼう！
-  <!--あるなら0-->
-  <% else %>
-  0
-  <%= Manga.find_by(id:@offer.manga_id).name %>をオファー中です。
-  <%end%>
-</div>
-
-<div>
-<strong>奢り履歴</strong>
-<% @gives.each do |give|%>
-  <div class="entryside">
-    奢った本
-    <% @given_manga = Manga.find_by(id:give.manga_id)%>
-    <%= @given_manga.name %>
-    奢った相手
-    <% @target_user = User.find_by(id:give.target_id)%>
-    <%= @target_user.name %>さん
+<!-- <p>ユーザー情報ページ</p> -->
+<div class="container">
+  <div class="top_text">
+    <%= @current_user.name %>さんのマイページ
   </div>
-<% end %>
-</div>
-
-<div>
-<strong>受け取り履歴</strong>
-<% @gets.each do |get|%>
-  <div class="entryside">
-    もらった本
-    <% @manga = Manga.find_by(id:get.manga_id)%>
-    <%= @manga.name %>
-    送り主
-    <% @t_user = User.find_by(id:get.user_id)%>
-    <%= @t_user.name %>さん
+  <!-- 奢り関係情報 -->
+  <div class="row give_row">
+    <!-- ランク -->
+    <div class="col-12 user_rank">
+      <%if @current_user == nil%>
+        <a href="/login">
+          <div style="margin-top:15px;">
+            未ログイン
+          </div>
+        </a>
+      <%else%>
+        <%total = @current_user.total_amount_paid%>
+        <%if total>100000%>
+          ランク:<span>プラチナ</span>
+        <%elsif total > 10000%>
+          ランク:<span>ゴールド</span>
+        <%elsif total > 5000%>
+          ランク:<span>シルバー</span>
+        <%elsif total > 0%>
+          ランク:<span>ブロンズ</span>
+        <%else%>
+          ランク:<span>ビギナー</span>
+        <%end%>
+      <%end%>
+    </div>
+    <!-- 累計情報 -->
+    <div class="col-12 give_data">
+      <div class="col-12">
+        <%= @current_user.total_amount_paid %>円
+      </div>
+      <div class="col-12">
+        <%= @current_user.total_books_given %>冊
+      </div>
+      <div class="col-12">
+        <%= @persons_given_num %>人
+      </div>
+    </div>
+    <div class="col-12">
+      <strong>奢り履歴</strong>
+      <% @gives.each do |give|%>
+        <div class="entryside">
+          奢った本
+          <% @given_manga = Manga.find_by(id:give.manga_id)%>
+          <%= @given_manga.name %>
+          奢った相手
+          <% @target_user = User.find_by(id:give.target_id)%>
+          <%= @target_user.name %>さん
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-</div>
-<%= link_to("名前設定","/user/name_set")%>
+  <!-- オファー関連情報 -->
+  <div class="row get_row">
+    <div class="col-12">
+      <strong>残りオファー枠</strong>
+      <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
+      <% @offer = Offer.find_by(user_id:@current_user.id,done:0)%>
+      <!--ないなら1-->
+      <% if @offer.nil?%>
+      1 欲しい漫画を選ぼう！
+      <!--あるなら0-->
+      <% else %>
+      0
+      <%= Manga.find_by(id:@offer.manga_id).name %>をオファー中です。
+      <%end%>
+    </div>
+    <div class="col-12">
+      <strong>受け取り履歴</strong>
+      <% @gets.each do |get|%>
+        <div class="entryside">
+          もらった本
+          <% @manga = Manga.find_by(id:get.manga_id)%>
+          <%= @manga.name %>
+          送り主
+          <% @t_user = User.find_by(id:get.user_id)%>
+          <%= @t_user.name %>さん
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- 設定関連 -->
+  <div class="row set_row">
+    <div class="col-12">
+      <%= @current_user.name %>
+      <%= @current_user.email %>
+      <%if @current_user.address == []%>
+        住所登録済み
+      <% else %>
+        住所未登録
+      <%end%>
+    </div>
+    <div class="col-12">
+      <%= link_to("名前設定","/user/name_set")%>
 
-<%= link_to("支払い設定","/card/new")%>
+      <%= link_to("支払い設定","/card/new")%>
 
-<%= link_to("ユーザー住所設定","/user/ad_set")%>
+      <%= link_to("ユーザー住所設定","/user/ad_set")%>
 
-<%= link_to("ログアウト","/logout",{method: "post"})%>
+      <%= link_to("ログアウト","/logout",{method: "post"})%>
+    </div>
+  </div>
+</div><!-- コンテナ終了 -->
+
+
+
+
+
 
 <div style = "height:200px;"></div>
