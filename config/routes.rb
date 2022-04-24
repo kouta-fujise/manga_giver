@@ -25,11 +25,13 @@ Rails.application.routes.draw do
 
   get "manga/:id" => "manga#page"
 
-  post "complete/:id" => "manga#complete"
+  post "sent/:id" => "manga#sent"
+  post "receive/:id" => "manga#receive"
 
   get "user/give"
   get "user/get"
   get "user/pay"
+  get "user/deal"
   get "user/name_set" =>"user#name_set"
   get "user/ad_set"
   get "register" => "user#register"

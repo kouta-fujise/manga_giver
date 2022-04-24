@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <% @not_receive.each do |n|%>
+    <div class="col-12">
+      <%= Manga.find_by(id:n.manga_id).name %>
+      <% if n.sent == 1 %>
+        発送済み
+        <%= link_to("受け取りました","/receive/#{n.id}",{method: "post"})%>
+      <%else%>
+        未発送
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

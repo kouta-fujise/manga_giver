@@ -22,7 +22,11 @@
             <%#= @rank_border[@rank_num]%>
           </div>
           <div class="col-8 progress_label-c">
-            残り<%= @rank_border[@rank_num+1] - @user.total_amount_paid%>円でランクアップ！
+            <% if @rank_num == 0%>
+            あと１円でランクアップ！
+            <% else %>
+            あと<%= @rank_border[@rank_num] - @user.total_amount_paid%>円でランクアップ！
+            <% end %>
           </div>
           <div class="col-2 progress_label-r">
             <%#= @rank_border[@rank_num+1]%>
@@ -58,34 +62,50 @@
   </div>
   <!-- オファー関連情報 -->
   <div class="row get_row">
-    <div class="col-12">
-      <strong>残りオファー枠</strong>
-      <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
-      <% @offer = Offer.find_by(user_id:@current_user.id,done:0)%>
-      <!--ないなら1-->
-      <% if @offer.nil?%>
-      1 欲しい漫画を選ぼう！
-      <!--あるなら0-->
+    <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
+    <div class="col-6 offer_data1">
+      <div class="">
+        残りオファー枠
+      </div>
+      <div class="offer_num">
+        <%= @offer_point%>
+      </div>
+    </div>
+    <div class="col-6 offer_data2">
+      <!-- ポイントないなら-->
+      <% if @offer_point == 0%>
+        <%= Manga.find_by(id:@current_offer.manga_id).name %><br>をオファー中です。
+      <!--あるなら-->
       <% else %>
-      0
-      <%= Manga.find_by(id:@offer.manga_id).name %>をオファー中です。
+        欲しい漫画を選ぼう！
       <%end%>
     </div>
+    <div class="col-6 get_data1">
+      取引中の商品
+      <div class="offer_num">
+        <%= @not_receive.size%>
+      </div>
+    </div>
+    <%# @not_receive.each do |n|%>
+    <div class="col-6 get_data2">
+      <%= link_to("受け取り通知をする","/user/deal")%>
+    </div>
+    <%# end %>
     <div class="col-12">
-      <%= link_to "受け取り履歴","/user/give",class:"btn btn-lg btn-primary offer_history"%>
+      <%= link_to "受け取り履歴","/user/get",class:"btn btn-lg btn-primary offer_history"%>
     </div>
   </div>
   <!-- 設定関連 -->
   <div class="row set_row">
-    <div class="col-12">
+    <div class="col-12 set_data">
       <%= @current_user.name %>
       <br>
       <%= @current_user.email %>
       <br>
-      <% if @cards %>
+      <% if @cards != [] %>
         クレジットカード登録済み
       <% else %>
-        クレジットカード未登録<%= link_to("住所を設定する","/card/new")%>
+        クレジットカード未登録<%= link_to("設定する","/card/new")%>
       <% end %>
       <br>
       <% if @current_user.address %>

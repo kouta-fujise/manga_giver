@@ -101,26 +101,6 @@ class MangaController < ApplicationController
       flash[:notice] = "カードが選択されていません。"
       redirect_to("/manga/#{@manga.id}")
     end
-    # カードを選ばないバージョン
-    #   logger.debug("今のユーザ")
-    #   logger.debug @current_user.inspect
-    # card = Card.where(user_id: @current_user.id).where.not(token_id: nil) # cardsテーブルからユーザーのカード情報を取得
-    #   logger.debug("カード")
-    #   logger.debug card.inspect
-    # customer_id = []
-    # card.each do |card_each|
-    #   customer_id.push(card_each.customer_id)
-    # end
-    #   logger.debug("カスタマーid")
-    #   logger.debug customer_id.inspect
-    #   logger.debug("カスタマーidの先頭")
-    #   logger.debug customer_id.first
-    # charge = Payjp::Charge.create(
-    #   amount: price,
-    #   customer: customer_id.first,
-    #   currency: 'jpy'
-    # )
-
     # 取引データ書き込み
     @give = Give.new(
       user_id: @current_user.id,
@@ -132,35 +112,34 @@ class MangaController < ApplicationController
     )
     if @give.save
       @notyetoffers = Offer.where(manga_id: @manga.id).where(done: 0)
+      # まだオファーがなかった場合
       if @notyetoffers == []
         flash[:notice] = "支払いが完了しました"
         redirect_to("/manga/#{@manga.id}")
+      # すでにオファーがあった場合
       else
-        # @nyo_user_id =[]
-        # @notyetoffers.each do |offer|
-        #   @nyo_user_id.push(offer.user_id)
-        # end
-        # @nyo_user_id.sample
         @selectoffer = @notyetoffers.sample #sampleでランダムに選んでいる
         @user = @current_user
 
         @selectoffer.given_by = @give.user_id
         @selectoffer.done = 1
+        @selectoffer.give_id = @give.id
         @selectoffer.save
 
         @give.done = 1
         @give.target_id = @selectoffer.user_id
-          logger.debug("give.amount")
-          logger.debug @give.amount
-          logger.debug("give.volume")
-          logger.debug @give.volume
+        @give.offer_id = @selectoffer.id
+          # logger.debug("give.amount")
+          # logger.debug @give.amount
+          # logger.debug("give.volume")
+          # logger.debug @give.volume
         @user.total_amount_paid += @give.amount
         @user.total_books_given += @give.volume
-          logger.debug("ユーザのトータル支払い")
-          logger.debug @user.total_amount_paid
-          logger.debug("ユーザのトータル奢り数")
-          logger.debug @user.total_books_given
-          @give.save
+          # logger.debug("ユーザのトータル支払い")
+          # logger.debug @user.total_amount_paid
+          # logger.debug("ユーザのトータル奢り数")
+          # logger.debug @user.total_books_given
+        @give.save
         @user.save
 
         flash[:notice] = "#{@selectoffer.user_id}さんに奢りました"
@@ -236,16 +215,18 @@ class MangaController < ApplicationController
 
         @selectoffer.given_by = @give.user_id
         @selectoffer.done = 1
+        @selectoffer.give_id = @give.id
         @selectoffer.save
 
         @give.done = 1
         @give.target_id = @selectoffer.user_id
+        @give.offer_id = @selectoffer.id
         @user.total_amount_paid = @give.amount
         @user.total_books_given = @give.volume
         @give.save
         @user.save
-
-        flash[:notice] = "#{@selectoffer.user_id}さんに奢りました"
+        target = User.find_by(id:@selectoffer.user_id)
+        flash[:notice] = "#{target.name}さんに奢りました"
         redirect_to("/manga/#{@manga.id}")
       end
     end
@@ -279,8 +260,8 @@ class MangaController < ApplicationController
         @give.done = 1
         @give.target_id = @selectoffer.user_id
         @give.save
-
-        flash[:notice] = "#{@selectoffer.user_id}さんに奢りました"
+        target = User.find_by(id:@selectoffer.user_id)
+        flash[:notice] = "#{target.name}さんに奢りました"
         redirect_to("/manga/#{@manga.id}")
       end
     end
@@ -299,33 +280,37 @@ class MangaController < ApplicationController
       )
       if @offer.save
         @notyetgives = Give.where(manga_id: @manga.id).where(done: 0)
+        # 残りのギブがない場合
         if @notyetgives == []
           flash[:notice] = "オファー完了しました。"
           redirect_to("/manga/#{@manga.id}")
+        # ギブが残っている場合
         else
-          @selectgive = @notyetgives.sample
+          @selectgive = @notyetgives.first
           @user = User.find_by(id:@selectgive.user_id)
 
           @selectgive.target_id = @offer.user_id
           @selectgive.done = 1
-            logger.debug("give.amount")
-            logger.debug @selectgive.amount
-            logger.debug("give.volume")
-            logger.debug @selectgive.volume
+          @selectgive.offer_id = @offer.id
+            # logger.debug("give.amount")
+            # logger.debug @selectgive.amount
+            # logger.debug("give.volume")
+            # logger.debug @selectgive.volume
           @user.total_amount_paid += @selectgive.amount
           @user.total_books_given += @selectgive.volume
-            logger.debug("ユーザのトータル支払い")
-            logger.debug @user.total_amount_paid
-            logger.debug("ユーザのトータル奢り数")
-            logger.debug @user.total_books_given
+            # logger.debug("ユーザのトータル支払い")
+            # logger.debug @user.total_amount_paid
+            # logger.debug("ユーザのトータル奢り数")
+            # logger.debug @user.total_books_given
           @selectgive.save
           @user.save
 
           @offer.done = 1
           @offer.given_by = @selectgive.user_id
+          @offer.give_id = @selectgive.id
           @offer.save
 
-          flash[:notice] = "#{@selectgive.user_id}さんから頂きました"
+          flash[:notice] = "#{User.find_by(id:@selectgive.user_id).name}さんから頂きました"
           redirect_to("/manga/#{@manga.id}")
         end
       end
@@ -343,18 +328,43 @@ class MangaController < ApplicationController
   end
 
   def notyet
-    @gives = Give.where(done:1).where(complete:nil)
+    @gives = Give.where(done:1).where(sent:nil)
     @mangas = Manga.all
     @users = User.all
   end
 
-  def complete
+  def sent
     @give = Give.find_by(id:params[:id])
-    @give.complete = 1
+    @give.sent = 1
     @give.save
 
-    flash[:notice] = "#{@give.id}番取引完了しました"
+    @offer = Offer.find_by(give_id:@give.id)
+    if @offer
+      @offer.sent = 1
+      @offer.save
+    end
+
+    flash[:notice] = "#{@give.id}番取引発送しました。"
+    if params[:from] == 0
+      redirect_to("/manga/deal")
+    elsif params[:from] == 1
+      redirect_to("/manga/notyet")
+    end
     redirect_to("/manga/deal")
+  end
+
+  def receive
+    @offer = Offer.find_by(id:params[:id])
+    @offer.received = 1
+    @offer.save
+
+    @give = Give.find_by(id:@offer.give_id)
+    if @give
+      @give.received = 1
+      @give.save
+    end
+    flash[:notice] = "取引完了しました。"
+    redirect_to("/user/page")
   end
 
   def register
