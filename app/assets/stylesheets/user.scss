@@ -42,7 +42,7 @@
 }
 
 .give_data span{
-  font-size:30px;
+  font-size:50px;
 }
 
 .history_btn{
@@ -63,6 +63,7 @@
   border-color: transparent;
   border-bottom-color: $border-color;
   margin-bottom:$margin-l;
+  text-align:center;
 }
 
 .get_row .col-12{
@@ -79,10 +80,14 @@
 }
 
 .offer_num{
-  font-size:50px;
+  font-size:30px;
 }
 
 .offer_data2{
+  margin:auto;
+}
+
+.get_data2{
   margin:auto;
 }
 

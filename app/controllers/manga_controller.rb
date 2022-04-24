@@ -345,7 +345,11 @@ class MangaController < ApplicationController
     end
 
     flash[:notice] = "#{@give.id}番取引発送しました。"
-    redirect_to("/manga/deal")
+    if params[:from] == 0
+      redirect_to("/manga/deal")
+    elsif params[:from] == 1
+      redirect_to("/manga/notyet")
+    end
   end
 
   def receive

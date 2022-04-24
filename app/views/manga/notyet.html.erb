@@ -18,7 +18,7 @@
     <% if give.sent==nil %>
     <p>未発送</p>
     <p>完了したら↓</p>
-    <%= link_to("コンプリート","/sent/#{give.id}",{method: "post"})%>
+    <%= link_to("発送しました","/sent/#{give.id}", {method: "post"})%>
     <%else%>
     <p>発送完了</p>
     <% end%>

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get "user/give"
   get "user/get"
   get "user/pay"
+  get "user/deal"
   get "user/name_set" =>"user#name_set"
   get "user/ad_set"
   get "register" => "user#register"

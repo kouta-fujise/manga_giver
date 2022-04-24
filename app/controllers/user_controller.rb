@@ -121,7 +121,7 @@ class UserController < ApplicationController
     @gives = Give.where(user_id:@current_user).where(done:1)
     # @gets = Give.where(target_id:@current_user).where(done:1)
     # ユーザーidがcurrent_userと同じもののうち、receivedがnilもしくは1ではないのもの
-    @not_receive = Offer.where(user_id:@current_user).where(received:nil).or(Offer.where(user_id:@current_user).where.not(received:1))
+    @not_receive = Offer.where(user_id:@current_user).where(done:1).where(received:nil).or(Offer.where(user_id:@current_user).where(done:1).where.not(received:1))
     # logger.debug("未受け取りの漫画")
     # logger.debug @not_receive
     # 送った相手の人数をpersons_given_numとして計算
@@ -152,27 +152,9 @@ class UserController < ApplicationController
 
   end
 
-  # def rank
-  #   logger.debug("動いてる")
-  #   logger.debug @current_user
-  #   if @current_user
-  #     total = @current_user.total_amount_paid
-  #     logger.debug("total")
-  #     logger.debug total
-  #     return total
-  #     if total>100000
-  #       return "プラチナ"
-  #     elsif total > 10000
-  #       return "ゴールド"
-  #     elsif total > 5000
-  #       return "シルバー"
-  #     elsif total > 0
-  #       return "ブロンズ"
-  #     else
-  #       return "ビギナー"
-  #     end
-  #   end
-  # end
+  def deal
+    @not_receive = Offer.where(user_id:@current_user).where(done:1).where(received:nil).or(Offer.where(user_id:@current_user).where(done:1).where.not(received:1))
+  end
 
 
 
