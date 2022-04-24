@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_17_052538) do
+ActiveRecord::Schema.define(version: 2022_04_24_044719) do
 
   create_table "browses", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
@@ -43,9 +43,11 @@ ActiveRecord::Schema.define(version: 2022_04_17_052538) do
     t.integer "done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "complete"
+    t.integer "sent"
     t.integer "volume"
     t.integer "amount"
+    t.integer "received"
+    t.integer "offer_id"
   end
 
   create_table "mangas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -68,6 +70,9 @@ ActiveRecord::Schema.define(version: 2022_04_17_052538) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "given_by"
+    t.integer "give_id"
+    t.integer "sent"
+    t.integer "received"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

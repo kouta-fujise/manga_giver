@@ -77,6 +77,15 @@ h6{
   background-color:$offer-cl;
 }
 
+.btn_gray{
+  background-color:$gray;
+  border-color:$gray;
+}
+.btn_gray:hover{
+  background-color:$gray;
+  border-color:$gray;
+}
+
 
 @media screen and (min-width: 960px) {
   .manga_card{

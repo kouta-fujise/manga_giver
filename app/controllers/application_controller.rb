@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   def set_current_user
     @current_user = User.find_by(id: session[:user_id])
 
+    # ユーザーのランク計測
     @rank_border = [0,5000,10000,100000]
     @ranks = ["ブロンズ","シルバー","ゴールド","プラチナ"]
 
@@ -22,6 +23,17 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+    # ユーザーのオファー枠計測
+    # 取引未成立のオファーがあるかどうか
+    offer = Offer.find_by(user_id:@current_user.id,done:0)
+    # あるなら0
+    if offer
+      @offer_point = 0;
+    # 全て成立済みなら1
+    else
+      @offer_point = 1;
+    end
+    logger.debug @offer_point
   end
 
   def authenticate_user

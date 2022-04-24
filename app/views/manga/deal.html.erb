@@ -15,10 +15,10 @@
     <p>届ける住所</p>
     <%= @users.find_by(id:give.target_id).address%>
     <p>状態</p>
-    <% if give.complete==nil %>
+    <% if give.sent==nil %>
     <p>未発送</p>
     <p>完了したら↓</p>
-    <%= link_to("コンプリート","/complete/#{give.id}",{method: "post"})%>
+    <%= link_to("発送しました","/sent/#{give.id}",{method: "post"})%>
     <%else%>
     <p>発送完了</p>
     <% end%>

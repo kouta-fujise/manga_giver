@@ -58,17 +58,30 @@
   </div>
   <!-- オファー関連情報 -->
   <div class="row get_row">
-    <div class="col-12">
-      <strong>残りオファー枠</strong>
-      <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
-      <% @offer = Offer.find_by(user_id:@current_user.id,done:0)%>
+    <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
+    <% offer = Offer.find_by(user_id:@current_user.id,done:0)%>
+    <% give = Give.find_by(target_id:@current_user.id,)%>
+    <div class="col-6 offer_data1">
+      <div class="">
+        残りオファー枠
+      </div>
+      <div class="offer_num">
+        <!--ないなら1-->
+        <% if offer.nil?%>
+        1
+        <!--あるなら0-->
+        <% else %>
+        0
+        <%end%>
+      </div>
+    </div>
+    <div class="col-6 offer_data2">
       <!--ないなら1-->
-      <% if @offer.nil?%>
-      1 欲しい漫画を選ぼう！
+      <% if offer.nil?%>
+      欲しい漫画を選ぼう！
       <!--あるなら0-->
       <% else %>
-      0
-      <%= Manga.find_by(id:@offer.manga_id).name %>をオファー中です。
+      <%= Manga.find_by(id:offer.manga_id).name %><br>をオファー中です。
       <%end%>
     </div>
     <div class="col-12">
@@ -77,7 +90,7 @@
   </div>
   <!-- 設定関連 -->
   <div class="row set_row">
-    <div class="col-12">
+    <div class="col-12 set_data">
       <%= @current_user.name %>
       <br>
       <%= @current_user.email %>
