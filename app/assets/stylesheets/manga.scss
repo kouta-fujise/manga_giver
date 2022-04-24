@@ -43,29 +43,29 @@ h6{
 }
 
 .search_bar .keyword{
-    padding: 10px;
-    font-size: 17px;
-    // border:1px solid grey;
-    float: left;
-    width: 75%;
-    background: #f1f1f1;
+  padding: 10px;
+  font-size: 17px;
+  // border:1px solid grey;
+  float: left;
+  width: 75%;
+  background: #f1f1f1;
 }
 
 .search_bar button {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background: #777675;
-    color: white;
-    font-size: 17px;
-    // border: 1px solid grey;
-    border-left: none;
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #777675;
+  color: white;
+  font-size: 17px;
+  // border: 1px solid grey;
+  border-left: none;
 }
 
 .search_bar::after {
-    content: "";
-    clear: both;
-    display: table;
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .manga_page_row{
