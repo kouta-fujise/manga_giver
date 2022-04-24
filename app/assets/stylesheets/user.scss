@@ -116,3 +116,18 @@
 .set_col .col-2{
   text-align:end;
 }
+
+
+.bottom_nav{
+  position: fixed;
+  bottom: 70px;
+  width: 100%;
+  background-color:$nav-color;
+  color:$text-color;
+  padding:10px 30px;
+  text-align:end;
+}
+
+.bottom_nav a{
+  color:$text-color;
+}
