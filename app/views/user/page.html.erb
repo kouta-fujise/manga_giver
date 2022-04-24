@@ -22,7 +22,11 @@
             <%#= @rank_border[@rank_num]%>
           </div>
           <div class="col-8 progress_label-c">
-            残り<%= @rank_border[@rank_num+1] - @user.total_amount_paid%>円でランクアップ！
+            <% if @rank_num == 0%>
+            あと１円でランクアップ！
+            <% else %>
+            あと<%= @rank_border[@rank_num] - @user.total_amount_paid%>円でランクアップ！
+            <% end %>
           </div>
           <div class="col-2 progress_label-r">
             <%#= @rank_border[@rank_num+1]%>
@@ -98,10 +102,10 @@
       <br>
       <%= @current_user.email %>
       <br>
-      <% if @cards %>
+      <% if @cards != [] %>
         クレジットカード登録済み
       <% else %>
-        クレジットカード未登録<%= link_to("住所を設定する","/card/new")%>
+        クレジットカード未登録<%= link_to("設定する","/card/new")%>
       <% end %>
       <br>
       <% if @current_user.address %>

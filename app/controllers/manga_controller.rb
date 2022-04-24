@@ -350,6 +350,7 @@ class MangaController < ApplicationController
     elsif params[:from] == 1
       redirect_to("/manga/notyet")
     end
+    redirect_to("/manga/deal")
   end
 
   def receive
