@@ -59,31 +59,37 @@
   <!-- オファー関連情報 -->
   <div class="row get_row">
     <!--オファーの中にこのユーザのオファーかつ受け取っていないものがあるかどうか-->
-    <% offer = Offer.find_by(user_id:@current_user.id,done:0)%>
-    <% give = Give.find_by(target_id:@current_user.id,)%>
     <div class="col-6 offer_data1">
       <div class="">
         残りオファー枠
       </div>
       <div class="offer_num">
-        <!--ないなら1-->
-        <% if offer.nil?%>
-        1
-        <!--あるなら0-->
-        <% else %>
-        0
-        <%end%>
+        <%= @offer_point%>
       </div>
     </div>
     <div class="col-6 offer_data2">
-      <!--ないなら1-->
-      <% if offer.nil?%>
-      欲しい漫画を選ぼう！
-      <!--あるなら0-->
+      <!-- ポイントないなら-->
+      <% if @offer_point == 0%>
+        <%= Manga.find_by(id:@current_offer.manga_id).name %><br>をオファー中です。
+      <!--あるなら-->
       <% else %>
-      <%= Manga.find_by(id:offer.manga_id).name %><br>をオファー中です。
+        欲しい漫画を選ぼう！
       <%end%>
     </div>
+    <div class="col-12">
+      未受け取りの商品
+    </div>
+    <% @not_receive.each do |n|%>
+    <div class="col-12">
+      <%= Manga.find_by(id:n.manga_id).name %>
+      <% if n.sent == 1 %>
+        発送済み
+        <%= link_to("受け取りました","/receive/#{n.id}",{method: "post"})%>
+      <%else%>
+        未発送
+      <% end %>
+    </div>
+    <% end %>
     <div class="col-12">
       <%= link_to "受け取り履歴","/user/get",class:"btn btn-lg btn-primary offer_history"%>
     </div>

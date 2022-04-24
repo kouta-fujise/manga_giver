@@ -348,6 +348,20 @@ class MangaController < ApplicationController
     redirect_to("/manga/deal")
   end
 
+  def receive
+    @offer = Offer.find_by(id:params[:id])
+    @offer.received = 1
+    @offer.save
+
+    @give = Give.find_by(id:@offer.give_id)
+    if @give
+      @give.received = 1
+      @give.save
+    end
+    flash[:notice] = "取引完了しました。"
+    redirect_to("/user/page")
+  end
+
   def register
     @manga = Manga.new
   end

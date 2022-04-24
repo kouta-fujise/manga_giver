@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get "manga/:id" => "manga#page"
 
   post "sent/:id" => "manga#sent"
+  post "receive/:id" => "manga#receive"
 
   get "user/give"
   get "user/get"

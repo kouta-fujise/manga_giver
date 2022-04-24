@@ -120,7 +120,10 @@ class UserController < ApplicationController
     # 取引履歴表示
     @gives = Give.where(user_id:@current_user).where(done:1)
     # @gets = Give.where(target_id:@current_user).where(done:1)
-
+    # ユーザーidがcurrent_userと同じもののうち、receivedがnilもしくは1ではないのもの
+    @not_receive = Offer.where(user_id:@current_user).where(received:nil).or(Offer.where(user_id:@current_user).where.not(received:1))
+    # logger.debug("未受け取りの漫画")
+    # logger.debug @not_receive
     # 送った相手の人数をpersons_given_numとして計算
     @persons_given = []# persons_givenにtarget_idを保存していく
     @persons_given_num = 0

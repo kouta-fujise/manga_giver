@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
     # あるなら0
     if offer
       @offer_point = 0;
+      @current_offer = offer
     # 全て成立済みなら1
     else
       @offer_point = 1;
