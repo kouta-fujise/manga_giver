@@ -44,12 +44,16 @@
   </div>
 
   <% if @current_user == nil %>
-    <div class="row manga_row manga_page_row">
-      奢る、オファーにはアカウント登録とログインが必要です。
-      <%= link_to("新規登録","/register")%>
-      <%= link_to "ログイン","/login"%>
+    <div class="row manga_row manga_page_row need_login">
+      <div class="col-12">
+        <p>奢る、オファーにはアカウント登録とログインが必要です。</p>
+        <div class="register">
+          <%= link_to("新規登録はこちら！","/register")%>
+        </div>
+        <%= link_to "ログイン","/login" ,class:"btn btn-lg btn-primary red_btn"%>
+      </div>
     </div>
-  <%else%>
+  <% else %>
     <div class="row manga_row manga_page_row">
       <!--奢る機能-->
       <div class="col-12">
@@ -73,7 +77,7 @@
             </div>
           <% end %>
         <% end %>
-      <%else%>
+      <% else %>
         カードが登録されていません。
       <% end %>
       <!--カードが登録されているか-->

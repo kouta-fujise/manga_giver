@@ -81,6 +81,11 @@ body {
   text-decoration: none;
   font-size: 20px;
 }
+
+.red_btn{
+  margin-top:$margin;
+}
+
 // .nav_bar ul{
 //   margin-block-start:0px;
 //   padding-inline-start: 40px;
@@ -308,36 +313,6 @@ body {
     margin-top: 10px;
     margin-left: 10px;
 }
-
-#info_register label{
-    font-size:20px;
-    margin-left: 10px;
-    color: #f32121;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#info_register input[type="email"] {
-    font-size:20px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#info_register input[type="password"] {
-    font-size:20px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#info_register input[type="text"] {
-    font-size:20px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 
 /**address page**/
 

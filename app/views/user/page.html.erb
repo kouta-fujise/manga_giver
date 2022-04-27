@@ -1,4 +1,4 @@
-<!-- <p>ユーザー情報ページ</p> -->
+<!-- <p>ユーザ情報ページ</p> -->
 <div class="container">
   <div class="top_text">
     <%= @current_user.name %>さんのマイページ
@@ -100,6 +100,7 @@
   <!-- 設定関連 -->
   <div class="row set_row">
     <div class="col-12 set_data">
+      <h4>ユーザ情報</h4>
       <%= @current_user.name %>
       <br>
       <%= @current_user.email %>
@@ -120,7 +121,7 @@
       <%= link_to "/user/name_set" do%>
       <div class="row">
         <div class="col-10">
-         ユーザー名設定
+         ユーザ名設定
         </div>
         <div class="col-2">
           ＞

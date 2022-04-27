@@ -1,30 +1,32 @@
-<div id="text_register"><strong>新規会員登録</strong></div>
-<%= form_tag("/user/create") do %>
-  <div id="info_register">
-    <%if @user.present?%>
-      <% @user.errors.full_messages.each do |message| %>
-        <div class="form-error">
-          <%= message %>
+<div class="container">
+  <div class="top_text">
+    新規登録
+  </div>
+  <div class="row">
+    <div class="col-12 login_col">
+      <%= form_tag("/user/create") do %>
+        <div id="info_register">
+          <%if @user.present?%>
+            <% @user.errors.full_messages.each do |message| %>
+              <div class="form-error">
+                <%= message %>
+              </div>
+            <% end %>
+          <%end%>
+
+          <input name="email" type="email" id="email_register" placeholder="メールアドレスを入力" value="<%=@user.email%>">
+
+          <input name="password1" type="password" id="password1_register" placeholder="パスワード" value="<%=@user.password%>">
+
+          <input name="password2" type="password" id="password2_register" placeholder="パスワードをもう一度入力">
+
+          <input type="submit" class="btn btn-lg btn-primary red_btn" value="登録">
         </div>
       <% end %>
-    <%end%>
-    <div>
-      <label for="email_register">メールアドレス</label>
-      <input name="email" type="email" id="email_register" placeholder="メールアドレスを入力" value="<%=@user.email%>">
-    </div>
-    <div>
-      <label for="email_register">パスワード</label>
-      <input name="password1" type="password" id="password1_register" placeholder="パスワード" value="<%=@user.password%>">
-    </div>
-    <div>
-      <label for="email_register">パスワードをもう一度入力してください</label>
-      <input name="password2" type="password" id="password2_register" placeholder="パスワードをもう一度入力してください">
-    </div>
-    <div>
-      <input type="submit" id="button_register" value="登録">
     </div>
   </div>
-<% end %>
+</div>
+
 
 <!-- <div id="text_register"><strong>新規会員登録</strong></div>
 <div id="info_register">
