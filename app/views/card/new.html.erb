@@ -1,118 +1,61 @@
-<h1>クレジットカード登録フォーム</h1>
-<%= form_with url: "/card/create", id: "card_form", local: true do |f| %>
-  <div>
-    <%= f.label :name, "カード名義人" %>
-    <%= f.text_field :name %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 user_set">
+      <h2>クレジットカード登録フォーム</h2>
+      <%= form_with url: "/card/create", id: "card_form", local: true do |f| %>
+        <div>
+          <%#= f.label :name, "カード名義人" %>
+          <%= f.text_field :name ,placeholder: "カード名義人"%>
+        </div>
+        <div>
+          <%#= f.label :number, "カード番号" %>
+          <%= f.text_field :number ,placeholder:"カード番号"%>
+        </div>
+        <div>
+          <%#= f.label :cvc, "セキュリティコード" %>
+          <%= f.text_field :cvc ,placeholder:"セキュリティコード"%>
+        </div>
+        <div>
+          <%#= f.label :exp_month, "有効期限（月）" %>
+          <%= f.text_field :exp_month ,placeholder:"有効期限（月）"%>
+        </div>
+        <div>
+          <%#= f.label :exp_year, "有効期限（年）" %>
+          <%= f.text_field :exp_year ,placeholder:"有効期限（年）"%>
+        </div>
+        <div>
+          <%= f.submit "送信" ,class: "btn btn-lg btn-primary red_btn" ,data: { confirm: 'カードを登録しますか？'}%>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-12 user_set">
+      <h2><%=@current_user.name %>さんの登録済みカード</h2>
+      <%if @card.present?%>
+        <% @card.each do |card_each|%>
+          <%if card_each.present?%>
+          <div class = "btn btn-lg btn-primary card">
+            カード名義人: <%= card_each.name %>
+            <br>
+            カード番号：**** **** **** <%= card_each.last4%>
+            <br>
+            有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %>
+            <br>
+            ブランド：<%= card_each.brand %>
+          </div>
+          <% end %>
+        <% end %>
+      <%else%>
+        カードが登録されていません。
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= f.label :number, "カード番号" %>
-    <%= f.text_field :number %>
-  </div>
-  <div>
-    <%= f.label :cvc, "セキュリティコード" %>
-    <%= f.text_field :cvc %>
-  </div>
-  <div>
-    <%= f.label :exp_month, "有効期限（月）" %>
-    <%= f.text_field :exp_month %>
-  </div>
-  <div>
-    <%= f.label :exp_year, "有効期限（年）" %>
-    <%= f.text_field :exp_year %>
-  </div>
-  <div>
-    <%= f.submit "送信" %>
-  </div>
-<% end %>
+</div>
 
-<h1><%=@current_user.name %>さんの登録済みカード</h1>
-<%if @card.present?%>
-  <% @card.each do |card_each|%>
-    <%if card_each.present?%>
-      <h2>カード情報</h2>
-      <p>カード名義人: <%= card_each.name %></p>
-      <p>カード番号：**** **** **** <%= card_each.last4%></p>
-      <p>有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %></p>
-      <p>ブランド：<%= card_each.brand %></p>
-    <% end %>
-  <% end %>
-<%else%>
-  カードが登録されていません。
-<% end %>
+<div style = "height:200px;"></div>
+
 
 <%= link_to "/user/page" do%>
   <div class="bottom_nav">
     戻る
   </div>
 <% end %>
-
-<%#= link_to("設定済みカード確認","/card/show")%>
-
-<%#= form_tag("/card/create", id: "card_form") do %>
-  <!-- <div>
-    <%#= @error_message %>
-    <label>
-      <div class="payment_list">
-        <strong>カード名義人</strong>
-      </div>
-      <div class="payment_list">
-        <input type="text" id="name" size="21">
-      </div>
-      <div class="payment_list">
-        <strong>カード番号</strong>
-      </div>
-      <div class="payment_list">
-        <input type="text" id="number" size="21">
-      </div>
-      <div class="payment_list">
-        <strong>有効期限</strong>
-      </div>
-      <div class="payment_list">
-        <select id="exp_month">
-          <option value="">--</option>
-          <option value="01">01</option>
-          <option value="02">02</option>
-          <option value="03">03</option>
-          <option value="04">04</option>
-          <option value="05">05</option>
-          <option value="06">06</option>
-          <option value="07">07</option>
-          <option value="08">08</option>
-          <option value="09">09</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>
-        <select id="exp_year">
-          <option value="">----</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-          <option value="2026">2026</option>
-          <option value="2027">2027</option>
-          <option value="2028">2028</option>
-          <option value="2029">2029</option>
-          <option value="2030">2030</option>
-          <option value="2031">2031</option>
-          <option value="2032">2032</option>
-          <option value="2033">2033</option>
-          <option value="2034">2034</option>
-
-        </select>
-        <input type="text" id="cvc" size="5" placeholder="cvc">
-      </div>
-      <input type="submit" id="token_submit" value="登録">
-    </label>
-  </div> -->
-<%# end %>
-
-
-<!-- <p id="number-form" class="payjs-outer"></p>
-<p id="expiry-form" class="payjs-outer"></p>
-<p id="cvc-form" class="payjs-outer"></p>
-
-<%#= form_with url: pay_card_index_path, method: :post, id: "card_form" do |f| %>
-  <div id="card_token"></div>
-  <%#= f.submit "登録する", class:"btn", id: "info_submit" %>
-<%# end %> -->

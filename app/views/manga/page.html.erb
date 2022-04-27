@@ -62,15 +62,13 @@
             <div class="col-12 card-col">
               <%=link_to "/manga/card_pay/#{card_each.customer}",method: "post", data: { confirm: 'このカードで奢りますか？'}, class: "btn btn-lg btn-primary card-btn" do%>
                 <h2>このカードで奢る</h2>
-                <p>
-                  カード名義人: <%= card_each.name %>
-                  <br>
-                  カード番号：**** **** **** <%= card_each.last4%>
-                  <br>
-                  有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %>
-                  <br>
-                  ブランド：<%= card_each.brand %>
-                </p>
+                カード名義人: <%= card_each.name %>
+                <br>
+                カード番号：**** **** **** <%= card_each.last4%>
+                <br>
+                有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %>
+                <br>
+                ブランド：<%= card_each.brand %>
               <%end%>
             </div>
           <% end %>
@@ -101,7 +99,7 @@
           <%# <%= f.label :exp_year, "有効期限（年）" %>
           <%= f.text_field :exp_year ,placeholder:"有効期限（年）"%>
 
-          <%= f.submit "カードを登録して奢る" ,class:"btn btn-lg btn-primary card-btn card-submit-btn", data: { confirm: 'カードを登録して支払いますか？'}%>
+          <%= f.submit "カードを登録して奢る" ,class:"btn btn-lg btn-primary card-btn ", data: { confirm: 'カードを登録して支払いますか？'}%>
         <% end %>
       <!--カード登録機能-->
       </div>
@@ -115,14 +113,14 @@
         <h2>オファーする</h2>
       </div>
       <%if @current_user.address%>
-        <div class="col-12">
+        <div class="col-12 offer_col">
           設定中の住所<%= link_to("住所を変更する","/user/ad_set")%>
         </div>
-        <div class="col-12">
+        <div class="col-12 offer_col">
           <%= @current_user.address %>
           <br>
         </div>
-        <div class="col-12">
+        <div class="col-12 offer_col">
           <% if @offer_point == 0%>
             <div class="btn btn-lg btn-primary offer-btn btn_gray">オファー枠がありません</div>
           <% else %>

@@ -45,14 +45,14 @@
   font-size:50px;
 }
 
-.history_btn{
+.red_btn{
   background-color:$btn-color;
   border-color:$border-color;
   width:100%;
   margin-bottom:$margin-s;
   padding:0;
 }
-.history_btn:hover{
+.red_btn:hover{
   background-color:$btn-hover-color;
   border-color:$border-color;
 }
@@ -117,7 +117,6 @@
   text-align:end;
 }
 
-
 .bottom_nav{
   position: fixed;
   bottom: 70px;
@@ -130,4 +129,22 @@
 
 .bottom_nav a{
   color:$text-color;
+}
+
+
+//設定ページ共通
+.user_set {
+  margin-top:$margin;
+}
+.user_set input {
+  display:block;
+  font-size: 20px;
+  // margin-left: 20px;
+  margin: 0 auto;
+  width:100%;
+}
+
+// name_set
+.name_set input{
+  margin-top: $margin;
 }

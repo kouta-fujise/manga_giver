@@ -1,28 +1,29 @@
-<p>ユーザー設定ページ</p>
-
-<div class = "id">
-<%= @current_user.id %>
-<%= @current_user.name %>
-</div>
-
-<p>名前設定</p>
-
-<%= form_tag("/user/name") do %>
-  <div id="info_register">
-    <%if @user.present?%>
-      <% @user.errors.full_messages.each do |message| %>
-      <div class="form-error">
-        <%= message %>
-      </div>
-    <% end %>
-  <%end%>
-  <label for="name_register">ユーザ名</label>
-  <input name="name" placeholder="ユーザ名">
-    <div>
-    <input type="submit" id="button_register" value="登録">
+<div class="container">
+  <div class="top_text">
+    ユーザ名設定
+  </div>
+  <div class="row">
+    <div class="col-12 user_set name_set">
+      <%= form_tag("/user/name") do %>
+        <div id="info_register">
+          <%if @user.present?%>
+            <% @user.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+        <%end%>
+        <input name="name" placeholder="新しい名前" value="<%= @user.name%>">
+          <div>
+          <input type="submit" id="button_register" class="btn btn-lg btn-primary red_btn" value="設定">
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-<% end %>
+</div>
+
+
 
 <%= link_to "/user/page" do%>
   <div class="bottom_nav">
