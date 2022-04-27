@@ -16,21 +16,22 @@
 
     <div class="col-6">
       <!--漫画情報表示-->
-
-      <p><%= @manga.name %></p>
-
-      <div class = "author">
-        <p><%= @manga.author%></p>
+      <div class="manga_data manga_name">
+        <%= @manga.name %>
       </div>
-      <div class = "volume">
+
+      <div class = "manga_data manga_author">
+        <%= @manga.author%>
+      </div>
+      <div class = "manga_data manga_volume">
         <% if @manga.volume == 1 %>
-          <p>1巻</p>
+          <span>1</span>巻
         <%else%>
-          <p>1巻〜<%= @manga.volume%>巻</p>
+          <span>1</span>巻〜<span><%= @manga.volume%></span>巻
         <% end %>
       </div>
-      <div class = "price">
-        <p><%= @manga.price * @manga.volume%>円</p>
+      <div class = "manga_data manga_amount">
+        <span><%= @manga.price * @manga.volume%></span>円
       </div>
       <!--漫画情報表示-->
     </div>
@@ -132,6 +133,7 @@
               data: { confirm: '現在の住所にこの漫画をオファーしますか？誰かに奢ってもらうまでオファー枠の変更はできません。'},
               class: "btn btn-lg btn-primary offer-btn"
             %>
+            <div class="attention">※住所が正確でないと届かない場合がございます。その場合の払い戻しはできかねますのであらかじめご了承ください。</div>
           <% end %>
         </div>
       <% else %>

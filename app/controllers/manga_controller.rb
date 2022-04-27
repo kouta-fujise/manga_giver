@@ -1,6 +1,7 @@
 class MangaController < ApplicationController
 
   before_action :authenticate_user, {only:[:car_pay,:create_pay,:offer]}
+  before_action :check_admin, {only:[:deal,:notyet]}
 
   def top
   end
@@ -64,25 +65,6 @@ class MangaController < ApplicationController
   def toget
   end
 
-  # def pay
-  #   @manga = $current_manga
-  #   price = @manga.price*@manga.volume
-  #   Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-  #   charge = Payjp::Charge.create(
-  #     amount: price,
-  #     card: params['payjp-token'],
-  #     currency: 'jpy'
-  #   )
-  #   # @give = Give.new(
-  #   #   user_id: @current_user.id,
-  #   #   manga_id: @manga.id,
-  #   #   price: @manga.price,
-  #   #   done: 0,
-  #   # )
-  #   flash[:notice] = "支払い完了しました。"
-  #
-  #   redirect_to("/manga/#{@manga.id}")
-  # end
 
   def card_pay
     @manga = $current_manga

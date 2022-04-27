@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 user_set">
-      <h2>クレジットカード登録フォーム</h2>
+      <h2>クレジットカード登録</h2>
       <%= form_with url: "/card/create", id: "card_form", local: true do |f| %>
         <div>
           <%#= f.label :name, "カード名義人" %>
@@ -24,7 +24,7 @@
           <%= f.text_field :exp_year ,placeholder:"有効期限（年）"%>
         </div>
         <div>
-          <%= f.submit "送信" ,class: "btn btn-lg btn-primary red_btn" ,data: { confirm: 'カードを登録しますか？'}%>
+          <%= f.submit "登録" ,class: "btn btn-lg btn-primary red_btn" ,data: { confirm: 'カードを登録しますか？'}%>
         </div>
       <% end %>
     </div>

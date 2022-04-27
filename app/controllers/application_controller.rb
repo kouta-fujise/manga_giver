@@ -55,4 +55,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  def check_admin
+    if $admin != 1
+      flash[:notice] = "管理者権限が必要です"
+      redirect_to("/")
+    end
+  end
 end

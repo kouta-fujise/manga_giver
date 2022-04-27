@@ -10,10 +10,11 @@
   <div class="row login_row">
     <div class="col-12 login_col">
       <%= form_tag("/user/login_form") do %>
-        <div class="alert alert-danger form-error" role="alert">
-          <%= @error_message %>
-        </div>
-
+        <% if @error_massage %>
+          <div class="alert alert-danger form-error" role="alert">
+            <%= @error_message %>
+          </div>
+        <% end %>
         <input name="email" type="email"  placeholder="メールアドレスを入力" value="<%=@user.email%>" required>
 
         <input name="password" type="password" placeholder="パスワードを入力" value="<%=@user.password%>" required>

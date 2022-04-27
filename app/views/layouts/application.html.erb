@@ -64,24 +64,45 @@
     </main>
     <div class="container-fluid nav_bar">
       <div class="row justify-content-evenly">
-        <div class="col-6 nav-col">
-          <a href="/">
-            <div class="nav_" id="home_nav">
-              ホーム
-            </div>
-          </a>
-        </div>
-        <div class="col-6 nav-col">
-          <a href="/user/page">
-            <div class="nav_" id="user_nav">
-              <% if @current_user == nil%>
-              ログイン
-              <%else%>
-              マイページ
-              <%end%>
-            </div>
-          </a>
-        </div>
+        <% if $admin == 1 %>
+          <div class="col-6 nav-col">
+            <a href="/manga/deal">
+              <div class="nav_" id="home_nav">
+                取引一覧
+              </div>
+            </a>
+          </div>
+          <div class="col-6 nav-col">
+            <a href="/admin_logout">
+              <div class="nav_" id="home_nav">
+                管理者ログアウト
+              </div>
+            </a>
+          </div>
+        <% else %>
+          <div class="col-6 nav-col">
+            <a href="/">
+              <div class="nav_" id="home_nav">
+                ホーム
+              </div>
+            </a>
+          </div>
+          <div class="col-6 nav-col">
+            <% if @current_user == nil%>
+              <a href="/login">
+                <div class="nav_" id="user_nav">
+                  ログイン
+                </div>
+              </a>
+            <% else %>
+              <a href="/user/page">
+                <div class="nav_" id="user_nav">
+                  マイページ
+                </div>
+              </a>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
 
