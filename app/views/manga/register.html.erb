@@ -3,7 +3,7 @@
 <%= form_tag("/manga/insert") do %>
   <div id="info_register">
     <% @manga.errors.full_messages.each do |message| %>
-      <div class="form-error">
+      <div class="alert alert-danger form-error">
         <%= message %>
       </div>
     <% end %>

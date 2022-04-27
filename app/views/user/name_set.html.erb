@@ -8,11 +8,11 @@
         <div id="info_register">
           <%if @user.present?%>
             <% @user.errors.full_messages.each do |message| %>
-            <div class="form-error">
-              <%= message %>
-            </div>
-          <% end %>
-        <%end%>
+              <div class="alert alert-danger form-error">
+                <%= message %>
+              </div>
+            <% end %>
+          <%end%>
         <input name="name" placeholder="新しい名前" value="<%= @user.name%>">
           <div>
           <input type="submit" id="button_register" class="btn btn-lg btn-primary red_btn" value="設定">

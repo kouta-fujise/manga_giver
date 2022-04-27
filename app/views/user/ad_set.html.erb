@@ -11,6 +11,13 @@
     </div>
     <div class="col-12 user_set">
       <h2>設定フォーム</h2>
+      <% if @user.present? %>
+        <% @user.errors.full_messages.each do |message| %>
+          <div class="alert alert-danger form-error">
+            <%= message %>
+          </div>
+        <% end %>
+      <% end %>
       <%= form_tag("/user/address") do %>
         <div>
           <label>
