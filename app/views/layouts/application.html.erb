@@ -19,10 +19,10 @@
     <%#= link_to("漫画奢り専用ページ","/manga/give")%>
     <%#= link_to("漫画奢った後","/manga/togive")%>
     <%#= link_to("漫画奢ってオファー後","/manga/toget")%>
-    <%#= link_to("ユーザー奢りステータス","/user/give")%>
-    <%#= link_to("ユーザー情報","/user/page")%>
-    <%#= link_to("ユーザー支払い設定","/user/pay")%>
-    <%#= link_to("ユーザー住所設定","/user/ad_set")%>
+    <%#= link_to("ユーザ奢りステータス","/user/give")%>
+    <%#= link_to("ユーザ情報","/user/page")%>
+    <%#= link_to("ユーザ支払い設定","/user/pay")%>
+    <%#= link_to("ユーザ住所設定","/user/ad_set")%>
     <%#= link_to("新規登録","/register")%>
     <%#= link_to("ログイン","/login")%>
     <%#= link_to("ログアウト","/logout",{method: "post"})%>
@@ -51,35 +51,58 @@
     </header>
 
     <main>
-      <% if flash[:notice] %>
-      <div class="flash">
-        <%= flash[:notice] %>
+      <div class="container">
+        <% if flash[:notice] %>
+        <div class="alert alert-danger flash" role="alert">
+          <%= flash[:notice] %>
+        </div>
+        <% end %>
       </div>
-      <% end %>
 
     <%= yield %>
 
     </main>
     <div class="container-fluid nav_bar">
       <div class="row justify-content-evenly">
-        <div class="col-6 nav-col">
-          <a href="/">
-            <div class="nav_" id="home_nav">
-              ホーム
-            </div>
-          </a>
-        </div>
-        <div class="col-6 nav-col">
-          <a href="/user/page">
-            <div class="nav_" id="user_nav">
-              <% if @current_user == nil%>
-              ログイン
-              <%else%>
-              マイページ
-              <%end%>
-            </div>
-          </a>
-        </div>
+        <% if $admin == 1 %>
+          <div class="col-6 nav-col">
+            <a href="/manga/deal">
+              <div class="nav_" id="home_nav">
+                取引一覧
+              </div>
+            </a>
+          </div>
+          <div class="col-6 nav-col">
+            <a href="/admin_logout">
+              <div class="nav_" id="home_nav">
+                管理者ログアウト
+              </div>
+            </a>
+          </div>
+        <% else %>
+          <div class="col-6 nav-col">
+            <a href="/">
+              <div class="nav_" id="home_nav">
+                ホーム
+              </div>
+            </a>
+          </div>
+          <div class="col-6 nav-col">
+            <% if @current_user == nil%>
+              <a href="/login">
+                <div class="nav_" id="user_nav">
+                  ログイン
+                </div>
+              </a>
+            <% else %>
+              <a href="/user/page">
+                <div class="nav_" id="user_nav">
+                  マイページ
+                </div>
+              </a>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
 

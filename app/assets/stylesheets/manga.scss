@@ -4,7 +4,7 @@
 
 //漫画関係のデザイン
 
-//漫画カード
+//漫画ページ
 .manga_row a{
   padding-left:5px;
   padding-right:5px;
@@ -68,8 +68,37 @@ h6{
   display: table;
 }
 
+//漫画個別ページ
 .manga_page_row{
   margin-bottom:$margin-s;
+}
+
+.manga_data{
+  margin-bottom:$margin-s;
+}
+
+.manga_name{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.manga_data span{
+  font-size:40px;
+}
+
+
+.need_login a{
+  margin-top:$margin;
+  margin-bottom:$margin;
+}
+
+.need_login .register{
+  font-size:20px;
+  text-align:center;
+}
+
+.offer_col{
+  margin-top:$margin-s;
 }
 
 .offer-btn{

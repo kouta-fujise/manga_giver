@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="top_text">
+    管理者ログイン
+  </div>
+  <div class="row login_row">
+    <div class="col-12 login_col">
+      <%= form_tag("/admin_login") do %>
+        <% if @error_massage %>
+          <div class="alert alert-danger form-error" role="alert">
+            <%= @error_message %>
+          </div>
+        <% end %>
+        <input name="id" type="name"  placeholder="idを入力" required>
+
+        <input name="password" type="password" placeholder="パスワードを入力" required>
+
+        <input type="submit" class="btn btn-lg btn-primary red_btn" value="ログイン">
+
+      <% end %>
+    </div>
+  </div>
+</div>

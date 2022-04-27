@@ -45,14 +45,14 @@
   font-size:50px;
 }
 
-.history_btn{
+.red_btn{
   background-color:$btn-color;
   border-color:$border-color;
   width:100%;
   margin-bottom:$margin-s;
   padding:0;
 }
-.history_btn:hover{
+.red_btn:hover{
   background-color:$btn-hover-color;
   border-color:$border-color;
 }
@@ -63,6 +63,7 @@
   border-color: transparent;
   border-bottom-color: $border-color;
   margin-bottom:$margin-l;
+  // padding-bottom:$padding;
   text-align:center;
 }
 
@@ -91,7 +92,7 @@
   margin:auto;
 }
 
-.offer_history{
+.blue_btn{
   padding:0;
   width:100%;
   background-color:$offer-cl;
@@ -117,7 +118,6 @@
   text-align:end;
 }
 
-
 .bottom_nav{
   position: fixed;
   bottom: 70px;
@@ -130,4 +130,61 @@
 
 .bottom_nav a{
   color:$text-color;
+}
+
+
+//設定ページ共通
+.user_set {
+  margin-top:$margin;
+}
+.user_set input {
+  display:block;
+  font-size: 24px;
+  margin: 0 auto;
+  width:100%;
+}
+
+// name_set
+.name_set input{
+  margin-top: $margin;
+}
+
+//get,give,deal共通
+
+.deal_row{
+  margin-top:$margin-s;
+}
+
+.deal_data{
+  border: 1px solid;
+  border-color: transparent;
+  border-bottom-color: $nav-color;
+  padding-bottom:$padding-s;
+}
+
+.deal_data:first-child{
+  border-top-color: $nav-color;
+}
+
+//ログイン、新規登録共通
+
+.login_row{
+  margin-top:$margin;
+}
+
+.login_col input {
+  display:block;
+  font-size: 24px;
+  margin: 0 auto;
+  width:100%;
+  margin-top:$margin-s;
+}
+
+.login_col .red_btn{
+  margin-top:$margin;
+}
+
+.login_col2{
+  text-align:center;
+  font-size:24px;
 }

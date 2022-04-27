@@ -16,21 +16,22 @@
 
     <div class="col-6">
       <!--漫画情報表示-->
-
-      <p><%= @manga.name %></p>
-
-      <div class = "author">
-        <p><%= @manga.author%></p>
+      <div class="manga_data manga_name">
+        <%= @manga.name %>
       </div>
-      <div class = "volume">
+
+      <div class = "manga_data manga_author">
+        <%= @manga.author%>
+      </div>
+      <div class = "manga_data manga_volume">
         <% if @manga.volume == 1 %>
-          <p>1巻</p>
+          <span>1</span>巻
         <%else%>
-          <p>1巻〜<%= @manga.volume%>巻</p>
+          <span>1</span>巻〜<span><%= @manga.volume%></span>巻
         <% end %>
       </div>
-      <div class = "price">
-        <p><%= @manga.price * @manga.volume%>円</p>
+      <div class = "manga_data manga_amount">
+        <span><%= @manga.price * @manga.volume%></span>円
       </div>
       <!--漫画情報表示-->
     </div>
@@ -44,12 +45,16 @@
   </div>
 
   <% if @current_user == nil %>
-    <div class="row manga_row manga_page_row">
-      奢る、オファーにはアカウント登録とログインが必要です。
-      <%= link_to("新規登録","/register")%>
-      <%= link_to "ログイン","/login"%>
+    <div class="row manga_row manga_page_row need_login">
+      <div class="col-12">
+        <p>奢る、オファーにはアカウント登録とログインが必要です。</p>
+        <div class="register">
+          <%= link_to("新規登録はこちら！","/register")%>
+        </div>
+        <%= link_to "ログイン","/login" ,class:"btn btn-lg btn-primary red_btn"%>
+      </div>
     </div>
-  <%else%>
+  <% else %>
     <div class="row manga_row manga_page_row">
       <!--奢る機能-->
       <div class="col-12">
@@ -62,20 +67,18 @@
             <div class="col-12 card-col">
               <%=link_to "/manga/card_pay/#{card_each.customer}",method: "post", data: { confirm: 'このカードで奢りますか？'}, class: "btn btn-lg btn-primary card-btn" do%>
                 <h2>このカードで奢る</h2>
-                <p>
-                  カード名義人: <%= card_each.name %>
-                  <br>
-                  カード番号：**** **** **** <%= card_each.last4%>
-                  <br>
-                  有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %>
-                  <br>
-                  ブランド：<%= card_each.brand %>
-                </p>
+                カード名義人: <%= card_each.name %>
+                <br>
+                カード番号：**** **** **** <%= card_each.last4%>
+                <br>
+                有効期限：<%= card_each.exp_month %> / <%= card_each.exp_year %>
+                <br>
+                ブランド：<%= card_each.brand %>
               <%end%>
             </div>
           <% end %>
         <% end %>
-      <%else%>
+      <% else %>
         カードが登録されていません。
       <% end %>
       <!--カードが登録されているか-->
@@ -101,7 +104,7 @@
           <%# <%= f.label :exp_year, "有効期限（年）" %>
           <%= f.text_field :exp_year ,placeholder:"有効期限（年）"%>
 
-          <%= f.submit "カードを登録して奢る" ,class:"btn btn-lg btn-primary card-btn card-submit-btn", data: { confirm: 'カードを登録して支払いますか？'}%>
+          <%= f.submit "カードを登録して奢る" ,class:"btn btn-lg btn-primary card-btn ", data: { confirm: 'カードを登録して支払いますか？'}%>
         <% end %>
       <!--カード登録機能-->
       </div>
@@ -115,14 +118,14 @@
         <h2>オファーする</h2>
       </div>
       <%if @current_user.address%>
-        <div class="col-12">
+        <div class="col-12 offer_col">
           設定中の住所<%= link_to("住所を変更する","/user/ad_set")%>
         </div>
-        <div class="col-12">
+        <div class="col-12 offer_col">
           <%= @current_user.address %>
           <br>
         </div>
-        <div class="col-12">
+        <div class="col-12 offer_col">
           <% if @offer_point == 0%>
             <div class="btn btn-lg btn-primary offer-btn btn_gray">オファー枠がありません</div>
           <% else %>
@@ -130,6 +133,7 @@
               data: { confirm: '現在の住所にこの漫画をオファーしますか？誰かに奢ってもらうまでオファー枠の変更はできません。'},
               class: "btn btn-lg btn-primary offer-btn"
             %>
+            <div class="attention">※住所が正確でないと届かない場合がございます。その場合の払い戻しはできかねますのであらかじめご了承ください。</div>
           <% end %>
         </div>
       <% else %>

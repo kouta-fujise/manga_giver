@@ -10,10 +10,22 @@
   background-color:$btn-color;
   border-color:$border-color;
   width:100%;
-  margin-bottom:10px;
+  margin-bottom:$margin;
 }
 .card-btn:hover{
   background-color:$btn-hover-color;
+  border-color:$border-color;
+}
+
+.card{
+  background-color:$btn-color;
+  border-color:$border-color;
+  width:100%;
+  margin-bottom:$margin;
+}
+
+.card:hover{
+  background-color:$btn-color;
   border-color:$border-color;
 }
 
