@@ -86,13 +86,15 @@
         <%= @not_receive.size%>
       </div>
     </div>
-    <%# @not_receive.each do |n|%>
     <div class="col-6 get_data2">
-      <%= link_to("受け取り通知をする","/user/deal")%>
+      <% if @not_receive.present? %>
+        <%= link_to("受け取り通知をする","/user/deal")%>
+      <% else %>
+        現在取引は<br>ありません。
+      <% end %>
     </div>
-    <%# end %>
     <div class="col-12">
-      <%= link_to "受け取り履歴","/user/get",class:"btn btn-lg btn-primary offer_history"%>
+      <%= link_to "受け取り履歴","/user/get",class:"btn btn-lg btn-primary blue_btn"%>
     </div>
   </div>
   <!-- 設定関連 -->

@@ -1,15 +1,38 @@
 <div class="container">
-  <div class="row">
+  <div class="top_text">
+    受け取り履歴
+  </div>
+  <div class="row deal_row">
     <div class="col-12">
-      <strong>受け取り履歴</strong>
-      <% @gets.each do |get|%>
-        <div class="entryside">
-          もらった本
-          <% @manga = Manga.find_by(id:get.manga_id)%>
-          <%= @manga.name %>
-          送り主
-          <% @t_user = User.find_by(id:get.user_id)%>
-          <%= @t_user.name %>さん
+      <% if @gets.present? %>
+        <% @gets.each do |get|%>
+          <div class="deal_data">
+            <%=  Offer.find_by(id:get.offer_id).given_at %>
+            <br>
+            送り主
+            <% @t_user = User.find_by(id:get.user_id)%>
+            <%= @t_user.name %>さん
+            <br>
+            もらった本
+            <% @manga = Manga.find_by(id:get.manga_id)%>
+            <%= @manga.name %>
+            <%= get.volume %>巻
+            <%= get.amount %>円分
+            <br>
+            <% if get.sent == 1%>
+              <% if get.received == 1%>
+                受け取り済み
+              <% else %>
+                発送済み
+              <% end %>
+            <% else %>
+              発送準備中
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <div>
+          履歴はありません。
         </div>
       <% end %>
     </div>

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if @current_user
 
       # ユーザーのランク計測
-      @rank_border = [0,5000,10000,100000]
+      @rank_border = [0,10000,50000,100000]
       @ranks = ["ビギナー","ブロンズ","シルバー","ゴールド","プラチナ"]
 
       total = @current_user.total_amount_paid

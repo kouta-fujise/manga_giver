@@ -49,24 +49,24 @@ body {
 }
 
 .ad {
-    width:330px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin-left:10px;
-    margin-right: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  width:330px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-left:10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .nav_bar {
-    background-color: #fcfcfcfc;
-    overflow: hidden;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    border:1px solid;
-    border-color:transparent;
-    border-top-color: $nav-color;
+  background-color: #fcfcfcfc;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border:1px solid;
+  border-color:transparent;
+  border-top-color: $nav-color;
 }
 .nav_bar .nav-col{
   text-align:center;

@@ -1,15 +1,33 @@
 <div class="container">
-  <div class="row">
-    <% @not_receive.each do |n|%>
-    <div class="col-12">
-      <%= Manga.find_by(id:n.manga_id).name %>
-      <% if n.sent == 1 %>
-        発送済み
-        <%= link_to("受け取りました","/receive/#{n.id}",{method: "post"})%>
-      <%else%>
-        未発送
+  <div class="top_text">
+    取引中の商品
+  </div>
+  <div class="row deal_row">
+    <% if @not_receive.present? %>
+      <% @not_receive.each do |n|%>
+        <div class="col-12 deal_data">
+          <%= n.given_at %>
+          <br>
+          送り主
+          <%= User.find_by(id:n.given_by).name %>さん
+          <br>
+          もらった本
+          <%= Manga.find_by(id:n.manga_id).name %>
+          <%= Give.find_by(id:n.give_id).volume %>巻
+          <%= Give.find_by(id:n.give_id).amount %>円分
+          <br>
+          <% if n.sent == 1 %>
+            発送済み
+            <%= link_to "受け取りました","/receive/#{n.id}",class:"btn btn-lg btn-primary blue_btn" ,method: "post" %>
+          <%else%>
+            発送準備中
+          <% end %>
+        </div>
       <% end %>
-    </div>
+    <% else %>
+      <div>
+        取引はありません。
+      </div>
     <% end %>
   </div>
 </div>

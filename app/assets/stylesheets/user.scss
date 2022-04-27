@@ -91,7 +91,7 @@
   margin:auto;
 }
 
-.offer_history{
+.blue_btn{
   padding:0;
   width:100%;
   background-color:$offer-cl;
@@ -147,4 +147,21 @@
 // name_set
 .name_set input{
   margin-top: $margin;
+}
+
+//get,give,deal共通
+
+.deal_row{
+  margin-top:$margin-s;
+}
+
+.deal_data{
+  border: 1px solid;
+  border-color: transparent;
+  border-bottom-color: $nav-color;
+  padding-bottom:$padding-s;
+}
+
+.deal_data:first-child{
+  border-top-color: $nav-color;
 }
