@@ -23,4 +23,24 @@ class HomeController < ApplicationController
     flash[:notice] = "管理者からログアウトしました"
     redirect_to "/"
   end
+
+  def dashboard
+    @users = User.all
+    @gives = Give.all
+
+    # 累計売り上げ、販売冊数の計算
+    @give_amount = 0
+    @give_volume =0
+    @deal_count =0
+    @gives.each do |give|
+      @give_amount += give.amount
+      @give_volume += give.volume
+      if give.done ==1
+        @deal_count += 1
+      end
+    end
+
+    @offer = Offer.all
+    @manga = Manga.all
+  end
 end

@@ -34,7 +34,11 @@
     <header>
       <div class="header container">
         <div class="row header_row">
-          <div class="col-2">manga-giver</div>
+          <div class="col-2">
+            <%= link_to "/" do%>
+              manga<br>giver
+            <% end %>
+          </div>
           <div class="col-10 header_rank">
             <%if @current_user == nil%>
               <a href="/login">
@@ -42,9 +46,11 @@
                   ログインする
                 </div>
               </a>
-            <%else%>
-              ランク:<span><%= @rank %></span>
-            <%end%>
+            <% else %>
+              <%= link_to "/user/#{@current_user.id}" do%>
+                ランク:<span><%= @rank %></span>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -67,14 +73,14 @@
         <% if $admin == 1 %>
           <div class="col-6 nav-col">
             <a href="/manga/deal">
-              <div class="nav_" id="home_nav">
+              <div class="nav_">
                 取引一覧
               </div>
             </a>
           </div>
           <div class="col-6 nav-col">
             <a href="/admin_logout">
-              <div class="nav_" id="home_nav">
+              <div class="nav_">
                 管理者ログアウト
               </div>
             </a>

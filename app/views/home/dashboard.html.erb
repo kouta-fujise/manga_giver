@@ -1,0 +1,26 @@
+<div class="container">
+  <%= link_to("取引一覧","/manga/deal")%>
+  <%= link_to("未発送取引一覧","/manga/notyet")%>
+  <%= link_to("ダッシュボード","/dashboard")%>
+  <div class="top_text">
+    ダッシュボード
+  </div>
+  <div class="row dashboard">
+    <div class="col-12">
+      累計売り上げ
+        <span><%= @give_amount %></span>円
+    </div>
+    <div class="col-12">
+      累計販売冊数
+        <span><%= @give_volume %></span>冊
+    </div>
+    <div class="col-12">
+      累計登録ユーザ
+        <span><%= @users.size %></span>ユーザ
+    </div>
+    <div class="col-12">
+      累計取引数
+        <span><%= @deal_count %></span>回
+    </div>
+  </div>
+</div>

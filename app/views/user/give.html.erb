@@ -7,13 +7,17 @@
       <% if @gives.present? %>
         <% @gives.each do |give|%>
           <div class="deal_data">
+            奢り成立日時
+            <br>
             <%= Offer.find_by(id:give.offer_id).given_at %>
             <br>
             奢った相手
+            <br>
             <% @target_user = User.find_by(id:give.target_id)%>
             <%= @target_user.name %>さん
             <br>
             奢った本
+            <br>
             <% @given_manga = Manga.find_by(id:give.manga_id)%>
             <%= @given_manga.name %>
             <%= give.volume%>巻
@@ -38,6 +42,7 @@
       <% end %>
     </div>
   </div>
+  <div style = "height:200px"></div>
 </div>
 <%= link_to "/user/page" do%>
   <div class="bottom_nav">
