@@ -1,33 +1,47 @@
 
 <div class="container">
+  <%= link_to("取引一覧","/manga/deal")%>
+  <%= link_to("未発送取引一覧","/manga/notyet")%>
+  <%= link_to("ダッシュボード","/dashboard")%>
+  <div class="top_text">
+    取引一覧
+  </div>
   <div class="row">
-    <%= link_to("取引一覧","/manga/deal")%>
-    <%= link_to("未発送取引一覧","/manga/notyet")%>
-
-    <p>取引一覧</p>
-
     <% @gives.each do |give|%>
-      <div class="entryside">
-        <p>取引番号</p>
-        <%= give.id%>
-        <p>奢った人</p>
-        <%= give.user_id%>
-        <p>奢られた人</p>
-        <%= give.target_id%>
-        <p>奢った漫画</p>
-        <%= give.manga_id%>
-        <% manga = @mangas.find_by(id: give.manga_id)%>
-        <%= manga.name%>
-        <p>届ける住所</p>
-        <%= @users.find_by(id:give.target_id).address%>
-        <p>状態</p>
+      <% if give.sent==nil %>
+      <div class="deal_data deal_not_yet">
+      <%else%>
+      <div class="deal_data">
+      <% end%>
         <% if give.sent==nil %>
-        <p>未発送</p>
-        <p>完了したら↓</p>
-        <%= link_to("発送しました","/sent/#{give.id}", {method:"post"})%>
+        <span>未発送</span>
+        <br>
+        発送したら↓
+        <%= link_to "発送しました","/sent/#{give.id}",class:"btn btn-lg btn-primary blue_btn" ,method: "post" %>
         <%else%>
-        <p>発送完了</p>
+        発送完了
+        <br>
         <% end%>
+        奢り成立日時
+        <%= Offer.find_by(id:give.offer_id).given_at%>
+        <br>
+        取引番号
+        <%= give.id%>
+        <br>
+        奢った人
+        <%= give.user_id%>
+        奢られた人
+        <%= give.target_id%>
+        <br>
+        奢った漫画
+        <br>
+        <% manga = @mangas.find_by(id: give.manga_id)%>
+        <span><%= manga.name%></span>
+        <br>
+        届ける住所
+        <br>
+        <span><%= @users.find_by(id:give.target_id).address%></span>
+        <br>
       </div>
     <% end %>
   </div>

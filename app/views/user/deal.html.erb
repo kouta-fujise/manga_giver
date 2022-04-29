@@ -6,12 +6,16 @@
     <% if @not_receive.present? %>
       <% @not_receive.each do |n|%>
         <div class="col-12 deal_data">
+          奢り成立日時
+          <br>
           <%= n.given_at %>
           <br>
           送り主
+          <br>
           <%= User.find_by(id:n.given_by).name %>さん
           <br>
           もらった本
+          <br>
           <%= Manga.find_by(id:n.manga_id).name %>
           <%= Give.find_by(id:n.give_id).volume %>巻
           <%= Give.find_by(id:n.give_id).amount %>円分
@@ -30,6 +34,7 @@
       </div>
     <% end %>
   </div>
+  <div style = "height:200px"></div>
 </div>
 <%= link_to "/user/page" do%>
   <div class="bottom_nav">

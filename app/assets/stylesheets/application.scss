@@ -36,6 +36,11 @@ body {
   margin-bottom: 10px;
 }
 
+.header a{
+  color:$black;
+  text-decoration: none;
+}
+
 .header_rank{
   text-align:right;
   font-size:15px;

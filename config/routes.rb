@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   post "admin_login" => "home#admin_login"
   get "admin_logout" => "home#admin_logout"
 
+  get "dashboard" => "home#dashboard"
+
   #
   # resources :card, only: [:new, :show] do
   #   collection do
