@@ -7,6 +7,16 @@
       <% if @gets.present? %>
         <% @gets.each do |get|%>
           <div class="deal_data">
+            <% if get.sent == 1%>
+              <% if get.received == 1%>
+                <span>受け取り済み</span>
+              <% else %>
+                <span>発送済み</span>
+              <% end %>
+            <% else %>
+              <span>発送準備中</span>
+            <% end %>
+            <br>
             奢り成立日時
             <br>
             <%=  Offer.find_by(id:get.offer_id).given_at %>
@@ -22,16 +32,6 @@
             <%= @manga.name %>
             <%= get.volume %>巻
             <%= get.amount %>円分
-            <br>
-            <% if get.sent == 1%>
-              <% if get.received == 1%>
-                受け取り済み
-              <% else %>
-                発送済み
-              <% end %>
-            <% else %>
-              発送準備中
-            <% end %>
           </div>
         <% end %>
       <% else %>

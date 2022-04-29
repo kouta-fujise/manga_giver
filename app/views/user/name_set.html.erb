@@ -1,26 +1,41 @@
 <div class="container">
   <div class="top_text">
-    ユーザ名設定
+    ユーザ基本設定
   </div>
   <div class="row">
+    <%if @user.present?%>
+      <% @user.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger form-error">
+          <%= message %>
+        </div>
+      <% end %>
+    <%end%>
     <div class="col-12 user_set name_set">
       <%= form_tag("/user/name") do %>
         <div id="info_register">
-          <%if @user.present?%>
-            <% @user.errors.full_messages.each do |message| %>
-              <div class="alert alert-danger form-error">
-                <%= message %>
-              </div>
-            <% end %>
-          <%end%>
-        <input name="name" placeholder="新しい名前" value="<%= @user.name%>">
-          <div>
-          <input type="submit" id="button_register" class="btn btn-lg btn-primary red_btn" value="設定">
-          </div>
+          <input name="name" placeholder="新しい名前" value="<%= @user.name%>">
+          <input type="submit" id="button_register" class="btn btn-lg btn-primary red_btn" value="名前設定">
+        </div>
+      <% end %>
+    </div>
+    <div class="col-12 user_set name_set">
+      <%= form_tag("/user/email") do %>
+        <div id="info_register">
+            <input name="email" type="email" placeholder="新しいメールアドレス" value="<%= @user.email%>">
+            <input type="submit" id="button_register" class="btn btn-lg btn-primary red_btn" value="メール設定">
+        </div>
+      <% end %>
+    </div>
+    <div class="col-12 user_set name_set">
+      <%= form_tag("/user/password") do %>
+        <div id="info_register">
+          <input name="password" type="password"  placeholder="新しいパスワード(20字以内)">
+          <input type="submit" id="button_register" class="btn btn-lg btn-primary red_btn" value="パスワード設定">
         </div>
       <% end %>
     </div>
   </div>
+  <div style = "height:200px"></div>
 </div>
 
 
