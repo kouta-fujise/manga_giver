@@ -24,7 +24,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/myproject:cached
+      - rails_backup:/myproject
       #unicornコンテナの/myproject/tmp/socketsディレクトリをtmp-dataボリュームにマウント
       #ソケット通信用ファイルをnginxコンテナと共有するため
       - tmp-data:/myproject/tmp/sockets
