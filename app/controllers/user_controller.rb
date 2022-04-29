@@ -63,14 +63,46 @@ class UserController < ApplicationController
   end
 
   def name
+    @user =  @current_user
     if params[:name]==""
       flash[:notice] = "ユーザ名が入力されていません"
       render("user/name_set")
     else
-      @user =  @current_user
       @user.name = params[:name]
       if @user.save
         flash[:notice] = "ユーザ名を登録しました"
+        redirect_to("/user/name_set")
+      else
+        render("user/name_set")
+      end
+    end
+  end
+
+  def email
+    @user =  @current_user
+    if params[:email]==""
+      flash[:notice] = "メールアドレスが入力されていません"
+      render("user/name_set")
+    else
+      @user.email = params[:email]
+      if @user.save
+        flash[:notice] = "メールアドレスを登録しました"
+        redirect_to("/user/name_set")
+      else
+        render("user/name_set")
+      end
+    end
+  end
+
+  def password
+    @user =  @current_user
+    if params[:password]==""
+      flash[:notice] = "パスワードが入力されていません"
+      render("user/name_set")
+    else
+      @user.password = params[:password]
+      if @user.save
+        flash[:notice] = "パスワードを登録しました"
         redirect_to("/user/name_set")
       else
         render("user/name_set")

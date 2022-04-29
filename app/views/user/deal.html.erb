@@ -6,6 +6,13 @@
     <% if @not_receive.present? %>
       <% @not_receive.each do |n|%>
         <div class="col-12 deal_data">
+          <% if n.sent == 1 %>
+            <span>発送済み</span>
+            <%= link_to "受け取りました","/receive/#{n.id}",class:"btn btn-lg btn-primary blue_btn" ,method: "post" %>
+          <%else%>
+            <span>発送準備中</span>
+          <% end %>
+          <br>
           奢り成立日時
           <br>
           <%= n.given_at %>
@@ -19,13 +26,6 @@
           <%= Manga.find_by(id:n.manga_id).name %>
           <%= Give.find_by(id:n.give_id).volume %>巻
           <%= Give.find_by(id:n.give_id).amount %>円分
-          <br>
-          <% if n.sent == 1 %>
-            発送済み
-            <%= link_to "受け取りました","/receive/#{n.id}",class:"btn btn-lg btn-primary blue_btn" ,method: "post" %>
-          <%else%>
-            発送準備中
-          <% end %>
         </div>
       <% end %>
     <% else %>

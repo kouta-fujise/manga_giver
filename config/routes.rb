@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get "register" => "user#register"
   post "user/create" => "user#create"
   post "user/name" => "user#name"
+  post "user/email" => "user#email"
+  post "user/password" => "user#password"
   get "login" => "user#login"
   post "user/login_form" =>"user#login_form"
   get "user/:id" => "user#page"
