@@ -1,7 +1,7 @@
 class MangaController < ApplicationController
 
   before_action :authenticate_user, {only:[:car_pay,:create_pay,:offer]}
-  before_action :check_admin, {only:[:deal,:notyet]}
+  before_action :check_admin, {only:[:deal,:notyet,:register]}
 
   def top
   end
