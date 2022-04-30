@@ -34,7 +34,7 @@ body {
 
 .header_row{
   padding-top:5px 0;
-  border: 1px solid;
+  border: 5px solid;
   border-color: transparent;
   border-bottom-color: $border-color;
   margin-bottom: 10px;
@@ -92,7 +92,7 @@ body {
 }
 
 .red_btn{
-  margin-top:$margin;
+  margin-top:$margin-s;
 }
 
 .attention {
@@ -188,189 +188,189 @@ body {
     text-decoration: none;
     font-size: 17px;
 }
-
-.entry_side {
-    vertical-align: top;
-    display: inline-block;
-    text-align: center;
-    width: 100px;
-    font-size:15px;
-}
-
-.button_genre {
-    background-color: rgb(241, 235, 235);
-    border: #f32121;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 20px;
-}
-
-.num_ranking {
-    vertical-align: top;
-    display: inline-block;
-    text-align: center;
-}
-
-.cover_ranking {
-    vertical-align: top;
-    display: inline-block;
-    text-align: center;
-}
-
-.title_author {
-    vertical-align: top;
-    display: inline-block;
-    text-align: center;
-}
-.fav {
-    vertical-align: top;
-    display: inline-block;
-    text-align: center;
-}
-
-#button_fav {
-    background-color: #f32121;
-    color: white;
-    font-size: 20px;
-}
-
-.button_buy {
-    width: fit-content;
-    font-size:25px;
-    color: white;
-    padding-left: 140px;
-    padding-right: 140px;
-    background-color: #f32121;
-    margin-bottom: 10px;
-}
-
-.button_vol_buy {
-    width: fit-content;
-    font-size:20px;
-    color: white;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: #f32121;
-}
-
-.description {
-    font-size: 17px;
-    color: black;
-    margin: 10px;
-}
-
-.caption {
-    display: block;
-}
-
-.entry_settings {
-    font-size: 30px;
-}
-
-#meter_buy {
-    width: 350px;
-    height: 350px;
-}
-/* <<<<<<< HEAD
-
-<<<<<<< HEAD */
-#logo_login {
-    margin-top: 150px;
-    margin-left: 85px;
-    margin-right: 85px;
-    margin-bottom: 20px;
-    width: 50%;
-    height: auto;
-}
-
-#email_login {
-    font-size: 25px;
-    margin-left: 20px;
-    margin-bottom: 10px;
-    width: 300px;
-}
-
-#password_login {
-    font-size: 25px;
-    margin-left: 20px;
-    margin-bottom: 10px;
-    width: 300px;
-}
-
-#button_login {
-    font-size:25px;
-    color: white;
-    padding-left: 60px;
-    padding-right: 60px;
-    margin-left: 65px;
-    background-color: #f32121;
-}
-
-#link_newmember {
-    margin-left: 95px;
-}
-
-#checkbox_password {
-    font-size: 18px;
-}
-
-#pass_show {
-    width: 18px;
-    height: 18px;
-    margin-left: 20px;
-    margin-bottom: 15px;
-}
-
-#text_register {
-    color: #f32121;
-    font-size: 30px;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-
-/**address page**/
-
-#address {
-    font-size: 30px;
-    padding: 5px;
-    margin-top: 10px;
-}
-#user_name {
-    font-size: 20px;
-    padding: 4px;
-    margin-bottom: 10px;
-}
-#postcode1 {
-    font-size: 20px;
-    padding: 4px;
-    margin-bottom: 10px;
-}
-#postcode2 {
-    font-size: 20px;
-    padding: 4px;
-    margin-bottom: 10px;
-}
-#todofuken {
-    font-size: 20px;
-    padding: 4px;
-    margin-bottom: 10px;
-}
-.address_btn {
-    background-color: #ff7272;
-    border: none;
-    color: white;
-    padding: 15px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-.address_list {
-    font-size: 18px;
-    padding: 5px;
-}
+//
+// .entry_side {
+//     vertical-align: top;
+//     display: inline-block;
+//     text-align: center;
+//     width: 100px;
+//     font-size:15px;
+// }
+//
+// .button_genre {
+//     background-color: rgb(241, 235, 235);
+//     border: #f32121;
+//     border-radius: 10px;
+//     text-align: center;
+//     font-size: 20px;
+// }
+//
+// .num_ranking {
+//     vertical-align: top;
+//     display: inline-block;
+//     text-align: center;
+// }
+//
+// .cover_ranking {
+//     vertical-align: top;
+//     display: inline-block;
+//     text-align: center;
+// }
+//
+// .title_author {
+//     vertical-align: top;
+//     display: inline-block;
+//     text-align: center;
+// }
+// .fav {
+//     vertical-align: top;
+//     display: inline-block;
+//     text-align: center;
+// }
+//
+// #button_fav {
+//     background-color: #f32121;
+//     color: white;
+//     font-size: 20px;
+// }
+//
+// .button_buy {
+//     width: fit-content;
+//     font-size:25px;
+//     color: white;
+//     padding-left: 140px;
+//     padding-right: 140px;
+//     background-color: #f32121;
+//     margin-bottom: 10px;
+// }
+//
+// .button_vol_buy {
+//     width: fit-content;
+//     font-size:20px;
+//     color: white;
+//     padding-left: 20px;
+//     padding-right: 20px;
+//     background-color: #f32121;
+// }
+//
+// .description {
+//     font-size: 17px;
+//     color: black;
+//     margin: 10px;
+// }
+//
+// .caption {
+//     display: block;
+// }
+//
+// .entry_settings {
+//     font-size: 30px;
+// }
+//
+// #meter_buy {
+//     width: 350px;
+//     height: 350px;
+// }
+// /* <<<<<<< HEAD
+//
+// <<<<<<< HEAD */
+// #logo_login {
+//     margin-top: 150px;
+//     margin-left: 85px;
+//     margin-right: 85px;
+//     margin-bottom: 20px;
+//     width: 50%;
+//     height: auto;
+// }
+//
+// #email_login {
+//     font-size: 25px;
+//     margin-left: 20px;
+//     margin-bottom: 10px;
+//     width: 300px;
+// }
+//
+// #password_login {
+//     font-size: 25px;
+//     margin-left: 20px;
+//     margin-bottom: 10px;
+//     width: 300px;
+// }
+//
+// #button_login {
+//     font-size:25px;
+//     color: white;
+//     padding-left: 60px;
+//     padding-right: 60px;
+//     margin-left: 65px;
+//     background-color: #f32121;
+// }
+//
+// #link_newmember {
+//     margin-left: 95px;
+// }
+//
+// #checkbox_password {
+//     font-size: 18px;
+// }
+//
+// #pass_show {
+//     width: 18px;
+//     height: 18px;
+//     margin-left: 20px;
+//     margin-bottom: 15px;
+// }
+//
+// #text_register {
+//     color: #f32121;
+//     font-size: 30px;
+//     margin-top: 10px;
+//     margin-left: 10px;
+// }
+//
+// /**address page**/
+//
+// #address {
+//     font-size: 30px;
+//     padding: 5px;
+//     margin-top: 10px;
+// }
+// #user_name {
+//     font-size: 20px;
+//     padding: 4px;
+//     margin-bottom: 10px;
+// }
+// #postcode1 {
+//     font-size: 20px;
+//     padding: 4px;
+//     margin-bottom: 10px;
+// }
+// #postcode2 {
+//     font-size: 20px;
+//     padding: 4px;
+//     margin-bottom: 10px;
+// }
+// #todofuken {
+//     font-size: 20px;
+//     padding: 4px;
+//     margin-bottom: 10px;
+// }
+// .address_btn {
+//     background-color: #ff7272;
+//     border: none;
+//     color: white;
+//     padding: 15px 30px;
+//     text-align: center;
+//     text-decoration: none;
+//     display: inline-block;
+//     font-size: 16px;
+//     margin: 4px 2px;
+//     cursor: pointer;
+// }
+// .address_list {
+//     font-size: 18px;
+//     padding: 5px;
+// }
 
 @media screen and (min-width: 960px) {
 	/* 960px以上に適用されるCSS（PC用） */

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="top_text">
     ログイン
   </div>
@@ -10,7 +10,7 @@
   <div class="row login_row">
     <div class="col-12 login_col">
       <%= form_tag("/user/login_form") do %>
-        <% if @error_massage %>
+        <% if @error_message %>
           <div class="alert alert-danger form-error" role="alert">
             <%= @error_message %>
           </div>
