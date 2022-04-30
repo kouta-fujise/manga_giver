@@ -70,20 +70,17 @@ h6{
 
 //漫画個別ページ
 .manga_page_row{
-  margin-bottom:$margin-s;
+  margin-top:$margin;
 }
 
 .manga_data{
   margin-bottom:$margin-s;
+  font-size:$font;
 }
 
-.manga_name{
-  font-size:20px;
-  font-weight:bold;
-}
 
 .manga_data span{
-  font-size:40px;
+  font-size:$font-l;
 }
 
 
