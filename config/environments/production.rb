@@ -1,4 +1,6 @@
 Rails.application.configure do
+  # ファイルの変更が即反映される
+  config.file_watcher = ActiveSupport::FileUpdateChecker
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
