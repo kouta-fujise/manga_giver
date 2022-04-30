@@ -52,4 +52,4 @@ test:
 #
 production:
   <<: *default
-database: manga_giver_pro
+  database: manga_giver_pro
