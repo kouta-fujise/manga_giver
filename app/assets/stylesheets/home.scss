@@ -3,15 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .tutorial a{
-  font-size:30px;
+  font-size:$font-l;
 }
 
 //管理者画面
 .deal_not_yet span{
-  font-size:30px;
+  font-size:$font-l;
   color:$base-color;
 }
 
 .dashboard span{
-  font-size:30px;
+  font-size:$font-l;
 }

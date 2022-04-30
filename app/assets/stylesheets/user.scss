@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .give_row{
-  border: 1px solid;
+  border: 5px solid;
   border-color: transparent;
   border-bottom-color: $border-color;
   margin-bottom:$margin-l;
@@ -12,10 +12,10 @@
 .user_rank{
   text-align:center;
   font-size: 16px;
-  margin-bottom:$margin;
+  margin-bottom:$margin-s;
 }
 .user_rank span{
-  font-size:60px;
+  font-size:$font-xxl;
 }
 .rank_row{
   margin:30px 0;
@@ -25,6 +25,10 @@
   font-size:10px;
   text-align:left;
   vertical-align:bottom;
+}
+
+.progress_label-c{
+  font-size:$font-s;
 }
 
 .progress_label-r{
@@ -38,11 +42,11 @@
 
 .give_data{
   text-align:center;
-  margin-bottom:$margin;
+  margin-bottom:$margin-s;
 }
 
 .give_data span{
-  font-size:50px;
+  font-size:$font-xl;
 }
 
 .red_btn{
@@ -59,12 +63,13 @@
 
 
 .get_row{
-  border: 1px solid;
+  border: 5px solid;
   border-color: transparent;
   border-bottom-color: $border-color;
   margin-bottom:$margin-l;
   // padding-bottom:$padding;
   text-align:center;
+  font-size:$font;
 }
 
 .get_row .col-12{
@@ -81,7 +86,7 @@
 }
 
 .offer_num{
-  font-size:30px;
+  font-size:$font-xl;
 }
 
 .offer_data2{
@@ -104,13 +109,13 @@
 }
 
 .set_row .set_data{
-  border: 1px solid;
+  border: 5px solid;
   border-color: transparent;
   border-bottom-color: $border-color;
 }
 
 .set_col{
-  border: 1px solid;
+  border: 5px solid;
   border-color: transparent;
   border-bottom-color: $border-color;
 }
@@ -120,7 +125,7 @@
 
 .bottom_nav{
   position: fixed;
-  bottom: 70px;
+  bottom: 4rem;
   width: 100%;
   background-color:$nav-color;
   color:$text-color;
@@ -139,15 +144,21 @@
 }
 .user_set input {
   display:block;
-  font-size: 24px;
-  margin: 0 auto;
+  font-size: $font;
+  // margin: 0 auto;
   width:100%;
+  margin-bottom:$margin-s;
 }
 
 // name_set
 .name_set input{
   margin-top: $margin;
 }
+
+//ad_set
+// .address_list{
+//   margin-bottom:$margin-s;
+// }
 
 //get,give,deal共通
 
@@ -156,10 +167,11 @@
 }
 
 .deal_data{
-  border: 1px solid;
+  border: 5px solid;
   border-color: transparent;
   border-bottom-color: $nav-color;
   padding-bottom:$padding-s;
+  font-size:$font-s;
 }
 
 .deal_data:first-child{
@@ -179,7 +191,7 @@
 
 .login_col input {
   display:block;
-  font-size: 24px;
+  font-size: $font;
   margin: 0 auto;
   width:100%;
   margin-top:$margin-s;
@@ -191,5 +203,5 @@
 
 .login_col2{
   text-align:center;
-  font-size:24px;
+  font-size:$font-l;
 }

@@ -28,6 +28,10 @@
   border-top-right-radius: calc(0.25rem - 1px);
 }
 
+.card-body{
+  padding:$padding-s;
+}
+
 h6{
   color :$text-color;
   text-decoration: none;
@@ -58,7 +62,7 @@ h6{
   background: #777675;
   color: white;
   font-size: 17px;
-  // border: 1px solid grey;
+  // border: 5px solid grey;
   border-left: none;
 }
 
@@ -70,7 +74,7 @@ h6{
 
 //漫画個別ページ
 .manga_page_row{
-  margin-top:$margin;
+  margin-top:$margin-s;
 }
 
 .manga_data{

@@ -50,6 +50,7 @@ class UserController < ApplicationController
       redirect_to("/")
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
+      logger.debug @error_message
       @user = User.new(
         email: params[:email],
         password: params[:password]
