@@ -374,13 +374,11 @@ body {
 
 @media screen and (min-width: 960px) {
 	/* 960px以上に適用されるCSS（PC用） */
-  // .nav_bar a {
-  //     float: left;
-  //     color: #f2f2f2;
-  //     text-align: center;
-  //     padding: 14px 16px;
-  //     text-decoration: none;
-  //     font-size: 20px;
-  //     margin: 10px;
-  // }
+  html{
+    font-size:20px;
+  }
+  .container-fluid{
+    padding-right:10%;
+    padding-left:10%;
+  }
 }
