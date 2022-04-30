@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row manga_row manga_page_row">
     <div class="col-6">
       <!--漫画の画像表示-->
@@ -66,7 +66,8 @@
           <%if card_each.present?%>
             <div class="col-12 card-col">
               <%=link_to "/manga/card_pay/#{card_each.customer}",method: "post", data: { confirm: 'このカードで奢りますか？'}, class: "btn btn-lg btn-primary card-btn" do%>
-                <h2>このカードで奢る</h2>
+                <span>このカードで奢る</span>
+                <br>
                 カード名義人: <%= card_each.name %>
                 <br>
                 カード番号：**** **** **** <%= card_each.last4%>
@@ -146,6 +147,6 @@
     </div>
   <% end %>
 
-<div style = "height:200px"></div>
+  <div style = "height:400px"></div>
 
 </div><!-- <コンテナエンド> -->
