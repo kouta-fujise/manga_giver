@@ -41,14 +41,14 @@ h6{
 // .searchbar input[type=text] {
 .search_bar{
   position: fixed;
-  bottom: 70px;
+  bottom: 3.5rem;
   width: 100%;
   margin-left: 2%;
 }
 
 .search_bar .keyword{
   padding: 10px;
-  font-size: 17px;
+  font-size: $font;
   // border:1px solid grey;
   float: left;
   width: 75%;
@@ -61,7 +61,7 @@ h6{
   padding: 10px;
   background: #777675;
   color: white;
-  font-size: 17px;
+  font-size: $font;
   // border: 5px solid grey;
   border-left: none;
 }
@@ -94,7 +94,7 @@ h6{
 }
 
 .need_login .register{
-  font-size:20px;
+  font-size:$font;
   text-align:center;
 }
 
