@@ -52,7 +52,6 @@ You can sread mangas with your hand. The more you spread, the more the author pr
 * rails 6.0.4.7
 * bootstrap 5.0.2
 * payjp 0.0.8
-* 
 
 <!-- 
 # Installation
