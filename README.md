@@ -72,5 +72,5 @@ Pay.jp is test mode so the payment function is not available.
 
 <!-- 社内向けなら社外秘であることを明示してる
 
-"hoge" is Confidential. -->
+"manga giver" is Confidential. -->
 
