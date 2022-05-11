@@ -1,30 +1,10 @@
 # README
 
-<!-- This README would normally document whatever steps are necessary to get the
-application up and running.
+ドキュメントは藤瀬功大が所持
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ... -->
+Kouta fujise have a document.
 
 # Name
-<!-- （リポジトリ/プロジェクト/OSSなどの名前） -->
 
 漫画を奢って広めるサービス「漫画ギバー」
 
