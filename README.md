@@ -68,7 +68,7 @@ Pay.jp is test mode so the payment function is not available.
 # License
 <!-- ライセンスを明示する -->
 
-"hoge" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+"manga giver" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
 
 <!-- 社内向けなら社外秘であることを明示してる
 
