@@ -117,16 +117,16 @@ h6{
 }
 
 
-@media screen and (min-width: 960px) {
-  .manga_card{
-    width:100%;
-    height: 100%;
-  }
-  .manga_image{
-    width:100%;
-    border-top-left-radius: calc(0.25rem - 1px);
-    border-top-right-radius: calc(0.25rem - 1px);
-  }
+@media screen and (min-width: 1000px) {
+  // .manga_card{
+  //   width:100%;
+  //   height: 100%;
+  // }
+  // .manga_image{
+  //   width:100%;
+  //   border-top-left-radius: calc(0.25rem - 1px);
+  //   border-top-right-radius: calc(0.25rem - 1px);
+  // }
   .search_bar{
     bottom: 6rem;
   }
