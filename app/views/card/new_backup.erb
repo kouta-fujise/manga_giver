@@ -1,0 +1,19 @@
+<%= form_tag("/card/create") do %>
+  <script
+    type="text/javascript"
+    src="https://checkout.pay.jp/"
+    class="payjp-button"
+    data-key= <%= ENV["PAYJP_PUBLIC_KEY"] %>
+    data-submit-text = "カードを登録する"
+    data-partial="true">
+  </script>
+<% end %>
+
+<p id="number-form" class="payjs-outer"></p>
+<p id="expiry-form" class="payjs-outer"></p>
+<p id="cvc-form" class="payjs-outer"></p>
+
+<%= form_with url: "create", method: :post, id: "card_form" do |f| %>
+  <div id="card_token"></div>
+  <%= f.submit "登録する", class:"btn", id: "info_submit" %>
+<% end %>
