@@ -372,7 +372,7 @@ body {
 //     padding: 5px;
 // }
 
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1000px) {
 	/* 1500px以上に適用されるCSS（PC用） */
   html{
     font-size:20px;
@@ -380,8 +380,5 @@ body {
   .container-fluid{
     padding-right:10%;
     padding-left:10%;
-  }
-  .search_bar{
-    bottom: 6rem;
   }
 }
